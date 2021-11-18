@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="sale_description"/>
+                </xpath>
+<!--                <xpath expr="//field[@name='payment_term_id']" position="attributes">-->
+<!--                    &lt;!&ndash; Add your fields or attributes here &ndash;&gt;-->
+<!--                    <attribute name="readonly">1</attribute>-->
+<!--                </xpath>-->
+            </field>
+        </record>
+
+        <record id="sale_order_tree_inherit" model="ir.ui.view">
+            <field name="name">sale.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="sale_description"/>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="menu_sale_appointment"
+                  name="Appointments"
+                  parent="sale.sale_order_menu"
+                  action="action_hospital_appointment"
+                  sequence="5"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_application_graph" model="ir.ui.view">
+        <field name="name">education.application.graph</field>
+        <field name="model">education.application</field>
+        <field name="arch" type="xml">
+            <graph string="Đơn đăng ký học">
+                <field name="academic_year_id"/>
+                <field name="academic_year_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_application_pivot" model="ir.ui.view">
+        <field name="name">education.application.pivot</field>
+        <field name="model">education.application</field>
+        <field name="arch" type="xml">
+            <pivot string="Đơn đăng ký học">
+                <field name="academic_year_id" type="row"/>
+                <field name="admission_date" interval="month" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+
+    <record id="action_application_report" model="ir.actions.act_window">
+        <field name="name">Thống kê đơn đăng ký học</field>
+        <field name="res_model">education.application</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_new_application': 1}</field>
+    </record>
+
+
+</odoo>

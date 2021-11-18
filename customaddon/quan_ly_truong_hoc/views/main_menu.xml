@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_education_root" name="Quản lý trường học 1" sequence="1"
+              web_icon="quan_ly_truong_hoc,static/description/icon.png"/>
+    <menuitem id="menu_education_main_menu" name="Thiết lập" parent="quan_ly_truong_hoc.menu_education_root"
+              sequence="8"/>
+    <menuitem id="menu_education_class_conf" name="Lớp học" parent="quan_ly_truong_hoc.menu_education_main_menu"
+              sequence="2"/>
+    <menuitem id="menu_education_application_conf" name="Đơn đăng ký"
+              parent="quan_ly_truong_hoc.menu_education_main_menu" sequence="1"/>
+
+    <!--    Application Reject Reason-->
+    <menuitem id="menu_education_reject_reason" name="Lý do từ chối"
+              parent="quan_ly_truong_hoc.menu_education_application_conf"
+              action="quan_ly_truong_hoc.action_reject_reason"/>
+
+    <!--    Education Document Type-->
+    <menuitem id="menu_education_document_type" name="Loại tài liệu"
+              parent="quan_ly_truong_hoc.menu_education_application_conf" action="quan_ly_truong_hoc.action_document"/>
+
+    <!--    Education Division-->
+    <menuitem action="action_education_division_tree" name="Mã lớp" parent="quan_ly_truong_hoc.menu_education_main_menu"
+              id="menu_action_education_division" sequence="20"/>
+
+
+    <!--    &lt;!&ndash;    Education Academic Year&ndash;&gt;-->
+    <!--    <menuitem action="action_education_academic_year" name="Năm học" parent="quan_ly_truong_hoc.menu_education_main_menu"-->
+    <!--              id="menu_action_education_academic" sequence="2"/>-->
+
+    <!--    &lt;!&ndash;    Education Admission&ndash;&gt;-->
+    <!--    <menuitem id="menu_education_admission" name="Quản lý trường học" parent="quan_ly_truong_hoc.menu_education_root"-->
+    <!--              sequence="5"/>-->
+    <!--    <menuitem id="menu_education_application" name="Đơn đăng ký học"-->
+    <!--              parent="quan_ly_truong_hoc.menu_education_admission" action="action_student_application"/>-->
+
+    <!--    &lt;!&ndash;    Application Analysis&ndash;&gt;-->
+    <!--    <menuitem name="Thống kê"-->
+    <!--              id="menu_application_report" parent="quan_ly_truong_hoc.menu_education_admission" sequence="99"/>-->
+
+    <!--    <menuitem action="action_application_report" name="Thống kê đăng ký học"-->
+    <!--              parent="quan_ly_truong_hoc.menu_application_report" id="menu_application_report_analysis"/>-->
+
+    <!--    &lt;!&ndash;    Application Amenities&ndash;&gt;-->
+    <!--    <menuitem action="action_education_amenities" name="Thiết bị" parent="quan_ly_truong_hoc.menu_education_main_menu"-->
+    <!--              id="menu_action_education_amenities" sequence="5"/>-->
+
+    <!--    &lt;!&ndash;    Education Class&ndash;&gt;-->
+    <!--    <menuitem action="action_education_class_tree" name="Khối" parent="quan_ly_truong_hoc.menu_education_class_conf"-->
+    <!--              id="menu_action_education_class" sequence="1"/>-->
+
+    <!--    &lt;!&ndash;    Education Class Division&ndash;&gt;-->
+    <!--    <menuitem action="action_education_class_division_tree" name="Lớp học"-->
+    <!--              parent="quan_ly_truong_hoc.menu_education_admission"-->
+    <!--              id="menu_action_education_class_division" sequence="20"/>-->
+
+    <!--    &lt;!&ndash;    Education Documents&ndash;&gt;-->
+    <!--    <menuitem action="action_education_documents_tree" name="Tài liệu"-->
+    <!--              parent="quan_ly_truong_hoc.menu_education_class_conf"-->
+    <!--              id="menu_action_education_document" sequence="10" groups="base.group_no_one"/>-->
+
+    <!--    &lt;!&ndash;    Education Faculty&ndash;&gt;-->
+    <!--    <menuitem id="menu_education_faculty" name="Giáo viên" sequence="15"-->
+    <!--              parent="quan_ly_truong_hoc.menu_education_admission" action="action_faculty"/>-->
+
+    <!--    &lt;!&ndash;    Education Student&ndash;&gt;-->
+    <!--    <menuitem id="menu_education_student" name="Học sinh" sequence="10"-->
+    <!--              parent="quan_ly_truong_hoc.menu_education_admission" action="action_student"/>-->
+
+    <!--    &lt;!&ndash;    Education Student Class&ndash;&gt;-->
+    <!--    <menuitem id="menu_education_student_class" name="Đăng ký học sinh" sequence="25"-->
+    <!--              parent="quan_ly_truong_hoc.menu_education_admission" action="action_student_class"/>-->
+
+    <!--    &lt;!&ndash;    Education Subject&ndash;&gt;-->
+    <!--    <menuitem action="action_education_subject_tree" name="Môn học" parent="quan_ly_truong_hoc.menu_education_class_conf"-->
+    <!--              id="menu_action_education_subject" sequence="4"/>-->
+
+    <!--    &lt;!&ndash;    Education Syllabus&ndash;&gt;-->
+    <!--    <menuitem action="action_education_syllabus" name="Giáo án" parent="quan_ly_truong_hoc.menu_education_class_conf"-->
+    <!--              id="menu_action_education_syllabus" sequence="5"/>-->
+
+</odoo>

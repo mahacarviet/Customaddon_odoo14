@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sendo_seller_form_view" model="ir.ui.view">
+            <field name="name">sendo_seller.form</field>
+            <field name="model">sendo.seller</field>
+            <field name="arch" type="xml">
+                <form string="Sendo Seller" create="false" delete="false">
+                    <sheet>
+                        <group>
+                            <field name="shop_key"/>
+                            <field name="secret_key"/>
+                            <field name="token_connection" readonly="1"/>
+                            <field name="date_startup"/>
+                            <field name="sendo_order_date_from" invisible="1"/>
+                            <field name="sendo_order_date_to" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="test_connect" type="object" class="btn-primary" string="Connect"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="sendo_seller_tree_view" model="ir.ui.view">
+            <field name="name">sendo_seller.tree</field>
+            <field name="model">sendo.seller</field>
+            <field name="arch" type="xml">
+                <tree string="Sendo Seller" create="false" delete="false" sample="1">
+                    <field name="shop_key"/>
+                    <field name="secret_key"/>
+                    <field name="token_connection" readonly="1"/>
+                    <field name="date_startup"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sendo_seller_act_window" model="ir.actions.server">
+            <field name="name">Sendo Seller</field>
+            <field name="model_id" ref="sendo_integration.model_sendo_seller"/>
+            <field name="binding_model_id" ref="sendo_integration.model_sendo_seller"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = model.action_view_config()</field>
+        </record>
+
+        <menuitem
+                name="### Connection Sendo API"
+                id="sendo_seller_menu"
+                parent="sale.menu_sale_config"
+                action="sendo_seller_act_window"
+                sequence="30"
+        />
+
+    </data>
+</odoo>

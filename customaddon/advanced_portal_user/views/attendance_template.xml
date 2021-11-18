@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_list_attendances" name="My Attendances">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Attendances</t>
+            </t>
+            <t t-if="not list_att">
+                <p>There are currently no attendance for your account.</p>
+            </t>
+            <t t-if="list_att" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-center">ID #</th>
+                        <th class="text-center">Check In</th>
+                        <th class="text-center">Check Out</th>
+                        <th class="text-center">Work Hours</th>
+                        <th class="text-center">Explanation</th>
+                    </tr>
+                </thead>
+                <t t-foreach="list_att" t-as="element_att">
+                    <tr>
+                        <td class="text-center"><span t-field="element_att.id"/></td>
+                        <td class="text-center"><span t-field="element_att.check_in"/></td>
+                        <td class="text-center">
+                            <t t-if="element_att.check_out != element_att.check_in">
+                                <span t-field="element_att.check_out"/>
+                            </t>
+                            <t t-if="not element_att.check_out != element_att.check_in">
+                                <span class="badge badge-pill badge-warning">Forget to Check Out </span>
+                            </t>
+
+                        </td>
+                        <td class="text-center">
+                            <span t-field="element_att.worked_hours"/>
+                        </td>
+                        <td class="text-center">
+                            <t t-if="element_att.check_out != element_att.check_in">
+
+                            </t>
+                            <t t-if="not element_att.check_out != element_att.check_in">
+                                <t t-if="not element_att.explanation">
+                                    <a t-attf-href="/portal_user/explanation_attendance/#{element_att.id}?{{ keep_query() }}"><span class="badge badge-light"> <i class="fa fa-edit"/> Explain</span></a>
+                                </t>
+                                <t t-if="element_att.explanation">
+                                    <t t-if="element_att.state == 'draft'">
+                                        <span class="badge badge-pill badge-info"><i class="fa fa-clock-o"/> Pending</span>
+                                    </t>
+                                    <t t-if="element_att.state == 'approved'">
+                                        <span class="badge badge-pill badge-success"><i class="fa fa-check"/> Approved</span>
+                                    </t>
+                                    <t t-if="element_att.state == 'refused'">
+                                        <span class="badge badge-pill badge-warning"><i class="fa fa-times"/> Refused</span>
+                                    </t>
+                                </t>
+                            </t>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="portal_user_create_attendances" name="Create Leaves">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Create Attendances</t>
+            </t>
+            <form style="margin: 100px;" action="/portal_user/save_attendances" method="post">
+                <t t-if="not check_in_obj">
+                    <div style="text-align: center;">
+                        <div>
+                            <h2 class="header_name">
+                                Hi <t t-esc="employee_name"/>
+                            </h2>
+                        </div>
+                        <div style="margin:20px;">
+                            <h5>
+                                Welcome!
+                            </h5>
+                        </div>
+                        <div style="margin: 20px;">
+                            <button type="submit"
+                                    style="border-radius:10%;"
+                                    class="btn btn-primary">
+                                <i style="font-size:150px;" class="fa fa-sign-in"/>
+                            </button>
+                        </div>
+                        <div style="opacity: 0.5;">
+                            <p>Click to <strong>Check In</strong></p>
+                        </div>
+                    </div>
+                </t>
+                <t t-if="check_in_obj">
+                    <div style="text-align: center;">
+                        <div>
+                            <h2>
+                                Hi <t t-esc="employee_name"/>
+                            </h2>
+                        </div>
+                        <div style="margin:20px;">
+                            <h5>
+                                You just checked in at <t t-esc="check_in_str"/>
+                            </h5>
+                        </div>
+                        <div style="margin: 20px;">
+                            <button type="submit"
+                                    style="border-radius:10%;"
+                                    class="btn btn-warning">
+                                <i style="font-size:150px;" class="fa fa-sign-out"/>
+                            </button>
+                        </div>
+                        <div style="opacity: 0.5;">
+                            <p>Click to <strong>Check Out</strong></p>
+                        </div>
+                    </div>
+                </t>
+            </form>
+        </t>
+    </template>
+    <template id="portal_user_explanation_attendance" name="Explanation Attendance">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Explanation Attendance</t>
+            </t>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            Date Explanation
+                        </div>
+                        <div>
+                            <t t-esc="date_explanation"/>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <form role="form" method="POST" action="/portal_user/save_explanation_attendance">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="attendance_id" t-att-value="attendance.id"/>
+                            <div class="form-group">
+                                <label for="explanation" class="control-label">Explanation</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="explanation"
+                                       t-att-value='explanation'
+                                       placeholder="Explanation"
+                                       required="required"/>
+                            </div>
+                            <div class="clearfix oe_login_buttons">
+                                <button type="submit" class="btn btn-primary pull-left">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ahamove_seller_form_view" model="ir.ui.view">
+            <field name="name">register.account.move.form</field>
+            <field name="model">register.account.move</field>
+            <field name="arch" type="xml">
+                <form string="AhaMove Information" create="false" delete="false">
+                    <header>
+                        <button name="register_account_ahamove" type="object" class="btn-primary"
+                                string="Get Token AhaMove"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="mobile" placeholder="0123649875"/>
+                            <field name="name" placeholder="Partner AhaMove"/>
+                            <field name="api_key" placeholder="test_key"/>
+                            <field name="address" placeholder="1 La Thành, Ô Chợ Dừa, Đống Đa, Hà Nội"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+<!--        <record id="ahamove_seller_act_window" model="ir.actions.act_window">-->
+<!--            <field name="name">AhaMove Information</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">register.account.move</field>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="help" type="html">-->
+<!--                <p class="oe_view_nocontent_create">-->
+<!--                    There is no examples click Create to add AhaMove Information.-->
+<!--                </p>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="ahamove_seller_act_window" model="ir.actions.server">
+            <field name="name">AhaMove Information</field>
+            <field name="model_id" ref="delivery_ahamove_magenest.model_register_account_move"/>
+            <field name="binding_model_id" ref="delivery_ahamove_magenest.model_register_account_move"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = model.action_view_config()</field>
+        </record>
+
+        <menuitem
+                name="### Connection AhaMove API"
+                id="ahamove_seller_menu"
+                parent="sale.menu_sale_config"
+                action="ahamove_seller_act_window"
+                sequence="30"
+        />
+
+    </data>
+</odoo>

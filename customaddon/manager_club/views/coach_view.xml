@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="coach_list_view" model="ir.ui.view">
+            <field name="name">coach.list.view</field>
+            <field name="model">coach</field>
+            <field name="arch" type="xml">
+                <tree string="coach_tree">
+                    <field name="name"/>
+                    <field name="age" force_save="1"/>
+                    <field name="nation"/>
+                    <field name="coaching_licence"/>
+                    <field name="coach_team_club" widget="many2many_tags"/>
+                    <field name="coach_training_center" widget="many2many_tags"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="coach_view_form" model="ir.ui.view">
+            <field name="name">coach.view.form</field>
+            <field name="model">coach</field>
+            <field name="arch" type="xml">
+                <form string="coach_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date_of_birth"/>
+                                <field name="age" force_save="1"/>
+                                <field name="address"/>
+                                <field name="nation"/>
+                                <field name="phone_number"/>
+                            </group>
+                            <group>
+                                <field name="coach_team_club" widget="many2many_tags"/>
+                                <field name="coach_training_center" widget="many2many_tags"/>
+                                <field name="coaching_licence"/>
+                                <field name="status"/>
+                                <field name="salary" widget='monetary'/>
+                                <field name="tax_salary"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="coach_view_kanban" model="ir.ui.view">
+            <field name="name">coach.kanban.view</field>
+            <field name="model">coach</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="nation"/>
+                    <field name="coaching_licence"/>
+                    <field name="status"/>
+                    <field name="coach_team_club"/>
+                    <field name="coach_training_center"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <a type="open">
+                                            <strong>
+                                                <li>
+                                                    <h2>
+                                                        <field name="name"/>
+                                                    </h2>
+                                                </li>
+                                            </strong>
+                                        </a>
+                                        <li>
+                                            <h6>Age:
+                                                <field name="age"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Nation:
+                                                <field name="nation"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>UEFA Coaching Licence:
+                                                <field name="coaching_licence"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Status:
+                                                <field name="status"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.coach_team_club">
+                                                <h6>Club:
+                                                    <field name="coach_team_club"/>
+                                                </h6>
+                                            </t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.coach_training_center">
+                                                <h6>Training Center:
+                                                    <field name="coach_training_center"/>
+                                                </h6>
+                                            </t>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="coach_view_graph" model="ir.ui.view">
+            <field name="model">coach</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="age"/>
+                    <field name="coaching_licence"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="coach_action" model="ir.actions.act_window">
+            <field name="name">Coach</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">coach</field>
+            <field name="view_mode">kanban,tree,form,graph</field>
+        </record>
+
+        <menuitem id="coach_child_menu_id" parent="manager_club_base_menu" action="coach_action"
+                  name="Manage Coach" sequence="2"/>
+
+    </data>
+</odoo>

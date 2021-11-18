@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_product_inherit_show_infor_sendo_product" model="ir.ui.view">
+            <field name="name">product.product.product.form.sendo</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="check_product_sendo"/>
+                    <field name="sendo_is_promotion"/>
+                    <field name="sendo_special_price" widget='monetary' options="{'currency_field': 'currency_id'}"
+                           attrs="{'invisible':[('sendo_is_promotion', '!=', True)]}"/>
+                    <field name="sendo_promotion_from_date" attrs="{'invisible':[('sendo_is_promotion', '!=', True)]}"/>
+                    <field name="sendo_promotion_to_date" attrs="{'invisible':[('sendo_is_promotion', '!=', True)]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="sendo_unit_id"/>
+                    <field name="sendo_stock_availability"/>
+                    <field name="sendo_stock_quantity"
+                           attrs="{'invisible':[('sendo_stock_availability', '!=', True)]}"/>
+                </xpath>
+
+                <xpath expr="//div[@name='weight']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="sendo_height"/>
+                    <field name="sendo_length"/>
+                    <field name="sendo_width"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

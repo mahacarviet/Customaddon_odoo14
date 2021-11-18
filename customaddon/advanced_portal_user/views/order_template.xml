@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_user_create_order" name="Create Order">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Create Order</t>
+            </t>
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form style="margin: 100px 200px;" role="form" id="action_insert">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label for="payment_terms" class="control-label">Payment Terms</label>
+                                <select name="payment_terms" class="form-control link-style">
+                                    <t t-foreach="payment_terms" t-as="payment_term">
+                                        <option t-esc='payment_term.name' t-att-value='payment_term.id'/>
+                                    </t>
+                                </select>
+                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <label>Order Date</label>-->
+<!--                                <div class="input-group datetime"-->
+<!--                                     id="datetimepickerfromID"-->
+<!--                                     data-target-input="nearest">-->
+<!--                                    <input type="text"-->
+<!--                                           class="form-control datetimepicker-input"-->
+<!--                                           data-target="#datetimepickerfromID"-->
+<!--                                           name="date_from"-->
+<!--                                           t-att-value='date_from'/>-->
+<!--                                    <div class="input-group-append"-->
+<!--                                         data-target="#datetimepickerfromID"-->
+<!--                                         data-toggle="datetimepicker">-->
+<!--                                        <div class="input-group-text"><i class="fa fa-calendar"/></div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="form-group">
+                                <label for="payment_terms" class="control-label">Product Filter</label>
+                                    <t t-foreach="product_attr" t-as="product_attr_element">
+                                        <t t-if="product_attr_element" t-call="portal.portal_table">
+                                            <thead>
+                                                <tr class="active">
+                                                    <th class="text-center">Attribute Name</th>
+                                                    <th class="text-center">Attribute Value</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-center"><span t-field="product_attr_element.name"/></td>
+                                                    <td class="text-center">
+                                                        <t t-foreach="product_attr_val" t-as="product_attr_val_element">
+                                                            <option t-esc='product_attr_val_element.name' t-att-value='product_attr_val_element.id'/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </t>
+                                    </t>
+                            </div>
+                            <div class="clearfix oe_login_buttons">
+                                <button type="submit" id="btn_insert" class="btn btn-primary pull-left">Create</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

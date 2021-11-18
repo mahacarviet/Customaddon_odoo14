@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_template_product_inherit_show_warranty" model="ir.ui.view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="product_warranty"/>
+                    <field name="day_warranty"/>
+                </xpath>
+
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="date_from"/>
+                    <!--                    Add group in field-->
+                    <!--                    groups="intern_test_2.group_employee_manager"-->
+                    <field name="date_to"/>
+                    <!--                    Add group in field-->
+                    <!--                    groups="intern_test_2.group_employee_manager"-->
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_template_product_inherit_show_warranty_day" model="ir.ui.view">
+            <field name="name">product.template.product.tree</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_tree_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='virtual_available']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="date_from"/>
+                    <!--                    Add group in field-->
+                    <!--                    groups="intern_test_2.group_employee_manager"-->
+                    <field name="date_to"/>
+                    <!--                    Add group in field-->
+                    <!--                    groups="intern_test_2.group_employee_manager"-->
+                    <field name="product_warranty"/>
+                    <field name="day_warranty"/>
+
+                </xpath>
+            </field>
+        </record>
+
+        <record id="product_template_action_check_product_time" model="ir.actions.act_window">
+            <field name="name">Product VIP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_check_product_time': 1}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new customer in your address book
+                </p>
+                <p>
+                    Odoo helps you easily track all activities related to a customer.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_product_vip"
+                  name="Product Vip"
+                  parent="sale.product_menu_catalog"
+                  action="product_template_action_check_product_time"
+                  sequence="3"
+        />
+
+    </data>
+</odoo>

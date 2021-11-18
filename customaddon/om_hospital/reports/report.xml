@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="report_patient_details" model="ir.actions.report">
+        <field name="name">Patient Details</field>
+        <field name="model">hospital.patient</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">om_hospital.report_patient_detail</field>
+        <field name="report_file">om_hospital.report_patient_detail</field>
+        <field name="binding_model_id" ref="model_hospital_patient"/>
+        <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_patient_card" model="ir.actions.report">
+            <field name="name">Patient Card</field>
+            <field name="model">hospital.patient</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">om_hospital.report_patient_id_card</field>
+            <field name="report_file">om_hospital.report_patient_id_card</field>
+            <field name="binding_model_id" ref="model_hospital_patient"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_patient_card_xlsx" model="ir.actions.report">
+            <field name="name">Patient Card Excel</field>
+            <field name="model">hospital.patient</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">om_hospital.report_patient_id_card_xlsx</field>
+            <field name="report_file">om_hospital.report_patient_id_card_xlsx</field>
+            <field name="binding_model_id" ref="model_hospital_patient"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_appointment_pdf" model="ir.actions.report">
+            <field name="name">Appointment Details PDF</field>
+            <field name="model">appointment.report.wizard</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">om_hospital.report_appointment_details</field>
+            <field name="report_file">om_hospital.report_appointment_details</field>
+            <field name="binding_model_id" ref="model_appointment_report_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_report_appointment_excel" model="ir.actions.report">
+            <field name="name">Appointment Details Excel</field>
+            <field name="model">appointment.report.wizard</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">om_hospital.report_appointment_details_xlsx</field>
+            <field name="report_file">om_hospital.report_appointment_details_xlsx</field>
+            <field name="binding_model_id" ref="model_appointment_report_wizard"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

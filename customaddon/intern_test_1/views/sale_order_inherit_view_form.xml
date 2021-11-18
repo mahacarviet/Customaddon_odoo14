@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="sale_order_form_inherit_1" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="priority">1</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="discount_code"/>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="sale_order_discount_estimated"/>
+                </xpath>
+
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                        <label for="discount_total"/>
+                    </div>
+                    <field name="discount_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+        <record id="res_partner_action_customer_check_discount" model="ir.actions.act_window">
+            <field name="name">Customers VIP</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'search_default_check_discount_code': 1}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new customer in your address book
+                </p>
+                <p>
+                    Odoo helps you easily track all activities related to a customer.
+                </p>
+            </field>
+
+        </record>
+
+        <menuitem id="res_partner_menu_1"
+                  name="Customer VIP"
+                  parent="sale.sale_order_menu"
+                  action="res_partner_action_customer_check_discount"
+                  sequence="5"
+
+        />
+
+    </data>
+</odoo>

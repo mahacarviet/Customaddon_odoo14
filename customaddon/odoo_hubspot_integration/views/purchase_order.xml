@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="purchase_order_tree_hubspot_custom" model="ir.ui.view">
+            <field name="name">purchase_order_tree_hubspot_custom</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="hubspot_so_id" readonly="1"/>
+                    <field name="x_compute" invisible="1" />
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

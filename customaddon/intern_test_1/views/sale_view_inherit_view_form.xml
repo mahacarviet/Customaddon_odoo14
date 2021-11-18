@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="sale_view_form_inherit_discount" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <filter string="Discount Code" domain="[('check_discount_code', '=', True)]" name="discount_code_filter"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

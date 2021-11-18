@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+
+        <record id="view_list_approve_application" model="ir.actions.act_window">
+            <field name="name">Danh sách đơn đăng ký chờ xét duyệt</field>
+            <field name="res_model">education.application</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_approve_filter':1}</field>
+        </record>
+
+        <record id="view_list_active_application" model="ir.actions.act_window">
+            <field name="name">Danh sách đơn đăng ký đã duyệt</field>
+            <field name="res_model">education.application</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_active_filter':1}</field>
+        </record>
+
+        <record id="view_list_rejected_application" model="ir.actions.act_window">
+            <field name="name">Danh sách đơn đăng ký từ chối</field>
+            <field name="res_model">education.application</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_rejected_filter':1}</field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model='ir.ui.view' id='education_documents_form_view'>
+        <field name="name">education.documents.form</field>
+        <field name="model">education.documents</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="reference"/>
+                        </group>
+                        <group>
+                            <field name="document_name"/>
+                        </group>
+                    </group>
+
+                    <separator/>
+                    <group name="attachment_file" string="Tài liệu đính kèm">
+                        <field name="doc_attachment_id" widget="many2many_binary" class="oe_inline"/>
+                    </group>
+                    <notebook>
+                        <page string="Mô tả chi tiết">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='education_documents_tree_view'>
+        <field name="name">education.documents.tree</field>
+        <field name="model">education.documents</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="application_ref"/>
+                <field name="document_name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_education_documents_tree" model="ir.actions.act_window">
+        <field name="name">Tài liệu</field>
+        <field name="res_model">education.documents</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Chọn tạo để tạo một bản ghi mới.
+            </p>
+        </field>
+    </record>
+
+</odoo>

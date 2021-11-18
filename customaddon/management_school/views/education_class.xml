@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_education_class_tree" model="ir.ui.view">
+        <field name="name">education.class.tree</field>
+        <field name="model">education.class</field>
+        <field name="arch" type="xml">
+            <tree string="Khối" create="0">
+                <field name="name"/>
+                <field name="code_class" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_class_form" model="ir.ui.view">
+        <field name="name">education.class.form</field>
+        <field name="model">education.class</field>
+        <field name="arch" type="xml">
+            <form string="Khối" create="0">
+                <sheet>
+                    <group>
+                            <field name="name"/>
+                            <field name="code_class" invisible="1"/>
+                    </group>
+                    <notebook>
+                        <page string="Giáo án">
+                            <field name="syllabus_ids" nolabel="1">
+                                <tree string="Syllabus Items" editable="bottom">
+                                    <field name="name"/>
+                                    <field name="subject_id" required="1"/>
+                                    <field name="total_hours"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_education_class_tree" model="ir.actions.act_window">
+        <field name="name">Khối</field>
+        <field name="res_model">education.class</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Chọn tạo để tạo một bản ghi mới.
+            </p>
+        </field>
+    </record>
+
+</odoo>

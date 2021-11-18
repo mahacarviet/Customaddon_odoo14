@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model='ir.ui.view' id='document_document_form_view'>
+        <field name="name">documents.document.form</field>
+        <field name="model">document.document</field>
+        <field name="arch" type="xml">
+            <form string="Loại tài liệu">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='document_document_tree_view'>
+        <field name="name">document.document.tree</field>
+        <field name="model">document.document</field>
+        <field name="arch" type="xml">
+            <tree string="Loại tài liệu">
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_document" model="ir.actions.act_window">
+        <field name="name">Loại tài liệu</field>
+        <field name="res_model">document.document</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Chọn tạo để tạo một bản ghi mới.
+            </p>
+        </field>
+    </record>
+
+</odoo>

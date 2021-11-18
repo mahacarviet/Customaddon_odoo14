@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="quotation_form_view" model="ir.ui.view">
+            <field name="name">quotation.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//header" position="inside">
+                    <button name="%(plan_sale_order_test.create_plan_sale_wizard)d" id="action_create_sale_plan"
+                            string="Create Sale Plan" class="btn-secondary, oe_highlight" type="action"
+                            attrs="{'invisible': [('business_plan', '!=', False)]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="business_plan" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="action_manage_plan_sale" model="ir.actions.act_window">
+            <field name="name">Manage Plan Sale</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('check_plan_sale', '=', True)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"/>
+            </field>
+        </record>
+
+        <menuitem id="res_partner_menu_plan_sale"
+                  name="Manage Plan Sale"
+                  parent="sale.sale_order_menu"
+                  action="action_manage_plan_sale"
+                  sequence="5"
+                  groups="group_employee_approval_manager"
+        />
+
+    </data>
+</odoo>

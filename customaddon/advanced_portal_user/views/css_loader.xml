@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <template id="custom_css_asset_portal_user" inherit_id="web.assets_frontend">
+            <xpath expr="." position="inside">
+                <link href="/advanced_portal_user/static/src/css/style.css" rel="stylesheet" type="text/css"/>
+            </xpath>
+        </template>
+</odoo>

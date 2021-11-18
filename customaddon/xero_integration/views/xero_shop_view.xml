@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="xero_shop_form_view" model="ir.ui.view">
+            <field name="name">xero.shop.form.view</field>
+            <field name="model">xero.shop</field>
+            <field name="arch" type="xml">
+                <form string="Shop Xero Accounting">
+                    <header>
+                        <button name="action_connect_shop_xero" type="object"
+                                string="Connect Xero Accounting" class="oe_highlight"
+                                attrs="{'invisible': [('status', '=', 'connected')]}"/>
+                        <button name="action_disconnect_shop_xero" type="object"
+                                string="Disonnect Xero Accounting" class="oe_highlight"
+                                attrs="{'invisible': [('status', '!=', 'connected')]}"/>
+                        <button name="get_contacts_xero" type="object"
+                                string="Get Contacts Xero Accounting" class="oe_highlight"
+                        />
+                        <button name="get_invoices_xero" type="object"
+                                string="Get Invoices Xero Accounting" class="oe_highlight"
+                        />
+                        <field name="status" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="xero_app_id" widget="many2one_tags"/>
+                            <field name="shopify_shop_id" widget="many2one_tags"/>
+                            <field name="xero_tenant_name"/>
+                            <field name="test_datetime"/>
+                            <field name="xero_tenant_id" invisible="0"/>
+                            <field name="xero_id_token" attrs="{'invisible': [('status', '!=', 'connected')]}"/>
+                            <field name="xero_token_type" attrs="{'invisible': [('status', '!=', 'connected')]}"/>
+                            <field name="xero_access_token" attrs="{'invisible': [('status', '!=', 'connected')]}"/>
+                            <field name="xero_refresh_token" attrs="{'invisible': [('status', '!=', 'connected')]}"/>
+                            <field name="shop_user_id" invisible="0" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="xero_shop_tree_view" model="ir.ui.view">
+            <field name="name">xero.shop.tree.view</field>
+            <field name="model">xero.shop</field>
+            <field name="arch" type="xml">
+                <tree string="Shop Xero Accounting" sample="1">
+                    <field name="xero_app_id" widget="many2one_tags"/>
+                    <field name="shopify_shop_id" widget="many2one_tags"/>
+                    <field name="xero_tenant_name"/>
+                    <field name="test_datetime"/>
+                    <field name="xero_tenant_id" invisible="0"/>
+                    <field name="status" invisible="1"/>
+                    <field name="xero_id_token" attrs="{'column_invisible': [('status', '!=', 'connected')]}"/>
+                    <field name="xero_token_type" attrs="{'column_invisible': [('status', '!=', 'connected')]}"/>
+                    <field name="xero_access_token" attrs="{'column_invisible': [('status', '!=', 'connected')]}"/>
+                    <field name="xero_refresh_token" attrs="{'column_invisible': [('status', '!=', 'connected')]}"/>
+                    <field name="shop_user_id" invisible="0" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="xero_shop_act_window" model="ir.actions.act_window">
+            <field name="name">Shop Xero Accounting</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">xero.shop</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Shop.
+                </p>
+            </field>
+        </record>
+
+<!--        <record id="view_test_date_time" model="ir.ui.view">-->
+<!--            <field name="name">xero.shop.search</field>-->
+<!--            <field name="model">xero.shop</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Test Date">-->
+<!--                    <field name="test_datetime"/>-->
+<!--                    <separator/>-->
+<!--                    <filter string="Test Date Time" name="test_date_time"-->
+<!--                            domain="[('test_datetime', '!=', False)]"/>-->
+<!--                    <separator/>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    </data>
+</odoo>

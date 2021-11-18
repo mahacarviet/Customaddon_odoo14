@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_infor_seller_wix,infor_seller_wix,model_infor_seller_wix,,1,1,1,1
+access_wix_product,wix_product,model_wix_product,,1,1,1,1
+access_infor_app_wix,infor_app_wix,model_infor_app_wix,,1,1,1,1
+access_infor_business_wix,infor_business_wix,model_infor_business_wix,,1,1,1,1
+access_wix_product_variants,wix_product_variants,model_wix_product_variants,,1,1,1,1

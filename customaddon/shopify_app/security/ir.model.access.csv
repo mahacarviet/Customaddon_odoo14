@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shopify_store,shopify.store,model_shopify_store,,1,1,1,1
+access_app_plan,app_plan,model_app_plan,,1,1,1,1
+access_app_log,app_log,model_app_log,,1,1,1,1
+access_request_log,request_log,model_request_log,,1,1,1,1
+access_order_request_log,order_request_log,model_order_request_log,,1,1,1,1
+

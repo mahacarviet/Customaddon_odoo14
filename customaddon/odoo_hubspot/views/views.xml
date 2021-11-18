@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+        <record id="my_record_02" model="hubspot.import.integration">
+            <field name="field_name">Hubspot</field>
+        </record>
+    </data>
+    <data>
+        <record model="ir.ui.view" id="hubspot_import_form_view">
+            <field name="name">HubspotImportIntegration.form</field>
+            <field name="model">hubspot.import.integration</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <button name="import_contacts" string="import contacts" type="object"/>
+                        <button name="import_companies" string="import companies" type="object"/>
+                        <button name="import_deals" string="import deals" type="object"/>
+                        <button name="import_tickets" string="import tickets" type="object"/>
+                        <button name="get_company_engagements" string="import company engagements" type="object"/>
+                        <button name="get_lead_engagements" string="import lead engagements" type="object"/>
+                        <button name="get_ticket_engagements" string="import tickets engagements" type="object"/>
+                        <button name="get_contact_engagements" string="import contacts engagements" type="object"/>
+                        <button name="create_owners" string="import owners" type="object"/>
+                        <button name="get_lead_attachments" string="Import Deals Attachments" type="object"/>
+                        <button name="get_contact_attachments" string="Import Contacts Attachments" type="object"/>
+                        <button name="get_company_attachments" string="Import Companies Attachments" type="object"/>
+                        <button name="get_ticket_attachments" string="Import Tickets Attachments" type="object"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="hubspot_action">
+            <field name="name">hubspot_import_integration</field>
+            <field name="res_model">hubspot.import.integration</field>
+            <field name="view_mode">form</field>
+            <field name="res_id" ref="odoo_hubspot.my_record_02"/>
+            <field name="target">inline</field>
+        </record>
+
+        <record model="ir.ui.view" id=">res_config_settings_view_form">
+            <field name="name">res.config.settings.view.form.inherit.base.setup</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Hubspot Settings" string="Hubspot Settings"
+                         data-key="odoo_hubspot">
+                        <div id="companies">
+                            <h2>Hubspot Connector</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane"/>
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">Hubspot API Key</span>
+                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                        <div class="text-muted">
+                                            Here you will enter credentials and test them.
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="row mt16">
+                                                <label for="external_report_layout_id" string="API Key" class="col-lg-4 o_light_label"/>
+                                                <field name="hubspot_key" password="1"/>
+                                            </div>
+                                            <div class="row mt8 ml0">
+                                                <button name="hubspot_api_key" string="Test Connection" icon="fa-plug" type="object" class="oe_highlight" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="companies">
+                            <h2>Hubspot Instant Sync</h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="company"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label string="Company" for="company"/>
+                                        <div class="text-muted">
+                                            Create or Delete Company in Hubspot If Created or Deleted in Odoo.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="contact"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label string="Contact" for="contact"/>
+                                        <div class="text-muted">
+                                            Create or Delete Contact in Hubspot If Created or Deleted in Odoo.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_left_pane">
+                                        <field name="deal"/>
+                                    </div>
+                                    <div class="o_setting_right_pane">
+                                        <label string="Deal" for="deal"/>
+                                        <div class="text-muted">
+                                            Create or Delete Deal into Hubspot If Created or Deleted in Odoo.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="credentials_action">
+            <field name="name">res_config_settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module':'odoo_hubspot'}</field>
+        </record>
+
+        <menuitem id="hubspot_root" name="Hubspot" web_icon="odoo_hubspot,static/description/icon.png"/>
+        <menuitem id="hubspot_credentials" name="Hubspot Credentials" parent="hubspot_root" action="credentials_action"
+                  sequence="20"/>
+        <menuitem id="hubspot_import_integration" name="Hubspot Menu" parent="hubspot_root" action="hubspot_action"
+                  sequence="2"/>
+    </data>
+</odoo>

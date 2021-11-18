@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="res_partner_form_1" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form" position="inside">
+                    <header>
+                        <button name="check_debt_customer" type="object"
+                                string="Check Debt" class="btn-primary"/>
+                    </header>
+                </xpath>
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="money_debt"/>
+                    <field name="time_debt"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

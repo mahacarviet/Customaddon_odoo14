@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="education_academic_year_data" model="education.academic.year">
+            <field name="name">2018-2019</field>
+            <field name="ay_start_date">2018-06-01</field>
+            <field name="ay_end_date">2019-04-01</field>
+<!--            <field name="term_code">one</field>-->
+            <field name="ay_code">150</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="document_type_data_1" model="document.document">
+            <field name="name">Giấy chuyển trường</field>
+            <field name="description">Giấy xác nhận chuyển trường</field>
+        </record>
+
+        <record id="document_type_data_2" model="document.document">
+            <field name="name">Giấy khai sinh</field>
+            <field name="description">Giấy khai sinh có công chứng</field>
+        </record>
+
+        <record id="document_type_data_3" model="document.document">
+            <field name="name">Hộ khẩu thường trú</field>
+            <field name="description">Giấy xác nhận hộ khẩu thường chú có công chứng</field>
+        </record>
+
+        <record id="reject_reason_data_1" model="application.reject.reason">
+            <field name="name">Điểm thấp</field>
+        </record>
+
+        <record id="reject_reason_data_2" model="application.reject.reason">
+            <field name="name">Ý thức kém</field>
+        </record>
+
+        <record id="education_class_data_1" model="education.class">
+            <field name="name">6</field>
+            <field name="code_class">six</field>
+        </record>
+
+        <record id="education_class_data_2" model="education.class">
+            <field name="name">7</field>
+            <field name="code_class">seven</field>
+        </record>
+
+        <record id="education_class_data_3" model="education.class">
+            <field name="name">8</field>
+            <field name="code_class">eight</field>
+        </record>
+
+        <record id="education_class_data_4" model="education.class">
+            <field name="name">9</field>
+            <field name="code_class">nine</field>
+        </record>
+
+        <record id="education_subject_data_1" model="education.subject">
+            <field name="name">Toán</field>
+            <field name="code">TH1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_2" model="education.subject">
+            <field name="name">Sinh học</field>
+            <field name="code">SH1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_3" model="education.subject">
+            <field name="name">Tiếng Anh</field>
+            <field name="is_language">1</field>
+            <field name="code">TA1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_4" model="education.subject">
+            <field name="name">Vật lý</field>
+            <field name="is_language">1</field>
+            <field name="code">VL1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_5" model="education.subject">
+            <field name="name">Hóa học</field>
+            <field name="is_language">1</field>
+            <field name="code">HH1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_6" model="education.subject">
+            <field name="name">Tin học</field>
+            <field name="is_language">1</field>
+            <field name="code">TH2</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_7" model="education.subject">
+            <field name="name">Công nghệ</field>
+            <field name="is_language">1</field>
+            <field name="code">CN1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_8" model="education.subject">
+            <field name="name">Ngữ văn</field>
+            <field name="is_language">1</field>
+            <field name="code">NV1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_9" model="education.subject">
+            <field name="name">Lịch sử</field>
+            <field name="is_language">1</field>
+            <field name="code">LS1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_10" model="education.subject">
+            <field name="name">Địa lý</field>
+            <field name="is_language">1</field>
+            <field name="code">DL1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="education_subject_data_3" model="education.subject">
+            <field name="name">Ngữ văn</field>
+            <field name="is_language">1</field>
+            <field name="code">EN1</field>
+            <field name="type">compulsory</field>
+        </record>
+
+        <record id="syllabus_data" model="education.syllabus">
+            <field name="name">CBSE</field>
+            <field name="subject_id" ref="education_subject_data_1"/>
+            <field name="class_id" ref="education_class_data_1"/>
+            <field name="total_hours">50</field>
+            <field name="description">Cần dạy ít nhất 50 giờ</field>
+        </record>
+
+        <record id="education_division_data_1" model="education.division">
+            <field name="name">A</field>
+        </record>
+
+        <record id="education_division_data_2" model="education.division">
+            <field name="name">B</field>
+        </record>
+
+        <record id="education_division_data_3" model="education.division">
+            <field name="name">C</field>
+        </record>
+
+        <record id="education_division_data_4" model="education.division">
+            <field name="name">D</field>
+        </record>
+
+        <record id="education_amenities_data_1" model="education.amenities">
+            <field name="name">Máy lọc nước</field>
+            <field name="code">DW1</field>
+        </record>
+
+        <record id="education_amenities_data_2" model="education.amenities">
+            <field name="name">Máy chiếu</field>
+            <field name="code">PR1</field>
+        </record>
+
+        <record id="education_faculty_data" model="education.faculty">
+            <field name="name">Tran Van B</field>
+            <field name="gender">male</field>
+            <field name="blood_group">a+</field>
+            <field name="mobile">9876543210</field>
+            <field name="image" type="base64" file="management_school/static/src/img/Elon_Musk.jpg"/>
+            <field name="email">tranvanb@gmail.com</field>
+        </record>
+
+        <record id="class_division_data_1" model="education.class.division">
+            <field name="name">6 - A</field>
+            <field name="actual_strength">40</field>
+            <field name="academic_year_id" ref="education_academic_year_data"/>
+            <field name="class_id" ref="education_class_data_1"/>
+            <field name="division_id" ref="education_division_data_1"/>
+            <field name="faculty_id" ref="education_faculty_data"/>
+            <field name="code_class">six</field>
+        </record>
+
+        <record id="class_division_data_2" model="education.class.division">
+            <field name="name">7 - A</field>
+            <field name="actual_strength">40</field>
+            <field name="academic_year_id" ref="education_academic_year_data"/>
+            <field name="class_id" ref="education_class_data_2"/>
+            <field name="division_id" ref="education_division_data_1"/>
+            <field name="faculty_id" ref="education_faculty_data"/>
+            <field name="code_class">seven</field>
+        </record>
+
+        <record id="class_division_data_3" model="education.class.division">
+            <field name="name">8 - A</field>
+            <field name="actual_strength">40</field>
+            <field name="academic_year_id" ref="education_academic_year_data"/>
+            <field name="class_id" ref="education_class_data_3"/>
+            <field name="division_id" ref="education_division_data_1"/>
+            <field name="faculty_id" ref="education_faculty_data"/>
+            <field name="code_class">eight</field>
+        </record>
+
+        <record id="class_division_data_4" model="education.class.division">
+            <field name="name">9 - A</field>
+            <field name="actual_strength">40</field>
+            <field name="academic_year_id" ref="education_academic_year_data"/>
+            <field name="class_id" ref="education_class_data_4"/>
+            <field name="division_id" ref="education_division_data_1"/>
+            <field name="faculty_id" ref="education_faculty_data"/>
+            <field name="code_class">nine</field>
+        </record>
+
+        <record id="student_application_data_1" model="education.application">
+            <field name="name">Le Van B</field>
+            <field name="admission_date">2018-06-06 00:00:00</field>
+            <field name="language_speaking">Vietnam</field>
+            <field name="admission_class" ref="education_class_data_1"/>
+            <field name="academic_year_id" ref="education_academic_year_data"/>
+            <field name="sec_lang">English</field>
+            <field name="father_name">Le Van A</field>
+            <field name="mother_name">Tran Thi A</field>
+            <field name="guardian_name">Tran Van A</field>
+            <field name="date_of_birth">1999-11-11</field>
+            <field name="gender">male</field>
+            <field name="blood_group">a+</field>
+            <field name="street">Vietnam</field>
+            <field name="is_same_address">1</field>
+            <field name="mobile">9998889988</field>
+            <field name="image" type="base64" file="management_school/static/src/img/Jeff_Bezos.jpg"/>
+        </record>
+
+        <record id="student_application_data_2" model="education.application">
+            <field name="name">Le Van C</field>
+            <field name="admission_date">2018-06-06 00:00:00</field>
+            <field name="language_speaking">Vietnam</field>
+            <field name="admission_class" ref="education_class_data_1"/>
+            <field name="academic_year_id" ref="education_academic_year_data"/>
+            <field name="sec_lang">English</field>
+            <field name="father_name">Le Van A</field>
+            <field name="mother_name">Tran Thi A</field>
+            <field name="guardian_name">Tran Van A</field>
+            <field name="date_of_birth">2000-07-11</field>
+            <field name="gender">male</field>
+            <field name="blood_group">ab+</field>
+            <field name="street">Vietnam</field>
+            <field name="is_same_address">1</field>
+            <field name="mobile">7736773676</field>
+            <field name="image" type="base64" file="management_school/static/src/img/Jack_Ma.jpg"/>
+        </record>
+
+        <record id="education_document_data" model="education.documents">
+            <field name="reference">Học bạ</field>
+            <field name="document_name" ref="document_type_data_1"/>
+            <field name="description">Học bạ trường cũ</field>
+            <field name="application_ref" ref="student_application_data_2"/>
+        </record>
+
+        <record id="management_school.student_application_data_2" model="education.application">
+            <field name="state">done</field>
+        </record>
+
+        <record id="student_data_1" model="education.student">
+            <field name="name">Le Van D</field>
+            <field name="language_speaking">Vietnam</field>
+            <field name="class_id" ref="class_division_data_1"/>
+            <field name="admission_class" ref="education_class_data_1"/>
+            <field name="sec_lang">English</field>
+            <field name="father_name">Le Van Z</field>
+            <field name="mother_name">Nguyen Thi Z</field>
+            <field name="guardian_name">Tran Van A</field>
+            <field name="application_id" ref="student_application_data_2"/>
+            <field name="date_of_birth">2000-07-11</field>
+            <field name="gender">male</field>
+            <field name="blood_group">ab+</field>
+            <field name="street">Vietnam</field>
+            <field name="is_same_address">1</field>
+            <field name="mobile">7736773676</field>
+            <field name="email">levand@gmail.com</field>
+            <field name="image_1920" type="base64" file="management_school/static/src/img/Robert_Kiyosaki.jpg"/>
+        </record>
+
+        <record id="assign_class_data" model="education.student.class">
+            <field name="name">Thêm học sinh khối 6</field>
+            <field name="class_id" ref="education_class_data_1"/>
+            <field name="admitted_class" ref="class_division_data_1"/>
+            <field name="assigned_by" ref="base.user_root"/>
+            <field name="state">done</field>
+        </record>
+
+        <record id="assign_student_list_data" model="education.student.list">
+            <field name="connect_id" ref="assign_class_data"/>
+            <field name="student_id" ref="student_data_1"/>
+            <field name="class_id" ref="class_division_data_1"/>
+        </record>
+
+    </data>
+</odoo>

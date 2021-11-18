@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_education">
+        <field name="name">Quản lý trường học</field>
+        <field name="description">Phân chia quyền cho tài khoản quản lý trường học</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_giao_vien" model="res.groups">
+        <field name="name">Giáo viên</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="category_id" ref="module_category_education"/>
+    </record>
+
+    <record id="group_giao_vu" model="res.groups">
+        <field name="name">Giáo vụ</field>
+        <field name="implied_ids" eval="[(4, ref('group_giao_vien'))]"/>
+        <field name="category_id" ref="module_category_education"/>
+    </record>
+
+    <record id="group_hieu_truong" model="res.groups">
+        <field name="name">Hiệu trưởng</field>
+        <field name="category_id" ref="module_category_education"/>
+        <field name="implied_ids" eval="[(4, ref('group_giao_vu'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+</odoo>
+

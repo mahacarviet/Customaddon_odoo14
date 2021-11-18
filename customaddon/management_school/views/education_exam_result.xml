@@ -1,0 +1,143 @@
+<odoo>
+    <data>
+        <record id="education_exam_result_form" model="ir.ui.view">
+            <field name="name">education.exam.result.form</field>
+            <field name="model">education.exam.result</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="valuation_completed" type="object"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}"
+                                class="oe_highlight" string="Hoàn tất kết quả đánh giá"
+                                confirm="Sau khi hoàn tất kết quả đánh giá thì thẻ kết quả này sẽ không thể chỉnh sửa và bản ghi này sẽ được lưu lại và bộ dữ liệu của nhà trường, người dùng có muốn tiếp tục không?"/>
+                        <button name="valuation_canceled" type="object"
+                                attrs="{'invisible': [('state', '!=', 'draft')]}" string="Hủy kết quả đánh giá"/>
+                        <button name="set_to_draft" type="object" attrs="{'invisible': [('state', '!=', 'cancel')]}"
+                                string="Xét kết quả đánh giá về bản nháp"/>
+                        <field name="state" readonly="1" widget="statusbar" statusbar_visible="draft,completed,cancel"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="exam_result_ids" options="{'no_create': True}"
+                                       attrs="{'readonly': ['|', ('mark_sheet_created', '=', True), ('state', '!=', 'draft')]}"/>
+                                <field name="result_subject_id" options="{'no_create': True}" readonly="1"
+                                       attrs="{'readonly': ['|', ('mark_sheet_created', '=', True), ('state', '!=', 'draft')]}"/>
+                                <field name="teachers_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': True}"/>
+                                <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="class_id" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="division_id" readonly="1"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="mark" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="academic_year_id" readonly="1"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="mark_sheet_created" invisible="1"/>
+                            </group>
+                        </group>
+                        <div style="padding-bottom: 10px;">
+                            <button style="padding: 1px 5px;"
+                                    attrs="{'invisible': ['|', ('mark_sheet_created', '=', True), ('state', '=', 'cancel')]}"
+                                    string="Create Mark Sheet" name="create_mark_sheet"
+                                    type="object"
+                                    class="oe_highlight"/>
+                        </div>
+                        <notebook attrs="{'invisible': [('mark_sheet_created', '=', False)]}">
+                            <page string="Bảng điểm">
+                                <field name="valuation_line" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                    <tree create="0" editable="bottom">
+                                        <field name="student_id" invisible="1"/>
+                                        <field name="student_name" readonly="1"/>
+                                        <field name="mark_scored"/>
+                                        <field name="education_exam_ids" invisible="1"/>
+                                        <field name="student_division_ids" invisible="1"/>
+                                        <field name="student_class_ids" invisible="1"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <group>
+                                                <field name="student_id"/>
+                                                <field name="student_name"/>
+                                                <field name="mark_scored"/>
+                                                <field name="education_exam_ids" invisible="1"/>
+                                                <field name="student_division_ids" invisible="1"/>
+                                                <field name="student_class_ids" invisible="1"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="education_exam_result_tree" model="ir.ui.view">
+            <field name="name">education.exam.result.tree</field>
+            <field name="model">education.exam.result</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="exam_result_ids"/>
+                    <field name="teachers_id"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="examination_result_search" model="ir.ui.view">
+            <field name="name">examination.result.search.search</field>
+            <field name="model">education.exam.result</field>
+            <field name="arch" type="xml">
+                <search string="Kết quả bài kiểm tra">
+                    <group expand="1" string="Sắp xếp theo">
+                        <filter string="Khối" name="group_class_id" context="{'group_by':'class_id'}"/>
+                        <filter string="Lớp học" name="group_division_id" context="{'group_by':'division_id'}"/>
+                        <filter string="Bài kiểm tra" name="group_exam_id" context="{'group_by':'exam_result_ids'}"/>
+                        <filter string="Năm học" name="group_academic_year" context="{'group_by':'academic_year_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="act_education_exam_result_view" model="ir.actions.act_window">
+            <field name="name">Đánh giá kết quả bài kiểm tra</field>
+            <field name="res_model">education.exam.result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <!--        Them view den form hoc sinh -->
+        <record id="view_exam_results_students" model="ir.actions.act_window">
+            <field name="name">Kết quả bài kiểm tra</field>
+            <field name="res_model">education.exam.result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[('valuation_line.student_id', '=', active_id)]</field>
+            <field name="context">{'search_default_group_exam_id':1}</field>
+        </record>
+
+        <record id="student_smart_button_exam_form" model="ir.ui.view">
+            <field name="name">student_smart_button_exam_form.form</field>
+            <field name="model">education.student</field>
+            <field name="inherit_id" ref="management_school.view_education_student_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="management_school.view_exam_results_students" type="action" class="oe_stat_button"
+                            icon="fa-archive" string="Kết quả bài kiểm tra"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_template_inherit_form_view" model="ir.ui.view">
+            <field name="name">product.template.inherit.form.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <field name="shopify_product_id" invisible="1"/>
+                    <field name="shopify_user_id" invisible="1"/>
+                    <field name="shopify_product_type"/>
+                </xpath>
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="check_product_shopify"/>
+                    <field name="shopify_shop_id"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <!-- Add Filter Search Product Shopify In Product Template-->
+        <record id="product_template_search_shopify_product" model="ir.ui.view">
+            <field name="name">product.template.search.shopify.product</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <filter name="check_product_shopify_id" string="### Shopify Product"
+                            domain="[('check_product_shopify', '!=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        Add Field shopify_shop_id in Model Res_Partner-->
+        <record id="res_partner_form_shopify_shop" model="ir.ui.view">
+            <field name="name">res.partner.form.shopify.shop</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="shopify_customer_id"/>
+                    <field name="shopify_shop_id"/>
+                    <field name="shopify_discount_ids"/>
+                    <field name="shopify_user_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        Add Customer Shopify Search in Model Res_Partner-->
+        <record id="res_partner_view_search_shopify" model="ir.ui.view">
+            <field name="name">res.partner.search.shopify</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='type_company']" position="after">
+                    <separator/>
+                   <filter string="Customer Shopify" name="check_customer_shopify" domain="[('shopify_customer_id','!=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        Inherit Model Sale Order-->
+        <record id="sale_order_form_inherit_shopify" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.shopify</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="shopify_currency" invisible="1"/>
+                    <field name="shopify_order_id" invisible="1"/>
+                    <field name="shopify_payment_method" invisible="1"/>
+                    <field name="shopify_transactions_id" invisible="1"/>
+                    <field name="shopify_location_id" invisible="1"/>
+                    <field name="shopify_user_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        Add Filter woo Order In Product Template-->
+        <record id="sale_order_search_shopify_order" model="ir.ui.view">
+            <field name="name">sale.order.search.shopify.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="before">
+                    <filter name="shopify_order_number" string="### Shopify Order"
+                            domain="[('shopify_order_id', '!=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

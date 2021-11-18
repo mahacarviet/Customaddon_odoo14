@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_approve_form_inherit" model="ir.ui.view">
+            <field name="name">sale_order_approve.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('state', 'not in', ['sent']),('is_done_approve', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('state', 'not in', ['draft']),('is_done_approve', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <button name="submit_quotation" type="object" string="Submit" class="oe_highlight" attrs="{'invisible':['|','|',('id','=',False),('is_submitted','=',True),('state','!=','draft')]}" style="background-color:#212529;"/>
+                    <button name="approve_quotation" type="object" string="Approve" class="oe_highlight" attrs="{'invisible':['|','|','|',('id','=',False),('invisible_approve_button','=',True),('is_submitted','=',False),('state','!=','draft')]}" style="background-color:#212529;"/>
+                    <!--                    <button name="approve_and_confirm" type="object" string="#Approve and Confirm" attrs="{'invisible':['|',('is_submitted','=',False),('state','!=','draft')]}" class="oe_highlight" groups="advanced_quotation_approval.group_approve_and_confirm_quotation"-->
+                    <!--                            style="background-color:#212529;"/>-->
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="users_need_approve" invisible="1"/>
+                    <field name="is_submitted" invisible="1"/>
+                    <field name="invisible_approve_button" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="is_done_approve" invisible="1"/>
+                    <span class="badge-pill badge-danger float-right"
+                          attrs="{'invisible': ['|',('id','=',False),('is_done_approve', '=', True)]}">
+                        Chưa hoàn thành phê duyệt báo giá
+                    </span>
+                    <span type="object" name="open_origin" class="badge-pill badge-success float-right"
+                          attrs="{'invisible': ['|',('id','=',False),('is_done_approve', '=', False)]}">
+                        Hoàn thành phê duyệt báo giá
+                    </span>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

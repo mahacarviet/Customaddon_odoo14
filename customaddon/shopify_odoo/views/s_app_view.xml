@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="s_app_form_view" model="ir.ui.view">
+            <field name="name">s.app.form.view</field>
+            <field name="model">s.app</field>
+            <field name="arch" type="xml">
+                <form string="App Shopify">
+                    <header>
+                        <button name="change_script_tag" type="object"
+                                string="Change Script Tag" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="api_key"/>
+                            <field name="secret_key"/>
+                            <field name="api_version"/>
+                            <field name="app_name"/>
+                            <field name="link_script_tag"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="s_app_tree_view" model="ir.ui.view">
+            <field name="name">s.app.tree.view</field>
+            <field name="model">s.app</field>
+            <field name="arch" type="xml">
+                <tree string="App Shopify" sample="1">
+                    <field name="api_key"/>
+                    <field name="secret_key"/>
+                    <field name="api_version"/>
+                    <field name="app_name"/>
+                    <field name="link_script_tag"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="s_app_act_window" model="ir.actions.act_window">
+            <field name="name">App Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">s.app</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new App.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

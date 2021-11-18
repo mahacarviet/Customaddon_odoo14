@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="tomtom_map_calculate_route_view_form" model="ir.ui.view">
+            <field name="name">tomtom.map.calculate.route.view.form</field>
+            <field name="model">calculate.route.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Calculate Route">
+                    <group class="oe_title">
+                        <field name="tomtom_starting_point"/>
+                        <field name="tomtom_destination"/>
+                        <field name="tomtom_avoid"/>
+                        <field name="tomtom_route_type"/>
+                        <field name="tomtom_travel_mode"/>
+                        <field name="tomtom_vehicle_commercial"/>
+                    </group>
+                    <footer>
+                        <button name="call_api_tomtom_calculate_route" string="Calculate Route" type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="tomtom_action_calculate_route" model="ir.actions.server">
+            <field name="name">Calculate Route</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.action_return_information_address()
+            </field>
+        </record>
+
+    </data>
+</odoo>

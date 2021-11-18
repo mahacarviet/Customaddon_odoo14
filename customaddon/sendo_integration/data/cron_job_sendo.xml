@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!--                Update Module Sendo Integration-->
+        <record id="ir_cron_update_list_product_sendo" model="ir.cron">
+            <field name="name">### Update List Product Sendo</field>
+            <field name="model_id" ref="sendo_integration.model_sendo_seller_product"/>
+            <field name="state">code</field>
+            <field name="code">model.get_seller_product_sendo()</field>
+            <field name="interval_number">30</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <!--            Update Module Product Template-->
+        <record id="ir_cron_update_category_sendo_product_category" model="ir.cron">
+            <field name="name">### Update Category Sendo - Product Category</field>
+            <field name="model_id" ref="sendo_integration.model_product_category"/>
+            <field name="state">code</field>
+            <field name="code">model.get_categories_sendo_to_product_template()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="ir_cron_update_child_categories_sendo_product_category" model="ir.cron">
+            <field name="name">### Update Child Categories Sendo - Product Category</field>
+            <field name="model_id" ref="sendo_integration.model_product_category"/>
+            <field name="state">code</field>
+            <field name="code">model.get_child_categories_sendo_to_product_template()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">2</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="ir_cron_update_each_product_sendo_product_template" model="ir.cron">
+            <field name="name">### Update Each Product Sendo - Product Template</field>
+            <field name="model_id" ref="sendo_integration.model_sendo_seller_product"/>
+            <field name="state">code</field>
+            <field name="code">model.get_each_product_sendo_to_product_template()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="ir_cron_update_variants_product_sendo_product_template" model="ir.cron">
+            <field name="name">### Update Variants Product Sendo - Product Template</field>
+            <field name="model_id" ref="sendo_integration.model_sendo_seller_product"/>
+            <field name="state">code</field>
+            <field name="code">model.get_variants_for_product_sendo()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="ir_cron_update_list_order_sendo_product_template" model="ir.cron">
+            <field name="name">### Update List Order Sendo - Product Template</field>
+            <field name="model_id" ref="sendo_integration.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.get_list_order_sendo_to_product_template()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <record id="ir_cron_get_cancel_reason_collection" model="ir.cron">
+            <field name="name">### Sendo Cancel Reason</field>
+            <field name="model_id" ref="sendo_integration.model_sendo_cancel_reason"/>
+            <field name="state">code</field>
+            <field name="code">model.get_cancel_reason_collection()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

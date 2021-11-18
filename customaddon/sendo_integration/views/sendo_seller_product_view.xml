@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sendo_seller_product_form_view" model="ir.ui.view">
+            <field name="name">sendo.seller.product.form</field>
+            <field name="model">sendo.seller.product</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle" create="false">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Product Name"/>
+                            </h1>
+                        </div>
+                        <group>
+                                <field name="seller_product_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sendo_seller_product_tree_view" model="ir.ui.view">
+            <field name="name">sendo.seller.product.tree</field>
+            <field name="model">sendo.seller.product</field>
+            <field name="arch" type="xml">
+                <tree string="Sendo Product" sample="1" create="false">
+                    <field name="name"/>
+                    <field name="seller_product_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sendo_seller_product_act_window" model="ir.actions.act_window">
+            <field name="name">Seller Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sendo.seller.product</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Seller Product.
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                name="### Sendo Product Queue"
+                id="list_product_sendo_menu"
+                parent="sale.product_menu_catalog"
+                action="sendo_seller_product_act_window"
+                sequence="23"
+                groups="base.group_no_one"/>
+    </data>
+</odoo>

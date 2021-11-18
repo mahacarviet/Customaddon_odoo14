@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="product_template_inherit_form_view" model="ir.ui.view">
+            <field name="name">product.template.inherit.form.view</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <header>
+                    <button id="button_update_stock_available_product_woocommerce" name="update_stock_product_woocommerce"
+                            type="object" string="Update Stock Product Woocommerce"
+                            confirm="Are you sure with your choice?"
+                            class="btn-primary"
+                            attrs="{'invisible':[('check_product_woo', '!=', True)]}"
+                    />
+                </header>
+
+                <xpath expr="//field[@name='barcode']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <!--                    <field name="woo_tags"/>-->
+                    <field name="woo_date_created" readonly="1"/>
+                    <field name="woo_date_modified" readonly="1"/>
+                    <field name="product_category_woocommerce" widget="many2many_tags" readonly="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="check_product_woo" readonly="1"/>
+                </xpath>
+
+                <xpath expr="//field[@name='description']" position="attributes">
+                    <!-- Add your fields or attributes here -->
+                    <attribute name="placeholder">Mô tả đầy đủ, chi tiết về sản phẩm bán để khách hàng dễ dàng nắm bắt
+                        thông tin. Hướng dẫn sử dụng nếu có.
+                    </attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Add Filter Search Product Haravan In Product Template-->
+        <record id="product_template_search_woo_product" model="ir.ui.view">
+            <field name="name">product.template.search.woo.product</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <filter name="woo_product_id" string="### WooCommerce Product"
+                            domain="[('woo_product_id', '!=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

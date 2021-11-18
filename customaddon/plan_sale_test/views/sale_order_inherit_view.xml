@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='action_cancel']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <button string="Create Plan Sale" type="object" name="action_create_plan_sale"
+                            class="btn-primary" attrs="{}"/>
+                </xpath>
+<!--                    'invisible': [('plan_sale_sale_order_1','==','')]-->
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="sender_name" />
+                    <field name="information_plan" string="Information Business Plan"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="action_manage_plan_sale" model="ir.actions.act_window">
+            <field name="name">Manage Plan Sale</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{"search_default_information_plan": 1}
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"/>
+            </field>
+
+        </record>
+
+        <menuitem id="res_partner_menu_1"
+                  name="Manage Plan Sale"
+                  parent="sale.sale_order_menu"
+                  action="action_manage_plan_sale"
+                  sequence="5"
+                  groups="group_employee_approval_manager"
+        />
+
+    </data>
+</odoo>

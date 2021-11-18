@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="plan_sale_order_form_view" model="ir.ui.view">
+            <field name="name">plan.sale.order.form.view</field>
+            <field name="model">plan.sale.order</field>
+            <field name="arch" type="xml">
+                <form string="Sale Plan" create="false">
+
+                    <header>
+                        <field name="check_sent" invisible="1"/>
+                        <button name="send_plan" type="object"
+                                string="Send Plan To Approver" class="oe_highlight"
+                                attrs="{'invisible':[('check_sent','!=',False)]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,approved"/>
+                    </header>
+
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <field name="quotation"/>
+                            <field name="detail"/>
+                            <field name="list_partner">
+                                <tree editable="bottom">
+                                    <field name="partner"/>
+                                    <field name="status" readonly="1"/>
+                                    <field name="check_current_account" invisible="1"/>
+                                    <button string="Approve" name="check_approve" type="object" class="btn-primary"
+                                            attrs="{'invisible':['|', ('status', '=', 'approved'), ('check_current_account', '=', False)]}"/>
+                                    <button string="Refuse" name="check_refuse" type="object" class="btn-primary"
+                                            attrs="{'invisible':['|', ('status', '=', 'refused'), ('check_current_account', '=', False)]}"/>
+                                </tree>
+                            </field>
+                        </group>
+
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

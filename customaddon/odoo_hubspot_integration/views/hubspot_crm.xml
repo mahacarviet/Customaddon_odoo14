@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+        <record id="view_hubspot_crm" model="ir.ui.view">
+            <field name="name">HubSpot detalles de conexión</field>
+            <field name="model">hubspot.crm</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="HubSpot detalles de conexión">
+                    <field name="name"/>
+                    <field name="hubspot_api_key"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_form_crm_details" model="ir.ui.view">
+            <field name="name">HubSpot detalles de conexión</field>
+            <field name="model">hubspot.crm</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="HubSpot detalles de conexión">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object" name="sincronize_product_hubspot_odoo" class="oe_stat_button" icon="fa-cart-plus" string="Producto dia 1"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="hubspot_api_key" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Contactos" name="page_contact">
+                                <group>
+                                    <group>
+                                        <separator string="Sincronizar Contactos"/>
+                                        <field name="contact_crud"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Productos" name="page_product">
+                                <group>
+                                    <group>
+                                        <separator string="Sincronizar Productos"/>
+                                        <field name="product_crud"/>
+                                        <field name="product_create"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <group>
+                                        <button name="action_product_import" type="object" class="btn btn-primary" >
+                                            <i class="fa fa-cloud-download pr-1"/><span>Importar Productos</span>
+                                        </button>
+                                        <button name="action_product_export" type="object" class="btn btn-primary" >
+                                            <i class="fa fa-cloud-download pr-1"/><span>Exportar Productos</span>
+                                        </button>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Ventas" name="page_sales">
+                                <group>
+                                    <group>
+                                        <separator string="Sincronizar Ventas"/>
+                                        <field name="sale_import"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Pipelines" name="page_pipeline">
+                                <group>
+                                    <field name="pipeline" widget="section_and_note_one2many" mode="tree" nolabel="1" >
+                                        <tree string="Pipelines Lines" editable="bottom" >
+                                            <control>
+                                                <create name="add_product_control" string="Añadir un pipeline"/>
+                                            </control>
+                                            <field name="pipeline_id" string="Pipeline Id" />
+                                            <field name="stage_win" string="Etapa Ganada" />
+                                            <field name="percent_incomplete" string="Invoice" />
+                                            <field name="percent_complete" string="Invoice 100%" />
+                                            <field name="company_id" string="Compañia" />
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_hubspot_crm" model="ir.actions.act_window">
+            <field name="name">Detalles de conexión</field>
+            <field name="res_model">hubspot.crm</field>
+            <field name='view_mode'>tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click para crear una conexión a HubSpot.
+                </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

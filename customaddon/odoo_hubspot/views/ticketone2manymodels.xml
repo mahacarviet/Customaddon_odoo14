@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="s247_product_form_view">
+            <field name="name">s247_product.form</field>
+            <field name="model">helpdesk.ticket_s247_product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="s247_product_action">
+            <field name="name">s247_product</field>
+            <field name="res_model">helpdesk.ticket_s247_product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="ticket_values" name="Tickets" parent="hubspot_root" sequence="7"/>
+
+        <menuitem id="s247_product" name="S247 Product" parent="ticket_values"
+                  action="s247_product_action"/>
+    </data>
+</odoo>

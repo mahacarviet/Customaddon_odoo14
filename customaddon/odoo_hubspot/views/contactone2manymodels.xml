@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="years_form_view">
+            <field name="name">years.form</field>
+            <field name="model">res.partner_years</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="years_action">
+            <field name="name">years</field>
+            <field name="res_model">res.partner_years</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="business_unit_form_view">
+            <field name="name">business_unit.form</field>
+            <field name="model">res.partner_business_unit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="business_unit_action">
+            <field name="name">business_unit</field>
+            <field name="res_model">res.partner_business_unit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="buying_role_form_view">
+            <field name="name">buying_role.form</field>
+            <field name="model">res.partner_buying_role</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="buying_role_action">
+            <field name="name">buying_role</field>
+            <field name="res_model">res.partner_buying_role</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="what_type_of_support_form_view">
+            <field name="name">what_type_of_support.form</field>
+            <field name="model">res.partner_what_type_of_support</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name" string="Enter Value"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="what_type_of_support_action">
+            <field name="name">what_type_of_support</field>
+            <field name="res_model">res.partner_what_type_of_support</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="contact_values" name="Contacts" parent="hubspot_root" sequence="4"/>
+        <menuitem id="years" name="Years" parent="contact_values"
+                  action="years_action"/>
+        <menuitem id="business_unit" name="Business Unit" parent="contact_values"
+                  action="business_unit_action"/>
+        <menuitem id="buying_role" name="Buying Role" parent="contact_values"
+                  action="buying_role_action"/>
+        <menuitem id="what_type_of_support" name="What Type of Support" parent="contact_values"
+                  action="what_type_of_support_action"/>
+    </data>
+</odoo>

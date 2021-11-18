@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="ir_cron_create_activity" model="ir.cron">
+            <field name="name">### Create Payment Notification Activity</field>
+            <field name="model_id" ref="contract_customer.model_contract_customer"/>
+            <field name="state">code</field>
+            <field name="code">model.create_activity()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

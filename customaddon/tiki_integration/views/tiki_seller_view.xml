@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="tiki_seller_form_view" model="ir.ui.view">
+            <field name="name">tiki_seller.form</field>
+            <field name="model">tiki.seller</field>
+            <field name="arch" type="xml">
+                <form string="Tiki Seller" create="false">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="Name"/>
+                            </h1>
+                             <label for="email"/>
+                            <h2>
+                                <field name="email" placeholder="Email"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="seller_id"/>
+                                <field name="code"/>
+                                <field name="logo"/>
+                            </group>
+                            <group>
+                                <field name="secret"/>
+                                <field name="contract_code"/>
+                                <field name="connect_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="tiki_seller_tree_view" model="ir.ui.view">
+            <field name="name">tiki_seller.tree</field>
+            <field name="model">tiki.seller</field>
+            <field name="arch" type="xml">
+                <tree string="Tiki Seller" create="false" >
+                    <field name="seller_id"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="secret"/>
+                    <field name="contract_code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tiki_seller_act_window" model="ir.actions.act_window">
+            <field name="name">Tiki Seller</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tiki.seller</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Connect to your shop with Connection parameters
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                name="### Tiki Seller"
+                id="tiki_seller_menu"
+                parent="sale.menu_sale_config"
+                action="tiki_seller_act_window"
+                sequence="30"
+                />
+
+    </data>
+</odoo>

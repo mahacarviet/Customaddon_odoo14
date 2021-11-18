@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+            <!--Update Script Tag Shopify-->
+        <record id="ir_cron_update_script_tag_shopify" model="ir.cron">
+            <field name="name">### Shopify Update Script Tag</field>
+            <field name="model_id" ref="shopify_odoo.model_s_sp_app"/>
+            <field name="state">code</field>
+            <field name="code">model.update_script_tag_shopify()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+
+    </data>
+</odoo>

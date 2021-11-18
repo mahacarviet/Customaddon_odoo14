@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="infor_app_wix_view_form" model="ir.ui.view">
+            <field name="name">infor.app.wix.view.form</field>
+            <field name="model">infor.app.wix</field>
+            <field name="arch" type="xml">
+                <form string="Information App Wix" create="false" delete="false" sample="1">
+                    <sheet>
+                        <group>
+                            <field name="instance_id"/>
+                            <field name="app_name"/>
+                            <field name="app_version"/>
+                            <field name="is_free"/>
+                            <field name="package_name" attrs="{'invisible': [('is_free', '=', True)]}"/>
+                            <field name="billing_cycle" attrs="{'invisible': [('is_free', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="site_display_name"/>
+                            <field name="locale"/>
+                            <field name="payment_currency"/>
+                            <field name="url_website"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="infor_app_wix_tree_view" model="ir.ui.view">
+            <field name="name">infor.app.wix.view.tree</field>
+            <field name="model">infor.app.wix</field>
+            <field name="arch" type="xml">
+                <tree string="App Wix" create="false" delete="false" sample="1">
+                    <field name="instance_id"/>
+                    <field name="app_name"/>
+                    <field name="url_website"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="infor_app_wix_act_window" model="ir.actions.act_window">
+            <field name="name">Information App Wix</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">infor.app.wix</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Connect to your shop with Connection parameters
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                name="App Wix"
+                id="infor_app_wix_menu_inherit_1"
+                parent="wix_product_menu"
+                action="infor_app_wix_act_window"
+                sequence="60"/>
+    </data>
+</odoo>

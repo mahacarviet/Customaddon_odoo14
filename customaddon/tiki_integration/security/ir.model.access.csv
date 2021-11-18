@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tiki_seller,access_tiki_seller,model_tiki_seller,,1,1,1,1
+access_tiki_connect_wizard,access_tiki_connect_wizard,model_tiki_connect_wizard,,1,1,1,1

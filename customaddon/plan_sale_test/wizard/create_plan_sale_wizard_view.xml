@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_order_form_inherit_button" model="ir.ui.view">
+            <field name="name">plan.sale.business</field>
+            <field name="model">create.plan.sale.wizard</field>
+            <field name="arch" type="xml">
+
+                <form string="Create Plan Sale">
+<!--                    <header>-->
+<!--                        <button string="Approved" type="object" name="check_approval_true"-->
+<!--                                class="btn btn-primary" group="employee_group_category_approval"/>-->
+<!--                        <button string="Denied" type="object" name="check_approval_false"-->
+<!--                                class="btn btn-primary" group="employee_group_category_approval"/>-->
+<!--                    </header>-->
+                    <group>
+                        <field name="input_name"/>
+                        <field name="id_quotation" readonly="1" string="Quotation"/>
+                        <field name="input_information_plan"/>
+                        <field name="form_approval_wizard" widget="one2many">
+                            <tree editable="bottom" create="true" delete="true">
+                                <control>
+                                    <create name="res_partner_form_approval" string="Add an Inspector"/>
+                                </control>
+                                <field name="res_partner_form_approval"/>
+                                <field name="status" readonly="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <p><h2><b>Apply create on the selected record ?</b></h2></p>
+                    <footer>
+                        <button string="Create" type="object" name="action_create_plan_sale_1"
+                                class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_plan_sale" model="ir.actions.server">
+            <field name="name">Create Plan Sale</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="binding_model_id" ref="model_sale_order"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    action = records.action_create_plan_sale()</field>
+        </record>
+
+    </data>
+</odoo>

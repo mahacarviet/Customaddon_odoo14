@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="update_discount_code_wizard" model="ir.ui.view">
+            <field name="name">update.discount.code.wizard</field>
+            <field name="model">add.discount.code.customer.wizard</field>
+            <field name="arch" type="xml">
+
+                <form string="Update Discount Code">
+                    <group>
+                        <field name="input_code"/>
+                        <field name="res_partner_ids"/>
+                    </group>
+
+                    <p><b>Apply updating on the selected record(s) ?</b></p>
+
+                    <footer>
+                        <button string="Add" type="object" name="action_add_discount_code" class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </form>
+
+            </field>
+        </record>
+        <record id="action_add_discount_code" model="ir.actions.server">
+            <field name="name">Add discount code</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                    action = records.action_add_discount_code()</field>
+        </record>
+
+
+    </data>
+</odoo>

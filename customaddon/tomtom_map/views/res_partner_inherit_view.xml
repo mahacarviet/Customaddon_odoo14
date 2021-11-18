@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_form_inherit_calculate_route" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.calculate.route</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//form" position="inside">
+                    <header>
+                        <button name="action_return_information_address" type="object"
+                                string="Calculate Route" class="btn-primary"/>
+                    </header>
+                </xpath>
+
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                    <page string="Information Calculate Route" name="result_tomtom_map_calculate_route">
+                        <field name="calculate_route_ids" readonly="1">
+                            <tree editable="0" create="0" delete="0">
+                                <field name="result_tomtom_map_res_partner" invisible="1"/>
+                                <field name="tomtom_starting_point" optional="show"/>
+                                <field name="tomtom_destination" optional="show"/>
+                                <field name="tomtom_travel_mode" optional="show"/>
+                                <field name="tomtom_route_type" optional="hide"/>
+                                <field name="tomtom_distance" optional="show" string='Distance  (m)'/>
+                                <field name="tomtom_instructions_type" optional="show"/>
+                                <field name="tomtom_avoid" optional="hide"/>
+                                <field name="tomtom_vehicle_commercial" optional="hide"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

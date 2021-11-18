@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_woocommerce_seller,access_woocommerce_seller,model_woocommerce_seller,,1,1,1,1
+access_woocommerce_category,access_woocommerce_category,model_woocommerce_category,,1,1,1,1
+

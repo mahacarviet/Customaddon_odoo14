@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="s_fetch_form_view" model="ir.ui.view">
+            <field name="name">s.fetch.form.view</field>
+            <field name="model">s.fetch</field>
+            <field name="arch" type="xml">
+                <form string="Fetch Shopify">
+                    <sheet>
+                        <group>
+                            <field name="s_shop_s_fetch" force_save="1" readonly="1"/>
+                            <field name="date_time_from" required="1"/>
+                            <field name="date_time_to" required="1"/>
+                            <field name="shop_user_id" invisible="0" force_save="1" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page name="log_fetch_product" string="Fetch Log Product">
+                                <button name="fetch_product_shopify" type="object"
+                                string="Fetch Product" class="oe_highlight"/>
+                                <group>
+                                    <field name="s_fetch_log_product_shopify" nolabel="1">
+                                        <tree>
+                                            <field name="date_time_from"/>
+                                            <field name="date_time_to"/>
+                                            <field name="time_fetch"/>
+                                            <field name="success_fetch"/>
+                                            <field name="shop_user_id" invisible="0"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="date_time_from"/>
+                                                <field name="date_time_to"/>
+                                                <field name="time_fetch"/>
+                                                <field name="success_fetch"/>
+                                                <field name="shop_user_id" invisible="0"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                            <page name="log_fetch_order" string="Fetch Log Order">
+                                <button name="fetch_order_shopify" type="object"
+                                string="Fetch Order" class="oe_highlight"/>
+                                <group>
+                                    <field name="s_fetch_log_order_shopify" nolabel="1">
+                                        <tree>
+                                            <field name="date_time_from"/>
+                                            <field name="date_time_to"/>
+                                            <field name="time_fetch"/>
+                                            <field name="success_fetch"/>
+                                            <field name="shop_user_id" invisible="0"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="date_time_from"/>
+                                                <field name="date_time_to"/>
+                                                <field name="time_fetch"/>
+                                                <field name="success_fetch"/>
+                                                <field name="shop_user_id" invisible="0"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="s_fetch_tree_view" model="ir.ui.view">
+            <field name="name">s.fetch.tree.view</field>
+            <field name="model">s.fetch</field>
+            <field name="arch" type="xml">
+                <tree string="Fetch Shopify" sample="1">
+                    <field name="s_shop_s_fetch" force_save="1" widget="many2one_tags" readonly="1"/>
+                    <field name="date_time_from" required="1"/>
+                    <field name="date_time_to" required="1"/>
+                    <field name="shop_user_id" invisible="0" force_save="1" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="s_fetch_act_window" model="ir.actions.act_window">
+            <field name="name">Fetch Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">s.fetch</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

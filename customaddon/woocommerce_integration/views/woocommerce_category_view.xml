@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="woocommerce_category_form_view" model="ir.ui.view">
+            <field name="name">woocommerce.category.form</field>
+            <field name="model">woocommerce.category</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle" create="false">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="woocommerce_name"/>
+                            <h1>
+                                <field name="woocommerce_name" placeholder="Category Name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                                <field name="woocommerce_cate_id" readonly="1"/>
+                                <field name="woocommerce_slug" readonly="1"/>
+                                <field name="woocommerce_parent_id" readonly="1"/>
+                                <field name="woocommerce_count" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="woocommerce_category_tree_view" model="ir.ui.view">
+            <field name="name">woocommerce.category.tree</field>
+            <field name="model">woocommerce.category</field>
+            <field name="arch" type="xml">
+                <tree string="Woocommerce Category" sample="1" create="false">
+                    <field name="woocommerce_name" readonly="1"/>
+                    <field name="woocommerce_cate_id" readonly="1"/>
+                    <field name="woocommerce_slug" readonly="1"/>
+                    <field name="woocommerce_parent_id" readonly="1"/>
+                    <field name="woocommerce_count" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="woocommerce_category_act_window" model="ir.actions.act_window">
+            <field name="name">Woocommerce Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">woocommerce.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Seller category.
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                name="### Woocommerce Category Queue"
+                id="list_category_woocommerce_menu"
+                parent="sale.product_menu_catalog"
+                action="woocommerce_category_act_window"
+                sequence="23"
+                groups="base.group_no_one"/>
+    </data>
+</odoo>

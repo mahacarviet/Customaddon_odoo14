@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_list_over_time" name="My Over Time">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Over Time</t>
+            </t>
+            <t t-if="not list_over_time">
+                <p>There are currently no over time for your account.</p>
+            </t>
+            <t t-if="list_over_time" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-center">ID #</th>
+                        <th class="text-center">Description</th>
+                        <th class="text-center">Time From</th>
+                        <th class="text-center">Time To</th>
+                        <th class="text-center">Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="list_over_time" t-as="element_over_time">
+                    <tr>
+                        <td class="text-center"><span t-field="element_over_time.id"/></td>
+                        <td class="text-center"><span t-field="element_over_time.description"/></td>
+                        <td class="text-center"><span t-field="element_over_time.time_from"/></td>
+                        <td class="text-center"><span t-field="element_over_time.time_to"/></td>
+                        <td class="text-center">
+                            <t t-if="element_over_time.state == 'draft'">
+                                <span class="badge badge-pill badge-info"><i class="fa fa-clock-o"/> Pending</span>
+                            </t>
+                            <t t-if="element_over_time.state == 'approved'">
+                                <span class="badge badge-pill badge-success"><i class="fa fa-check"/> Approved</span>
+                            </t>
+                            <t t-if="element_over_time.state == 'refused'">
+                                <span class="badge badge-pill badge-warning"><i class="fa fa-times"/> Refused</span>
+                            </t>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="portal_user_create_over_time" name="Create Over Time">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Create Leave Request</t>
+            </t>
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <form style="margin: 100px 200px;" role="form" method="POST" action="/portal_user/save_over_time">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group">
+                                <label>Time From</label>
+                                <div class="input-group datetime"
+                                     id="datetimepickerfromID"
+                                     data-target-input="nearest">
+                                    <input type="text"
+                                           class="form-control datetimepicker-input"
+                                           data-target="#datetimepickerfromID"
+                                           name="time_from"
+                                           t-att-value='time_from'/>
+                                    <div class="input-group-append"
+                                         data-target="#datetimepickerfromID"
+                                         data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Time To</label>
+                                <div class="input-group datetime"
+                                     id="datetimepickertoID"
+                                     data-target-input="nearest">
+                                    <input type="text"
+                                           class="form-control datetimepicker-input"
+                                           data-target="#datetimepickertoID"
+                                           name="time_to"
+                                           t-att-value='time_to'/>
+                                    <div class="input-group-append"
+                                         data-target="#datetimepickertoID"
+                                         data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="private_name" class="control-label">Description</label>
+                                <input type="text"
+                                       class="form-control"
+                                       name="description"
+                                       t-att-value='description'
+                                       placeholder="Description"
+                                       required="required"/>
+                            </div>
+                            <div class="clearfix oe_login_buttons">
+                                <button type="submit" class="btn btn-primary pull-left">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <record id="success_to_create_over_time_request" model="website.page">
+        <field name="name">Success</field>
+        <field name="type">qweb</field>
+        <field name="url">/portal_user/save_over_time</field>
+        <field name="website_published">True</field>
+        <field name="key">advanced_portal_user.success_to_create_over_time_request</field>
+        <field name="arch" type="xml">
+            <t name="Success to create over time request" t-name="advanced_portal_user.success_to_create_over_time_request">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Success to create over time request</h1>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="alert alert-success" role="status">
+                                        Please wait for the manager's approval
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

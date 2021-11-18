@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="s_sp_app_form_view" model="ir.ui.view">
+            <field name="name">s.sp.app.form.view</field>
+            <field name="model">s.sp.app</field>
+            <field name="arch" type="xml">
+                <form string="Shopify">
+                    <header>
+                        <button name="update_script_tag_shopify" type="object"
+                                string="Update Script Tag" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="shop_app_s_apps"/>
+                            <field name="shop_app_s_shops"/>
+                            <field name="token_shop_app"/>
+                            <field name="web_user"/>
+                            <field name="password_user"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="s_sp_app_tree_view" model="ir.ui.view">
+            <field name="name">s.sp.app.tree.view</field>
+            <field name="model">s.sp.app</field>
+            <field name="arch" type="xml">
+                <tree string="Shopify" sample="1">
+                    <field name="shop_app_s_apps"/>
+                    <field name="shop_app_s_shops"/>
+                    <field name="token_shop_app"/>
+                    <field name="web_user"/>
+                    <field name="password_user"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="s_sp_app_act_window" model="ir.actions.act_window">
+            <field name="name">Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">s.sp.app</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Shopify.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

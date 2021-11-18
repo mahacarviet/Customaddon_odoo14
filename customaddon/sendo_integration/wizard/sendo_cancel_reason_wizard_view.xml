@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sendo_update_status_order_cancel_reason_view_form" model="ir.ui.view">
+            <field name="name">sendo.update.status_order.cancel.reason.form</field>
+            <field name="model">sendo.cancel.reason.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Update Sendo Order Status">
+                    <group class="oe_title">
+                        <field name="sale_order_sendo_cancel_reason_id" readonly="1"/>
+                        <field name="sendo_order_status"/>
+                        <field name="sendo_cancel_reason_wizard_id"
+                               options="{'no_create_edit': True, 'no_quick_create': True}"
+                               attrs="{'invisible': [('sendo_order_status', '!=', '13')]}"/>
+                    </group>
+                    <footer>
+                        <button name="update_order_status_from_odoo_to_sendo" string="Update Order Status" type="object"
+                                class="btn-primary" confirm="Are you sure with your choice?"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_plan_sale" model="ir.actions.server">
+            <field name="name">Update Sendo Status</field>
+            <field name="model_id" ref="model_sale_order"/>
+            <field name="binding_model_id" ref="model_sale_order"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.action_return_information_sendo_order()
+            </field>
+        </record>
+
+    </data>
+</odoo>

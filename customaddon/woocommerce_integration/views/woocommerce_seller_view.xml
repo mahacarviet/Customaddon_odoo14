@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="woocommerce_seller_form_view" model="ir.ui.view">
+            <field name="name">woocommerce_seller.form</field>
+            <field name="model">woocommerce.seller</field>
+            <field name="arch" type="xml">
+                <form string="Woocommerce Seller" create="false" delete="false">
+                    <sheet>
+                        <group>
+                            <field name="link_website" required="1"/>
+                            <field name="consumer_key" required="1"/>
+                            <field name="consumer_secret" required="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="test_connect" type="object" class="btn-primary" string="Connect"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="woocommerce_seller_tree_view" model="ir.ui.view">
+            <field name="name">woocommerce_seller.tree</field>
+            <field name="model">woocommerce.seller</field>
+            <field name="arch" type="xml">
+                <tree string="Woocommerce Seller" create="false" delete="false" sample="1">
+                    <field name="link_website"/>
+                    <field name="consumer_key"/>
+                    <field name="consumer_secret"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="woocommerce_seller_act_window" model="ir.actions.server">
+            <field name="name">Woocommerce Seller</field>
+            <field name="model_id" ref="woocommerce_integration.model_woocommerce_seller"/>
+            <field name="binding_model_id" ref="woocommerce_integration.model_woocommerce_seller"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = model.action_view_config()</field>
+        </record>
+
+        <menuitem
+                name="### Connection Woocommerce API"
+                id="woocommerce_seller_menu"
+                parent="sale.menu_sale_config"
+                action="woocommerce_seller_act_window"
+                sequence="30"
+        />
+
+    </data>
+</odoo>

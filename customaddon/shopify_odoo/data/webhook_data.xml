@@ -1,0 +1,6 @@
+<record id="webhook1">
+    <field name="update_product"/>
+</record>
+<record id="webhook2">
+    <field name="update_order"/>
+</record>

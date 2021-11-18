@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="package" name="Main Package Assets">
+        <script type="text/javascript" src="/shopify_app/static/src/js/package.js"/>
+    </template>
+
+    <template id="index">
+        <t t-call="web.html_container">
+            <t t-set="title">Shopify App</t>
+        </t>
+        <script>
+            window.config = {
+                shop_url: "<t t-raw="shop_url" />",
+                shopify_store: <t t-raw="shopify_store" />,
+                sale_accounts: <t t-raw="sale_accounts" />,
+                shipping_accounts: <t t-raw="shipping_accounts" />,
+                payment_accounts: <t t-raw="payment_accounts" />,
+                plans: <t t-raw="plans" />,
+                logs: <t t-raw="logs" />,
+                organisation_name: "<t t-raw="organisation_name" />",
+                message: "<t t-raw="message" />",
+
+              };
+        </script>
+        <div id="root"></div>
+        <t t-call-assets="shopify_app.package"/>
+    </template>
+
+    <template id="index1">
+        <t t-call="web.html_container">
+            <t t-set="title">Shopify App</t>
+        </t>
+        <xpath expr="." position="inside">
+            <link type="text/css" rel="stylesheet" href="/shopify_app/static/src/css/shopify_app.css"/>
+            <script type="text/javascript" src="/shopify_app/static/src/js/shopify_app.js"/>
+<!--            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>-->
+<!--            <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"></link>-->
+<!--            <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
+            <script type="text/javascript" src="shopify_app/static/src/js/jquery2.1.1.min.js"/>
+            <link type="text/css" rel="stylesheet" href="shopify_app/static/src/css/jquery-ui1.12.1.css"/>
+            <script type="text/javascript" src="shopify_app/static/src/js/jquery-ui.min1.12.1.js"/>
+        </xpath>
+
+        <t t-if="message" >
+            <div class="alert alert-primary" role="alert">
+                <t t-esc="message" />
+            </div>
+        </t>
+
+
+        <div class="container">
+<!--            CARD 1 General Settings-->
+            <div class="card">
+                <div class="card-header">
+                    General Settings
+                </div>
+                <div class="card-body">
+                    <form action="/save_settings" method="get" >
+                        <div class="form-group">
+                            <p class="card-text">Sales Account:</p>
+                            <div class="input-group mb-3">
+                                <select class="custom-select" id="inputGroupSelect01" name="sale_account">
+                                    <t t-if="sale_accounts">
+                                        <t t-foreach="sale_accounts" t-as="sale_account">
+<!--                                            <t t-if="account.type in ('SALES', 'REVENUE')">-->
+                                                <t t-if="shopify_store.sale_account == sale_account['code']">
+                                                    <option t-att-value="sale_account['code']" selected="selected" ><t t-esc="sale_account['name']"/></option>
+                                                </t>
+                                                <t t-else="">
+                                                    <option t-att-value="sale_account['code']" ><t t-esc="sale_account['name']"/></option>
+                                                </t>
+<!--                                            </t>-->
+                                        </t>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p class="card-text">Shipping Account:</p>
+                            <div class="input-group mb-3">
+                                <select class="custom-select" id="inputGroupSelect02" name="shipping_account">
+                                    <t t-if="shipping_accounts">
+                                        <t t-foreach="shipping_accounts" t-as="shipping_account">
+<!--                                            <t t-if="account.type in ('SALES', 'REVENUE')">-->
+                                                <t t-if="shopify_store.shipping_account == shipping_account['code']">
+                                                    <option t-att-value="shipping_account['code']" selected="selected" ><t t-esc="shipping_account['name']"/></option>
+                                                </t>
+                                                <t t-else="">
+                                                    <option t-att-value="shipping_account['code']" ><t t-esc="shipping_account['name']"/></option>
+                                                </t>
+<!--                                            </t>-->
+                                        </t>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <p class="card-text">Payment Account (Account with "Enable payments to this account" enabled):</p>
+                            <div class="input-group mb-3">
+                                <select class="custom-select" id="inputGroupSelect03" name="payment_account">
+                                    <t t-if="payment_accounts">
+                                        <t t-foreach="payment_accounts" t-as="payment_account">
+<!--                                            <t t-if="account.type in ('BANK', 'EQUITY', 'CURRLIAB')">-->
+                                                <t t-if="shopify_store.payment_account == payment_account['code']">
+                                                    <option t-att-value="payment_account['code']" selected="selected" ><t t-esc="payment_account['name']"/></option>
+                                                </t>
+                                                <t t-else="">
+                                                    <option t-att-value="payment_account['code']" ><t t-esc="payment_account['name']"/></option>
+                                                </t>
+<!--                                            </t>-->
+                                        </t>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox mb-3">
+                                <t t-if="shopify_store">
+                                    <t t-if="shopify_store.auto_sync">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="auto_sync" t-att-checked="'checked'"/>
+                                    </t>
+                                    <t t-else="">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck" name="auto_sync" />
+                                    </t>
+                                </t>
+                                    <label class="custom-control-label" for="customCheck">Automatically Sync (at midnight everyday)</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </form>
+                </div>
+                <div class="container">
+                    <pre class="text-muted" style="white-space: pre-line;">
+                        Please choose your account accordingly:
+                        Sales Account will be applied to Invoice Line Items' Account
+                        Shipping Account will be applied to Shipping as an Invoice Line Item
+                        Payments will go to Payment Account on Xero
+                    </pre>
+                </div>
+            </div>
+            <br/>
+<!--            CARD 2 Export to Xero-->
+            <div class="card">
+                <div class="card-header">
+                    Export to Xero
+                </div>
+                <div class="card-body">
+                    <div>
+<!--                        <t t-if="message">-->
+<!--                            <span class="text-danger"><t t-esc="message" /></span>-->
+<!--                        </t>-->
+                        <form action="/sync_to_xero" method="get">
+                            From: <input type="text" name="from_date" id="MyTextbox" style="margin-right: 10px;" />
+                            To: <input type="text" name="to_date" id="MyTextbox1" style="margin-right: 10px;" />
+                            <button type="submit" class="btn btn-primary">Sync to Xero</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="container">
+                    <pre class="text-muted" style="white-space: pre-line;">
+                        Choose date from and date to and export your data to Xero.
+                        Customers will be synced to Xero as: Shopify - "Customer Name" - ("Customer Id")
+                        Invoices will be synced to Xero as: Shopify - "Order Id"
+                        Products will be synced to Xero as Xero Items
+                    </pre>
+                </div>
+            </div>
+            <br/>
+<!--            CARD 3 History-->
+            <div class="card">
+                <div class="card-header">
+                    History
+                </div>
+                <div class="card-body">
+                    <p>History log of sync history, including automated jobs.</p>
+                    <p>Orders synced this month: <t t-esc="shopify_store.orders_synced"/></p>
+                    <p>Current Orders per plan: <t t-if="shopify_store.plan.order_number">
+                                                    <t t-esc="shopify_store.plan.order_number"/>
+                                                </t>
+                                                <t t-if="shopify_store.plan.is_unlimited">
+                                                    Unlimited
+                                                </t>
+                    </p>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Execution Time</th>
+                                <th scope="col">Finish Time	</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-if="logs">
+                                <t t-foreach="logs" t-as="log">
+                                    <tr>
+                                        <td><t t-esc="log.execution_time" /></td>
+                                        <td><t t-esc="log.finish_time" /></td>
+                                        <td><t t-esc="log.status" /></td>
+                                        <td><t t-esc="log.message" /></td>
+                                    </tr>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br/>
+<!--            CARD 4 Plans -->
+            <div class="card">
+                <div class="card-header">
+                    Plans
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <t t-if="plans">
+                            <t t-foreach="plans" t-as="plan">
+                                <div class="col-sm-4 d-flex">
+                                    <div class="card">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title">
+                                                <b>
+                                                    <t t-esc="plan.name" />
+                                                    <t t-if="shopify_store.plan.name == plan.name">
+                                                        (Current Plan)
+                                                    </t>
+                                                </b>
+                                            </h5>
+                                            <t t-if="plan.cost == 0" >
+                                                <p><i>Free</i></p>
+                                            </t>
+                                            <t t-else="">
+                                                <p><i><t t-esc="plan.cost"/>/month</i></p>
+                                            </t>
+                                            <p class="card-text">
+                                                <t t-if="plan.name == 'Essential'">
+                                                    <pre  style="white-space: pre-line;">
+                                                        Sync Customers, Products, Orders to Xero
+                                                        Manually Sync in date range
+                                                        Automatic Updates every <t t-esc="plan.interval_number"/> hours
+                                                        Account Mapping
+                                                        Synchronization History
+                                                        <t t-esc="plan.order_number"/> Orders/month
+                                                    </pre>
+                                                </t>
+                                                <t t-if="plan.name == 'Standard'">
+                                                    <pre  style="white-space: pre-line;">
+                                                        All Essential Features
+                                                        Automatic Updates every <t t-esc="plan.interval_number"/> hours
+                                                        Sync Gift Cards, Refunds to Xero
+                                                        <t t-esc="plan.order_number"/> Orders/month
+                                                    </pre>
+                                                </t>
+                                                <t t-if="plan.name == 'Professional'">
+                                                    <pre  style="white-space: pre-line;">
+                                                        All Standard Features
+                                                        Automatic Updates every <t t-esc="plan.interval_number"/> hours
+                                                        Unlimited Orders per month
+                                                    </pre>
+                                                </t>
+                                            </p>
+                                            <t t-if="shopify_store.plan.name != plan.name and plan.cost">
+                                                <t t-if="shop_url">
+                                                    <a t-att-id="'sign_up%d'%(plan.id)"   class="btn btn-primary mt-auto">Sign Up</a>
+                                                    <script>
+                                                        $("#sign_up<t t-esc="plan.id"/>").click(function(){
+                                                             window.top.location.href = '/sign_up/<t t-esc="plan.id"/>?shop_url=<t t-esc="shop_url"/>';
+                                                        });
+                                                    </script>
+                                                </t>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </div>
+            </div>
+            <br/>
+<!--            CARD 5 Disconnect-->
+            <div class="card">
+                <div class="card-header">
+                    Disconnect From Xero
+                </div>
+                <div class="card-body">
+                    <p>Organisation:
+                        <t t-if="organisation_name">
+                            <span class="text-primary"><t t-esc="organisation_name"/></span>
+                        </t>
+                    </p>
+                    <p>Status: <span class="text-success">Connected</span></p>
+                    <a href="/disconnect" class="btn btn-primary">Disconnect To Xero</a>
+                    <p>Disconnect from Xero. Delete the credentials.</p>
+                    <div class="alert alert-light" role="alert">
+                        Note: This will clear all Xero credentials. Cron will not run until you reconnect again.
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </template>
+
+    <template id="xero_connect_package" name="Xero Connect Package Assets">
+        <script type="text/javascript" src="/shopify_app/static/src/js/xero_connect.js"/>
+    </template>
+
+    <template id="xero_connect">
+        <t t-call="web.html_container">
+            <t t-set="title">Shopify App</t>
+        </t>
+        <div id="xero_connect"></div>
+        <t t-call-assets="shopify_app.xero_connect_package"/>
+    </template>
+
+    <template id="redirect_top" name="Redirect Top Page">
+        <script>
+            window.top.location.href = '<t t-raw="redirect_url"/>';
+        </script>
+    </template>
+
+<!--    <template id="xero_contact_list">-->
+<!--        <t t-call="web.layout"/>-->
+<!--        <h1>Xero Customers:</h1>-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <th>Name</th>-->
+<!--                <th>FirstName</th>-->
+<!--                <th>LastName</th>-->
+<!--                <th>BankAccountDetails</th>-->
+<!--                <th>IsCustomer</th>-->
+<!--            </tr>-->
+<!--            <t t-foreach="contacts" t-as="contact">-->
+<!--                <tr>-->
+<!--                    <td><t t-esc="contact['Name']" /></td>-->
+<!--                    <td>-->
+<!--                        <t t-if="'FirstName' in contact">-->
+<!--                            <t t-esc="contact['FirstName']" />-->
+<!--                        </t>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <t t-if="'LastName' in contact">-->
+<!--                            <t t-esc="contact['LastName']" />-->
+<!--                        </t>-->
+<!--                    </td>-->
+<!--                    <td>-->
+<!--                        <t t-if="'BankAccountDetails' in contact">-->
+<!--                            <t t-esc="contact['BankAccountDetails']" />-->
+<!--                        </t>-->
+<!--                    </td>-->
+<!--                    <td><t t-esc="contact['IsCustomer']" /></td>-->
+<!--                </tr>-->
+<!--            </t>-->
+<!--        </table>-->
+<!--    </template>-->
+
+</odoo>

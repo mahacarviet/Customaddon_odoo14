@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="over_time_form_view" model="ir.ui.view">
+            <field name="name">hr.over.time.form</field>
+            <field name="model">hr.over.time</field>
+            <field name="arch" type="xml">
+                <form string="Over Time">
+                    <header>
+                        <field name="user_is_approver" invisible="1"/>
+                        <button name="approved_action" type="object"
+                                string="Approved" class="oe_highlight"
+                                attrs="{'invisible':['|', ('state', '=', 'approved'), ('user_is_approver', '!=', True)]}"
+                               />
+                        <button name="refused_action" type="object"
+                                string="Refused" class="oe_highlight"
+                                attrs="{'invisible':['|', ('state', '=', 'refused'), ('user_is_approver', '!=', True)]}"
+                                />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,sent,approved"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="employee_id"/>
+                            <h1>
+                                <field name="employee_id" placeholder="Employee"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="description"/>
+                                <field name="approver"/>
+                            </group>
+                            <group>
+                                <field name="time_from"/>
+                                <field name="time_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="over_time_tree_view" model="ir.ui.view">
+            <field name="name">hr.over.time.tree</field>
+            <field name="model">hr.over.time</field>
+            <field name="arch" type="xml">
+                <tree string="Over Time List">
+                    <field name="employee_id"/>
+                    <field name="description"/>
+                    <field name="time_from"/>
+                    <field name="time_to"/>
+                    <field name="state"/>
+                    <button string="Approve" icon="fa-check" name="approved_action" type="object"
+                            attrs="{'invisible':['|', ('state', '=', 'approved'), ('user_is_approver', '!=', True)]}"/>
+                    <button string="Refused" icon="fa-times" name="refused_action" type="object"
+                            attrs="{'invisible':['|', ('state', '=', 'refused'), ('user_is_approver', '!=', True)]}"/>
+                    <field name="user_is_approver" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="over_time_act_window" model="ir.actions.act_window">
+            <field name="name">Over Time</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.over.time</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click here to add new ModelTitle.
+                </p>
+            </field>
+        </record>
+        <menuitem id="over_time_menu"
+                  name="Over Time" parent="hr_attendance.menu_hr_attendance_root" sequence="10"
+                  action="over_time_act_window"/>
+    </data>
+</odoo>

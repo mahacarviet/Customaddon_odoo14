@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_calculate_route_wizard,calculate_route_wizard,model_calculate_route_wizard,,1,1,1,1
+access_result_tomtom_map,result_tomtom_map,model_result_tomtom_map,,1,1,1,1

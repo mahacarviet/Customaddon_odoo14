@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!--            Sync Woocommerce Category -->
+        <record id="ir_cron_get_woocommerce_category" model="ir.cron">
+            <field name="name">### Get Category Woocommerce</field>
+            <field name="model_id" ref="woocommerce_integration.model_woocommerce_category"/>
+            <field name="state">code</field>
+            <field name="code">model.get_categories_woocommerce()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <!--            Sync Product to Model Product Template-->
+        <record id="ir_cron_get_product_woocommerce_product_template" model="ir.cron">
+            <field name="name">### Get Product Woocommerce - Product Template</field>
+            <field name="model_id" ref="woocommerce_integration.model_product_template"/>
+            <field name="state">code</field>
+            <field name="code">model.get_product_woocommerce()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <!--            Sync Product Woocommerce Category to Model Product Template-->
+        <record id="ir_cron_get_product_woocommerce_category_product_template" model="ir.cron">
+            <field name="name">### Get Product Woocommerce Category + Attribute - Product Template</field>
+            <field name="model_id" ref="woocommerce_integration.model_product_template"/>
+            <field name="state">code</field>
+            <field name="code">model.get_product_woocommerce_category_attribute()</field>
+            <field name="interval_number">12</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+        <!--            Sync List Order Woocommerce to Model Sale Order-->
+        <record id="ir_cron_update_list_order_woocommerce" model="ir.cron">
+            <field name="name">### Get List Order Woocommerce - Sale Order</field>
+            <field name="model_id" ref="woocommerce_integration.model_sale_order"/>
+            <field name="state">code</field>
+            <field name="code">model.get_list_order_woo()</field>
+            <field name="interval_number">30</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

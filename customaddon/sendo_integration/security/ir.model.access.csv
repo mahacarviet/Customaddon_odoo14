@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sendo_seller_product,access_sendo_seller_product,model_sendo_seller_product,,1,1,1,1
+access_sendo_seller,access_sendo_seller,model_sendo_seller,,1,1,1,1
+access_sendo_cancel_reason,access_sendo_cancel_reason,model_sendo_cancel_reason,,1,1,1,1
+access_sendo_cancel_reason_wizard,access_sendo_cancel_reason_wizard,model_sendo_cancel_reason_wizard,,1,1,1,1

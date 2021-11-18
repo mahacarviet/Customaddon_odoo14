@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_form_inherit_sendo" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit.sendo</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_return_information_sendo_order" type="object"
+                            string="Update Order Status Sendo"
+                            class="btn-primary"
+                            attrs="{'invisible': [('sendo_order_number', '=', False)]}"
+                    />
+                    <field name="sendo_order_status" widget="statusbar"
+                           attrs="{'invisible': [('sendo_order_number', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('sendo_order_number', '!=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="sendo_order_number" invisible="0"/>
+                    <field name="sendo_payment_status"/>
+                    <field name="sendo_payment_method"/>
+                    <field name="sendo_cancel_name" attrs="{'invisible': [('sendo_order_status', '!=', '13')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--        Add Filter Sendo Order In Product Template-->
+        <record id="sale_order_search_sendo_order" model="ir.ui.view">
+            <field name="name">sale.order.search.sendo.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='my_sale_orders_filter']" position="before">
+                    <filter name="sendo_order_number" string="### Sendo Order"
+                            domain="[('sendo_order_number', '!=', False)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

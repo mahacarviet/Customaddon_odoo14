@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="show_warranty_product_website_view" inherit_id="website_sale.cart_lines"
+                  name="show_warranty_product_website_view">
+
+            <xpath expr="//table[@id='cart_products']/thead/tr/th[4]" position="before">
+                <th class="text-center td-warranty">Product Warranty Code</th>
+            </xpath>
+
+            <xpath expr="//table[@id='cart_products']/tbody/t/tr/td[4]" position="after">
+
+                <!-- Nothing to do, this view is only meant to allow the server -->
+                <!-- to know if the list view layout should be used -->
+                <td class="text-center td-warranty" t-if="line.product_id.check_product_warranty == False"> Not
+                    Warranty</td>
+                <td class="text-center td-warranty" t-if="line.product_id.check_product_warranty == True">
+                    <span t-field="line.product_id.product_warranty"/>
+                </td>
+
+
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

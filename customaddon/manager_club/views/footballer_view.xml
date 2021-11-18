@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="footballer_list_view" model="ir.ui.view">
+            <field name="name">footballer.list.view</field>
+            <field name="model">footballer</field>
+            <field name="arch" type="xml">
+                <tree string="footballer_tree">
+                    <field name="name"/>
+                    <field name="age" force_save="1"/>
+                    <field name="nation"/>
+                    <field name="club_id"/>
+                    <field name="training_center_ids" widget="many2many_tags"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="footballer_view_form" model="ir.ui.view">
+            <field name="name">footballer.view.form</field>
+            <field name="model">footballer</field>
+            <field name="arch" type="xml">
+                <form string="footballer_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date_of_birth"/>
+                                <field name="age" force_save="1"/>
+                                <field name="address"/>
+                                <field name="phone_number"/>
+                                <field name="nation"/>
+
+                            </group>
+                            <group>
+                                <field name="club_id"/>
+                                <field name="training_center_ids" widget="many2many_tags"/>
+                                <field name="status"/>
+                                <field name="salary" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                <field name="tax_salary"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="footballer_view_kanban" model="ir.ui.view">
+            <field name="name">footballer.kanban.view</field>
+            <field name="model">footballer</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="nation"/>
+                    <field name="status"/>
+                    <field name="club_id"/>
+                    <field name="training_center_ids"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <a type="open">
+                                            <strong>
+                                                <li>
+                                                    <h2>
+                                                        <field name="name"/>
+                                                    </h2>
+                                                </li>
+                                            </strong>
+                                        </a>
+                                        <li>
+                                            <h6>Age:
+                                                <field name="age"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Nation:
+                                                <field name="nation"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Status:
+                                                <field name="status"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.club_id">
+                                                <h6>Club:
+                                                    <field name="club_id"/>
+                                                </h6>
+                                            </t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.training_center_ids">
+                                                <h6>Training Center:
+                                                    <field name="training_center_ids"/>
+                                                </h6>
+                                            </t>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="footballer_view_graph" model="ir.ui.view">
+            <field name="model">footballer</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="age"/>
+                    <field name="club_id"/>
+                </graph>
+            </field>
+        </record>
+
+        <record id="footballer_view_pivot" model="ir.ui.view">
+            <field name="model">footballer</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name" type="col"/>
+                    <field name="age" type="row"/>
+                    <field name="salary" type="row"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="footballer_action" model="ir.actions.act_window">
+            <field name="name">Footballer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">footballer</field>
+            <field name="view_mode">kanban,tree,form,graph,pivot</field>
+        </record>
+
+        <menuitem name="My Database Football" id="manager_club_base_menu"/>
+        <menuitem id="footballer_child_menu_id" parent="manager_club_base_menu" action="footballer_action"
+                  name="Manage Footballer" sequence="1"/>
+
+    </data>
+</odoo>

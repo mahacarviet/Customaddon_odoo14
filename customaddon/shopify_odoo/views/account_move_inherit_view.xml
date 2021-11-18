@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="account_move_inherit_form_view" model="ir.ui.view">
+            <field name="name">account.move.inherit.form.view</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='button_draft']" position="after">
+                    <button id="button_create_refund_shopify"
+                            name="create_refund_shopify"
+                            type="object" string="Create Refund Shopify"
+                            confirm="Are you sure with your choice?"
+                            class="btn-primary"
+                            attrs="{'invisible':[('state', '!=', 'posted')]}"/>
+                </xpath>
+                <xpath expr="//div[@name='journal_div']" position="after">
+                    <field name="check_refund_shopify"/>
+                    <field name="shopify_transactions" invisible="1"/>
+                    <field name="shopify_location" invisible="1"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

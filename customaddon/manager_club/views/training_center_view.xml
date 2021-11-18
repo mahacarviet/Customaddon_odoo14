@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="training_center_view_list" model="ir.ui.view">
+            <field name="name">training.center.list.view</field>
+            <field name="model">training.center</field>
+            <field name="arch" type="xml">
+                <tree string="training_center_tree">
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="training_center_coach" string="Coach" widget="many2many_tags"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="training_center_view_form" model="ir.ui.view">
+            <field name="name">training.center.view.form</field>
+            <field name="model">training.center</field>
+            <field name="arch" type="xml">
+                <form string="training_center_form">
+                    <header>
+                        <button name="process_training_center" string="Processing" states="dissolution"
+                                type="object" class="oe_highlight" confirm="Are you sure you want to do this?"/>
+                        <button name="process_training_center" string="Dissolution" states="process"
+                                type="object" class="oe_highlight" confirm="Are you sure you want to do this?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="process,draft"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="address"/>
+                                <field name="year_established"/>
+                                <field name="training_center_coach" string="Coach" widget="many2many_tags"/>
+                                <field name="state"/>
+                            </group>
+                            <group>
+                                <field name="training_center_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="training_center_view_kanban" model="ir.ui.view">
+            <field name="name">training.center.kanban.view</field>
+            <field name="model">training.center</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="year_established"/>
+                    <field name="training_center_coach"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <a type="open">
+                                            <strong>
+                                                <li>
+                                                    <h2>
+                                                        <field name="name"/>
+                                                    </h2>
+                                                </li>
+                                            </strong>
+                                        </a>
+                                        <li>
+                                            <h6>
+                                                <field name="address"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <h6>Year Established:
+                                                <field name="year_established"/>
+                                            </h6>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.training_center_coach">
+                                                <h6>Coach:
+                                                    <field name="training_center_coach"/>
+                                                </h6>
+                                            </t>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="training_center_action" model="ir.actions.act_window">
+            <field name="name">Training Center</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">training.center</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <menuitem id="training_center_child_menu_id" parent="manager_club_base_menu"
+                  action="training_center_action"
+                  name="Training Center" sequence="4"/>
+
+    </data>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mypet_batch_update" model="ir.ui.view">
+        <field name="name">view.mypet.batch.update</field>
+        <field name="model">my.pet.batchupdate.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Batch Update">
+                <group>
+                    <group>
+                        <field name="dob"/>
+                        <field name="gender"/>
+                        <field name="owner_id"/>
+                        <field name="basic_price"/>
+                    </group>
+                    <group/>
+                </group>                
+                <p>
+                    Apply updating on the selected record(s)?
+                </p>
+                <footer>
+                    <button string="Confirm" name="multi_update" type="object" default_focus="1" class="btn-primary"/>
+                    <button string="Cancel" class="btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_mypet_batch_update" model="ir.actions.act_window">
+        <field name="name">Batch Update</field>
+        <field name="res_model">my.pet.batchupdate.wizard</field>
+        <field name="binding_model_id" ref="model_my_pet"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_mypet_batch_update"/>
+    </record>
+</odoo>

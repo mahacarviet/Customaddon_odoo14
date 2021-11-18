@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_project_kanban_hubspot_custom" model="ir.ui.view">
+            <field name="name">view_project_kanban_hubspot_custom</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='analytic_account_id']" position="after">
+                    <field name="x_compute" attrs="{'invisible':1 }" />
+                    <field name="hubspot_so_id" attrs="{'invisible':1 }" />
+                </xpath>
+                <xpath expr="//div[@class='o_primary']/span[2]" position="after">
+                    <span t-if="record.hubspot_so_id and record.hubspot_so_id.value != ''">
+                        <br/>
+                        Id Hubspot: <strong><t t-esc="record.hubspot_so_id.value"/></strong>
+                    </span>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

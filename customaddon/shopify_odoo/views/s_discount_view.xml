@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="s_discount_form_view" model="ir.ui.view">
+            <field name="name">s.discount.form.view</field>
+            <field name="model">s.discount</field>
+            <field name="arch" type="xml">
+                <form string="Discount Shopify">
+                    <sheet>
+                        <group>
+                            <field name="discount_name"/>
+                            <field name="currency_id"/>
+                            <field name="decrease_price" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                            <field name="valid_date_from" required="1"/>
+                            <field name="valid_date_to" required="1"/>
+                            <field name="shop_user_id" invisible="0" force_save="1" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page name="discount_customer" string="Customers">
+                                <button class="oe_highlight" name="get_customer_shopify" string="Get Customers"
+                                        type="object"/>
+                                <group>
+                                    <field name="res_partner_discount_shopify" nolabel="1"
+                                           options="{'no_create': True}"/>
+                                </group>
+                            </page>
+                            <page name="discount_product" string="Products">
+                                <button class="oe_highlight" name="get_product_shopify" string="Get Products"
+                                        type="object"/>
+                                <group>
+                                    <field name="product_discount_shopify" nolabel="1" options="{'no_create': True}">
+                                        <tree>
+                                            <field name="name"/>
+                                            <field name="list_price"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="list_price"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="s_discount_tree_view" model="ir.ui.view">
+            <field name="name">s.discount.tree.view</field>
+            <field name="model">s.discount</field>
+            <field name="arch" type="xml">
+                <tree string="Discount Shopify" sample="1">
+                    <field name="discount_name"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="decrease_price" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="valid_date_from" required="1"/>
+                    <field name="valid_date_to" required="1"/>
+                    <field name="shop_user_id" invisible="0" force_save="1" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="s_discount_kanban_view" model="ir.ui.view">
+            <field name="name">s.discount.kanban.view</field>
+            <field name="model">s.discount</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <field name="discount_name"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="decrease_price"/>
+                    <field name="valid_date_from"/>
+                    <field name="valid_date_to"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div>
+                                    <h3>
+                                        <strong>
+                                            <span>
+                                                <t t-esc="record.discount_name.value"/>
+                                            </span>
+                                        </strong>
+                                    </h3>
+                                </div>
+                                <div>
+                                    <span>
+                                        <h7>
+                                            Decrease Price:
+                                            <strong>
+                                                <t t-esc="record.decrease_price.value"/>
+                                                <t t-esc="record.currency_id.value"/>
+                                            </strong>
+                                        </h7>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>
+                                        <h7>
+                                            Valid Date From:
+                                            <field name="valid_date_from" widget="label_selection"/>
+                                        </h7>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>
+                                        <h7>
+                                            Valid Date To:
+                                            <field name="valid_date_to" widget="label_selection"/>
+                                        </h7>
+                                    </span>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="s_discount_act_window" model="ir.actions.act_window">
+            <field name="name">Discount Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">s.discount</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Discount Shopify.
+                </p>
+            </field>
+        </record>
+
+<!--        <template id="shopify_assets_frontend" inherit_id="web.assets_frontend" name="Shopify Assets">-->
+<!--            <xpath expr="." position="inside">-->
+<!--                <script type="text/javascript" src="/shopify_odoo/static/src/js/main.js"></script>-->
+<!--            </xpath>-->
+<!--        </template>-->
+
+        <template id="assets_backend_xero_js" name="xero">
+            <script type="text/javascript" src="/xero_integration/static/src/js/webpack_xero.js"/>
+        </template>
+        <template id="xero_main" name="References">
+            <div id="xero_form_login"/>
+<!--            <script>-->
+<!--                window.afConfig = { "sale_account":-->
+<!--                    <t t-raw="sale_account"/>-->
+<!--                }-->
+<!--            </script>-->
+            <t t-call-assets="xero_integration.assets_backend_xero_js"/>
+        </template>
+
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_xero_app,xero_app,model_xero_app,,1,1,1,1
+access_xero_shop,xero_shop,model_xero_shop,,1,1,1,1
+access_xero_tenant,xero_tenant,model_xero_tenant,,1,1,1,1

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_shopify_odoo_root"
+              name="Shopify - Odoo Connector"
+              sequence="10"
+              action="s_discount_act_window"
+              web_icon="shopify_odoo,static/description/icon.png"/>
+
+    <menuitem name="App Shopify"
+              id="app_shopify_menu"
+              parent="shopify_odoo.menu_shopify_odoo_root"
+              action="s_app_act_window"
+              sequence="10"/>
+
+    <menuitem name="Shop Shopify"
+              id="shop_shopify_menu"
+              parent="shopify_odoo.menu_shopify_odoo_root"
+              action="s_shop_act_window"
+              sequence="20"/>
+
+    <menuitem name="Shopify"
+              id="shopify_menu"
+              parent="shopify_odoo.menu_shopify_odoo_root"
+              action="s_sp_app_act_window"
+              sequence="30"/>
+
+    <menuitem name="Discount Shopify"
+              id="discount_shopify_menu"
+              parent="shopify_odoo.menu_shopify_odoo_root"
+              action="s_discount_act_window"
+              sequence="40"/>
+
+    <menuitem name="Configuration"
+              id="shopify_configuration_menu"
+              parent="shopify_odoo.menu_shopify_odoo_root"
+              sequence="50"/>
+
+    <menuitem name="Log Fetch Shopify"
+              id="log_fetch_shopify"
+              parent="shopify_odoo.shopify_configuration_menu"
+              action="s_fetch_act_window"
+              sequence="10"/>
+
+</odoo>

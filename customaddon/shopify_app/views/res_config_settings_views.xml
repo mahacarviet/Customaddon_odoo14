@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.shopify.app</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="70"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Shopify Xero Settings" id="shopify_xero_settings" string="Shopify Xero Settings">
+                    <h2>Shopify Xero Settings</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="shopify_api_key"/>
+                                <div class="text-muted content-group mt16">
+                                    <field name="shopify_api_key" class="oe_inline" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="shopify_shared_secret"/>
+                                <div class="text-muted content-group mt16">
+                                    <field name="shopify_shared_secret" class="oe_inline" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="shopify_api_version"/>
+                                <div class="text-muted content-group mt16">
+                                    <field name="shopify_api_version" class="oe_inline" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="xero_client_id"/>
+                                <div class="text-muted content-group mt16">
+                                    <field name="xero_client_id" class="oe_inline" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane"/>
+                            <div class="o_setting_right_pane">
+                                <label for="xero_client_secret"/>
+                                <div class="text-muted content-group mt16">
+                                    <field name="xero_client_secret" class="oe_inline" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_shopify_xero_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_id" ref="res_config_settings_view_form"/>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'shopify_app'}</field>
+    </record>
+
+    <menuitem id="menu_shopify_xero_configuration" name="Configuration" sequence="100"  parent="shopify_store_root" web_icon="" />
+    <menuitem id="menu_shopify_xero_settings" name="Settings" sequence="1" action="action_shopify_xero_settings" parent="menu_shopify_xero_configuration" web_icon="" />
+</odoo>

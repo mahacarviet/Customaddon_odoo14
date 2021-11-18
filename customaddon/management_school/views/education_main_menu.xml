@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_education_root" name="Quản lý trường học" sequence="2"
+              web_icon="management_school,static/description/icon.png"/>
+
+    <menuitem id="menu_education_main_menu" name="Thiết lập" parent="management_school.menu_education_root"
+              sequence="8"/>
+
+    <menuitem id="menu_education_class_conf" name="Lớp học" parent="management_school.menu_education_main_menu"
+              sequence="2"/>
+
+    <menuitem id="menu_education_application_conf" name="Đơn đăng ký"
+              parent="management_school.menu_education_main_menu" sequence="1"
+    />
+
+    <!--    Application Reject Reason-->
+    <menuitem id="menu_education_reject_reason" name="Lý do từ chối"
+              parent="management_school.menu_education_application_conf" action="management_school.action_reject_reason"
+    />
+
+    <!--    Education Academic Year-->
+    <menuitem action="management_school.action_education_academic_year" name="Năm học"
+              parent="management_school.menu_education_main_menu"
+              id="menu_action_education_academic" sequence="2"
+    />
+
+    <!--    Education Admission-->
+    <menuitem id="menu_education_admission" name="Quản lý trường học" parent="management_school.menu_education_root"
+              sequence="5"/>
+    <menuitem id="menu_education_application" name="Đơn đăng ký học"
+              parent="management_school.menu_education_admission"
+              action="management_school.action_student_application"/>
+
+    <!--    Application Analysis-->
+    <menuitem name="Thống kê"
+              id="menu_application_report" parent="management_school.menu_education_admission" sequence="99"/>
+
+    <menuitem action="management_school.action_application_report" name="Thống kê đăng ký học"
+              parent="management_school.menu_application_report" id="menu_application_report_analysis"/>
+
+    <!--    Application Amenities-->
+    <menuitem action="management_school.action_education_amenities" name="Thiết bị"
+              parent="management_school.menu_education_main_menu"
+              id="menu_action_education_amenities" sequence="5"/>
+
+    <!--    Education Class-->
+    <menuitem action="management_school.action_education_class_tree" name="Khối"
+              parent="management_school.menu_education_class_conf"
+              id="menu_action_education_class" sequence="1"/>
+
+    <!--    Education Class Division-->
+    <menuitem action="management_school.action_education_class_division_tree" name="Lớp học"
+              parent="management_school.menu_education_admission"
+              id="menu_action_education_class_division" sequence="20"/>
+
+    <!--    Education Division-->
+    <menuitem action="management_school.action_education_division_tree" name="Mã lớp"
+              parent="management_school.menu_education_main_menu"
+              id="menu_action_education_division" sequence="20"/>
+
+    <!--    Education Document Type-->
+    <menuitem id="menu_education_document_type" name="Loại tài liệu"
+              parent="management_school.menu_education_application_conf" action="management_school.action_document"
+    />
+
+    <!--    Education Documents-->
+    <menuitem action="management_school.action_education_documents_tree" name="Tài liệu"
+              parent="management_school.menu_education_class_conf"
+              id="menu_action_education_document" sequence="10"/>
+
+    <!--    Education Faculty-->
+    <menuitem id="menu_education_faculty" name="Giáo viên" sequence="15"
+              parent="management_school.menu_education_admission" action="management_school.action_faculty"/>
+
+    <!--    Education Student-->
+    <menuitem id="menu_education_student" name="Học sinh" sequence="10"
+              parent="management_school.menu_education_admission" action="management_school.action_student"/>
+
+    <!--    Education Student Class-->
+    <menuitem id="menu_education_student_class" name="Đăng ký học sinh" sequence="25"
+              parent="management_school.menu_education_admission" action="management_school.action_student_class"/>
+
+    <!--    Education Subject-->
+    <menuitem action="management_school.action_education_subject_tree" name="Môn học"
+              parent="management_school.menu_education_class_conf"
+              id="menu_action_education_subject" sequence="4"/>
+
+    <!--    Education Syllabus-->
+    <menuitem action="action_education_syllabus" name="Giáo án" parent="management_school.menu_education_class_conf"
+              id="management_school.menu_action_education_syllabus" sequence="5"/>
+
+    <!--    Exam Menu-->
+    <menuitem id="examination_root_menu" name="Quản lý kiểm tra"
+              parent="management_school.menu_education_root" sequence="6"/>
+
+    <!--    Exam -->
+    <menuitem id="examination_sub_menu" parent="management_school.examination_root_menu"
+              action="management_school.act_examination_view" name="Bài kiểm tra" sequence="1"/>
+
+    <!--    Exam Result-->
+    <menuitem id="examination_valuation_menu" parent="management_school.examination_root_menu"
+              action="management_school.act_education_exam_result_view" name="Kết quả đánh giá" sequence="2"/>
+
+    <!--    Score Exam Individual-->
+    <menuitem id="score_exam_individual_menu" parent="management_school.examination_root_menu"
+              action="management_school.act_score_student_view" name="Thẻ điểm học sinh" sequence="3"/>
+
+    <!--    Application Analysis-->
+    <menuitem name="Thống kê"
+              id="menu_exam_report" parent="management_school.examination_root_menu" sequence="99"/>
+
+    <menuitem id="exam_report_menu" parent="management_school.menu_exam_report"
+              action="management_school.action_education_syllabus" name="Thống kê kết quả kiểm tra" sequence="99"/>
+
+    <!--    List Menu Record-->
+    <menuitem id="menu_list_main_menu" name="Danh sách" parent="management_school.menu_education_root"
+              sequence="7"/>
+
+    <menuitem id="menu_list_application_main_menu" name="Đơn đăng ký" parent="management_school.menu_list_main_menu"
+              sequence="1"/>
+
+    <!--    List Approve Application-->
+    <menuitem id="menu_list_approve_application" name="Danh sách đơn chờ xét duyệt"
+              parent="management_school.menu_list_application_main_menu"
+              action="management_school.view_list_approve_application"
+    />
+    <!--    List Done Application-->
+    <menuitem id="menu_list_done_application" name="Danh sách đơn đã duyệt"
+              parent="management_school.menu_list_application_main_menu"
+              action="management_school.view_list_active_application"
+    />
+    <!--    List Rejected Application-->
+    <menuitem id="menu_list_rejected_application" name="Danh sách đơn từ chối"
+              parent="management_school.menu_list_application_main_menu"
+              action="management_school.view_list_rejected_application"
+    />
+
+</odoo>

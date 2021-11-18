@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.cron" id="sync_data_to_xero">
+            <field name="name">Shopify: Sync data to Xero</field>
+            <field name="model_id" ref="model_shopify_store"/>
+            <field name="user_id" ref="base.user_root" />
+            <field name="state">code</field>
+            <field name="code">model.sync_to_xero_cron()</field>
+            <field name="active" eval="True"/>
+<!--            <field name="nextcall" eval="(DateTime.now() + timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')" />-->
+            <field name="interval_number">30</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+<!--        <record model="ir.cron" id="cron_check_shop_plan">-->
+<!--            <field name="name">Shopify: Check shop plan</field>-->
+<!--            <field name="model_id" ref="model_shopify_store"/>-->
+<!--            <field name="user_id" ref="base.user_root" />-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">model.check_shop_plan_cron()</field>-->
+<!--            <field name="active" eval="True"/>-->
+<!--&lt;!&ndash;            <field name="nextcall" eval="(DateTime.now() + timedelta(minutes=5)).strftime('%Y-%m-%d %H:%M:%S')" />&ndash;&gt;-->
+<!--            <field name="interval_number">12</field>-->
+<!--            <field name="interval_type">hours</field>-->
+<!--            <field name="numbercall">-1</field>-->
+<!--            <field name="doall" eval="False"/>-->
+<!--        </record>-->
+        <record id="cron_check_shop_plan" model="ir.cron">
+            <field name="name">Shopify: Check shop plan</field>
+            <field name="active" eval="True" />
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">12</field>
+            <field name="interval_type">hours</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="True"/>
+            <field name="model_id" ref="model_shopify_store"/>
+            <field name="state">code</field>
+            <field name="code">model.check_shop_plan_cron()</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_education_application_tree" model="ir.ui.view">
+        <field name="name">education.application.tree</field>
+        <field name="model">education.application</field>
+        <field name="arch" type="xml">
+            <tree string="Đơn đăng ký">
+                <field name="application_no"/>
+                <field name="name"/>
+                <field name="gender"/>
+                <field name="date_of_birth"/>
+                <field name="email"/>
+                <field name="mobile"/>
+                <field name="blood_group"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_application_form" model="ir.ui.view">
+        <field name="name">education.application.form</field>
+        <field name="model">education.application</field>
+        <field name="arch" type="xml">
+            <form string="Đơn đăng ký">
+                <header>
+                    <!--                    <button name="send_to_verify" type="object" class="oe_highlight"-->
+                    <!--                            string="Xác minh đơn đăng ký" groups="base.group_user"-->
+                    <!--                            help="Người dùng chọn để gửi yêu cầu xác minh đơn đăng ký."-->
+                    <!--                            states="draft"/>-->
+                    <button name="application_verify" type="object" class="oe_highlight"
+                            string="Xác thực tài liệu" groups="base.group_user"
+                            help="Người dùng chọn để xác thực tài liệu."
+                            states="verification"/>
+                    <button name="create_student" string="Tạo dữ liệu học sinh"
+                            type="object" class="oe_highlight"
+                            help="Người dùng chọn để tạo học sinh."
+                            states="approve"/>
+                    <button name="%(management_school.application_reject_action)d" string="Từ chối đơn đăng ký"
+                            type="action"
+                            context="{'default_application_id': active_id}"
+                            states="approve"/>
+                    <button name="re_request" string="Gửi lại yêu cầu" type="object" states="reject"
+                            class="btn-secondary"
+                            help="Người dùng nhấn để gửi lại yêu cầu xét duyệt đơn đăng ký."/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,verify,approve,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="document_view" type="object" icon="fa-list-ol">
+                            <field string="Tài liệu" name="document_count" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <field name="image" widget="image" class="float-right" style="width:170px; height:auto"/>
+                    <div class="oe_title">
+                        <h2>
+                            <field name="application_no"/>
+                        </h2>
+                        <h1>
+                            <field name="name" placeholder="Tên học sinh" required="1"
+                                   attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </h1>
+                    </div>
+                    <separator/>
+                    <br/>
+                    <span>
+                        <h2 style="color:green ! important;">
+                            <b>Thông tin nhập học</b>
+                        </h2>
+                    </span>
+                    <group>
+                        <group>
+                            <field name="academic_year_id" required="1" attrs="{'readonly': [('state', '=', 'done')]}"
+                                   options="{'no_create': True}"/>
+                            <field name="admission_date" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="admission_class" attrs="{'readonly': [('state', '=', 'done')]}"
+                                   options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="language_speaking" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="sec_lang" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="company_id" groups="base.group_multi_company"
+                                   attrs="{'readonly': [('state', '=', 'done')]}" invisible="1"/>
+                        </group>
+                    </group>
+                    <span>
+                        <h2 style="color:green ! important;">
+                            <b>Thông tin trường cũ</b>
+                        </h2>
+                    </span>
+                    <group>
+                        <field name="prev_school" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        <field name="prev_school_distrist" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        <field name="prev_school_city" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        <field name="prev_school_note" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                    </group>
+                    <span>
+                        <h2 style="color:green ! important;">
+                            <b>Thông tin cá nhân</b>
+                        </h2>
+                    </span>
+                    <group>
+                        <group>
+                            <field name="date_of_birth" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="blood_group" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="father_name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="guardian_name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
+                        <group>
+                            <field name="gender" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="nationality" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="religion" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="mother_name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
+                    </group>
+                    <span>
+                        <h2 style="color:green ! important;">
+                            <b>Thông tin phụ huynh</b>
+                        </h2>
+                    </span>
+                    <group>
+                        <group>
+                            <field name="father_name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="father_job" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="father_phone" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
+                        <group>
+                            <field name="mother_name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="mother_job" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="mother_phone" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <span>
+                            <h2 style="color:green ! important;">
+                                <b>Địa chỉ liên hệ</b>
+                            </h2>
+                        </span>
+                        <group>
+                            <div class="o_address_format">
+                                <field name="street" required="1" placeholder="Địa chỉ" class="o_address_street"
+                                       attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="street2" placeholder="Địa chỉ thay thế ..." class="o_address_street"
+                                       attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="city" placeholder="Quận" class="o_address_city"
+                                       attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="state_id" class="o_address_state" placeholder="Tên thành phố"
+                                       options='{"no_open": True}' attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="zip" placeholder="Mã ZIP" class="o_address_zip"
+                                       attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                <field name="country_id" placeholder="Quốc gia" class="o_address_country"
+                                       options='{"no_open": True, "no_create": True}'
+                                       attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            </div>
+                        </group>
+                        <span>
+                            <h2 style="color:green ! important;">
+                                <b>Hộ khẩu thường trú</b>
+                            </h2>
+                        </span>
+                        <group>
+                            <!--                            <label for="is_same_address" class="oe_inline"/>-->
+                            <field name="is_same_address" attrs="{'readonly': [('state', '=', 'done')]}"
+                                   nolabel="1"/>
+                            <div name="permanent_address"
+                                 attrs="{'readonly': [('state', '=', 'done')],'invisible': [('is_same_address','=', True)]}">
+                                <group>
+                                    <div class="o_address_format">
+                                        <field name="per_street" placeholder="Địa chỉ " class="o_address_street"/>
+                                        <field name="per_street2" placeholder="Địa chỉ thay thế ..."
+                                               class="o_address_street"/>
+                                        <field name="per_city" placeholder="Quận" class="o_address_city"/>
+                                        <field name="per_state_id" class="o_address_state"
+                                               placeholder="Tên thành phố"
+                                               options='{"no_open": True}'/>
+                                        <field name="per_zip" placeholder="Mã ZIP" class="o_address_zip"/>
+                                        <field name="per_country_id" placeholder="Quốc gia"
+                                               class="o_address_country"
+                                               options='{"no_open": True, "no_create": True}'/>
+                                    </div>
+                                </group>
+                            </div>
+                        </group>
+                    </group>
+                    <span>
+                        <h2 style="color:green ! important;">
+                            <b>Thông tin liên lạc</b>
+                        </h2>
+                    </span>
+                    <group name="contact_info">
+                        <group>
+                            <field name="email" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
+                        <group>
+                            <field name="mobile" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                        </group>
+                    </group>
+                    <group string="Lý do từ chối" attrs="{'invisible': [('reject_reason', '=',False)]}">
+                        <group>
+                            <field name="reject_reason" attrs="{'invisible': [('reject_reason', '=',False)]}"/>
+                        </group>
+                    </group>
+                    <group name="amenity_info">
+                    </group>
+                    <span>
+                        <h2 style="color:green ! important;">
+                            <b>Mô tả chi tiết</b>
+                        </h2>
+                    </span>
+                    <field name="description"/>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_education_application_graph" model="ir.ui.view">
+        <field name="name">education.application.graph</field>
+        <field name="model">education.application</field>
+        <field name="arch" type="xml">
+            <graph string="Đơn đăng ký">
+                <field name="admission_class"/>
+                <field name="academic_year_id"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_education_application_pivot" model="ir.ui.view">
+        <field name="name">education.application.pivot</field>
+        <field name="model">education.application</field>
+        <field name="arch" type="xml">
+            <pivot string="Đơn đăng ký">
+                <field name="admission_class" type="row"/>
+                <field name="admission_date" interval="month" type="col"/>
+            </pivot>
+        </field>
+    </record>
+    <record id="application_search" model="ir.ui.view">
+        <field name="name">student.application.search</field>
+        <field name="model">education.application</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm đơn đăng ký">
+                <field name="admission_class"/>
+                <field name="language_speaking"/>
+                <field name="sec_lang"/>
+                <field name="gender"/>
+                <field name="religion"/>
+                <filter string="Đơn đăng ký mới" name="new_application" domain="[('state','!=','done')]"/>
+                <separator/>
+                <filter string="Bản nháp" name="draft_filter" domain="[('state','=','draft')]"/>
+                <separator/>
+                <filter string="Đang chờ xét duyệt" name="approve_filter" domain="[('state','=','approve')]"/>
+                <separator/>
+                <filter string="Hoàn thành" name="active_filter" domain="[('state','=','done')]"/>
+                <separator/>
+                <filter string="Từ chối" name="rejected_filter" domain="[('state','=','reject')]"/>
+                <group expand='0' string='Sắp xếp theo'>
+                    <filter string='Khối' name="admission_class"
+                            domain="[]" context="{'group_by': 'admission_class'}"/>
+                    <filter string='Năm học' name="academic_year"
+                            domain="[]" context="{'group_by': 'academic_year_id'}"/>
+                    <filter string='Giới tính' name="gender"
+                            domain="[]" context="{'group_by': 'gender'}"/>
+                    <filter string='Ngôn ngữ gốc' name="language_speaking"
+                            domain="[]" context="{'group_by': 'language_speaking'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_student_application" model="ir.actions.act_window">
+        <field name="name">Đơn đăng ký học sinh</field>
+        <field name="res_model">education.application</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form,graph,pivot</field>
+        <field name="search_view_id" ref="application_search"/>
+        <field name="context">{'search_default_new_application': 1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Chọn tạo để tạo một bản ghi mới.
+            </p>
+        </field>
+    </record>
+
+</odoo>

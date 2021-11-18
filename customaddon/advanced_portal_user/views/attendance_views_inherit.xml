@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="portal_user_explanation_inherit_tree" model="ir.ui.view">
+            <field name="name">hr.attendance.inherit.tree</field>
+            <field name="model">hr.attendance</field>
+            <field name="inherit_id" ref="hr_attendance.view_attendance_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='worked_hours']" position="after">
+                    <field name="user_is_approver" invisible="1"/>
+                    <field name="explanation"/>
+                    <field name="state"/>
+                    <button string="Approve" icon="fa-check" name="approved_action" type="object"
+                            attrs="{'invisible':[('explanation', '=', True),'|',('state', '=', 'approved'), ('user_is_approver', '!=', True)]}"/>
+
+                    <button string="Refused" icon="fa-times" name="refused_action" type="object"
+                            attrs="{'invisible':[('explanation', '=', False),'|', ('state', '=', 'refused'), ('user_is_approver', '!=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

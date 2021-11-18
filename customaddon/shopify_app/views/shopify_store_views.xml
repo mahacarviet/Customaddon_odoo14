@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <!--STORE TREE-->
+    <record id="shopify_store_tree" model="ir.ui.view">
+            <field name="name">shopify.store.tree</field>
+            <field name="model">shopify.store</field>
+            <field name="arch" type="xml">
+                <tree string="Stores">
+<!--                    <field name="name"/>-->
+                    <field name="shopify_url" />
+                    <field name="plan" />
+                    <field name="charge_id" />
+                    <field name="orders_synced" />
+                    <field name="auto_sync"  widget="boolean"/>
+                </tree>
+            </field>
+    </record>
+        <!--STORE FORM -->
+    <record id="shopify_store_form" model="ir.ui.view">
+            <field name="name">shopify.store.form</field>
+            <field name="model">shopify.store</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Stores">
+                    <header>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="shopify_url" readonly="1" />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="shopify_token" />
+                                <field name="shopify_url" />
+<!--                                <field name="api_key" />-->
+                                <field name="plan" />
+                                <field name="timezone" />
+                                <field name="orders_synced" />
+                                <field name="charge_id" />
+                            </group>
+                            <group>
+                                <field name="sale_account" />
+                                <field name="shipping_account" />
+                                <field name="payment_account" />
+                                <field name="auto_sync"  widget="boolean"/>
+                            </group>
+                            <group>
+                                <field name="xero_token" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <!-- chatter form -->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" />
+                        <field name="activity_ids" widget="mail_activity" />
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh':'recipients'}"  />
+                    </div>
+                </form>
+            </field>
+    </record>
+<!--    SEARCH VIEW-->
+    <record id="shopify_store_search" model="ir.ui.view">
+            <field name="name">shopify.store.search</field>
+            <field name="model">shopify.store</field>
+            <field name="arch" type="xml">
+                <search string="Shopify Store Search">
+                    <field name="shopify_url" string="Shop Name"/>
+                    <field name="plan" string="Plan Name"/>
+                    <filter string="Auto Sync" name="auto_sync" domain="[('auto_sync','=',True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Auto Sync" name="groupby_auto_sync" domain="[]" context="{'group_by': 'auto_sync'}"/>
+                        <filter string="Plan" name="groupby_plan" domain="[]" context="{'group_by': 'plan'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+
+    <!--   ACTION SHOPIFY STORE -->
+    <record id="action_shopify_store" model="ir.actions.act_window">
+        <field name="name">Stores</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shopify.store</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+            Create Your First Store
+        </p>
+        </field>
+    </record>
+
+    <menuitem id="shopify_store_root" name="Shopify Xero" sequence="0" web_icon=""/>
+    <menuitem id="shopify_store_menu" name="Shopify Stores" action="action_shopify_store" sequence="1" parent="shopify_store_root" web_icon=""/>
+<!--    <menuitem id="shopify_store" name="Shopify Stores" sequence="1" action="action_shopify_store" parent="shopify_store_menu" web_icon="" />-->
+</odoo>

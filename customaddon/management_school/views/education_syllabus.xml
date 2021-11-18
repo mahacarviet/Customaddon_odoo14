@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_education_syllabus_tree" model="ir.ui.view">
+        <field name="name">education.syllabus.tree</field>
+        <field name="model">education.syllabus</field>
+        <field name="arch" type="xml">
+            <tree string="Giáo án">
+                <field name="name"/>
+                <field name="class_id"/>
+                <field name="subject_id"/>
+                <field name="total_hours"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_syllabus_form" model="ir.ui.view">
+        <field name="name">education.syllabus.form</field>
+        <field name="model">education.syllabus</field>
+        <field name="arch" type="xml">
+            <form string="Giáo án">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="class_id" required="1" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="subject_id"/>
+                            <field name="total_hours"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_education_syllabus" model="ir.actions.act_window">
+        <field name="name">Giáo án</field>
+        <field name="res_model">education.syllabus</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Chọn tạo để tạo một bản ghi mới.
+            </p>
+        </field>
+    </record>
+
+</odoo>

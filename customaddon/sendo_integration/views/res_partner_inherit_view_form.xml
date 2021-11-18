@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="res_partner_form_check_sendo_customer" model="ir.ui.view">
+            <field name="name">res.partner.form.check.sendo.customer</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='vat']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="check_sendo_customer" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_res_partner_filter_sendo_customer" model="ir.ui.view">
+        <field name="name">view.res.partner.filter.sendo.customer</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='type_person']" position="before">
+                <filter string="### Sendo Customer" name="check_sendo_customer"
+                        domain="[('check_sendo_customer', '=', True)]"/>
+            </xpath>
+        </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_education_application_1,access_education_application_1,model_education_application,group_giao_vu,1,1,1,0
+access_education_application_2,access_education_application_2,model_education_application,group_hieu_truong,1,1,1,1
+access_application_reject_1,access_application_reject_1,model_application_reject,group_giao_vu,1,1,1,1
+access_application_reject_2,access_application_reject_2,model_application_reject,group_hieu_truong,1,1,1,1
+access_application_reject_reason_1,access_application_reject_reason_1,model_application_reject_reason,group_giao_vu,1,1,1,1
+access_application_reject_reason_2,access_application_reject_reason_2,model_application_reject_reason,group_hieu_truong,1,1,1,1
+access_document_document_1,document.document.1,management_school.model_document_document,group_giao_vu,1,1,1,0
+access_document_document_2,document.document.2,management_school.model_document_document,group_hieu_truong,1,1,1,1
+access_education_division_1,education.division.1,management_school.model_education_division,group_giao_vu,1,1,1,0
+access_education_division_2,education.division.2,management_school.model_education_division,group_hieu_truong,1,1,1,1
+access_education_academic_year_1,education.academic.year.1,management_school.model_education_academic_year,group_giao_vu,1,1,1,0
+access_education_academic_year_2,education.academic.year.2,management_school.model_education_academic_year,group_hieu_truong,1,1,1,1
+

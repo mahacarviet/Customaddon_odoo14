@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="create_contract_form" model="ir.ui.view">
+            <field name="name">create.contract.form</field>
+            <field name="model">create.contract.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Create Contract Customer">
+
+                    <group>
+                        <field name="contract_id" readonly="1"/>
+                        <field name="customer_name" readonly="1"/>
+                        <field name="signing_date"/>
+                        <field name="amount_total" readonly="1"/>
+                    </group>
+
+                    <p><h2><b>Apply create on the selected record ?</b></h2></p>
+
+                    <footer>
+                        <button name="create_contract" string="Create Contract" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="create_contract_customer_wizard" model="ir.actions.act_window">
+            <field name="name">Create Contract</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">create.contract.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="create_contract_form"/>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

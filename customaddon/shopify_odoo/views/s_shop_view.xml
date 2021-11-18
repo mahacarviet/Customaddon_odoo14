@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="s_shop_form_view" model="ir.ui.view">
+            <field name="name">s.shop.form.view</field>
+            <field name="model">s.shop</field>
+            <field name="arch" type="xml">
+                <form string="Shop Shopify">
+                    <sheet>
+                        <group>
+                            <field name="shop_base_url"/>
+                            <field name="shop_owner"/>
+                            <field name="shop_user"/>
+                            <field name="shop_password"/>
+                            <field name="shop_currency"/>
+                            <field name="shop_user_id" force_save="1"/>
+                            <field name="shop_app_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="s_shop_tree_view" model="ir.ui.view">
+            <field name="name">s.shop.tree.view</field>
+            <field name="model">s.shop</field>
+            <field name="arch" type="xml">
+                <tree string="Shop Shopify" sample="1">
+                    <field name="shop_base_url"/>
+                    <field name="shop_owner"/>
+                    <field name="shop_user"/>
+                    <field name="shop_password"/>
+                    <field name="shop_currency"/>
+                    <field name="shop_user_id" force_save="1"/>
+                    <field name="shop_app_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="s_shop_act_window" model="ir.actions.act_window">
+            <field name="name">Shop Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">s.shop</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Shop.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

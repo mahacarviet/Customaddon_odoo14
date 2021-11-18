@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sendo_cancel_reason_form_view" model="ir.ui.view">
+            <field name="name">sendo.cancel.reason.form</field>
+            <field name="model">sendo.cancel.reason</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle" create="false">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="sendo_cancel_code"/>
+                            <h1>
+                                <field name="sendo_cancel_code" placeholder="Reason Code"/>
+                            </h1>
+                        </div>
+                        <group>
+                                <field name="sendo_cancel_name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="sendo_cancel_reason_tree_view" model="ir.ui.view">
+            <field name="name">sendo.cancel.reason.tree</field>
+            <field name="model">sendo.cancel.reason</field>
+            <field name="arch" type="xml">
+                <tree string="Sendo Cancel Reason" sample="1" create="false">
+                    <field name="sendo_cancel_code"/>
+                    <field name="sendo_cancel_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="sendo_cancel_reason_act_window" model="ir.actions.act_window">
+            <field name="name">Sendo Cancel Reason</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sendo.cancel.reason</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Sendo Cancel Reason.
+                </p>
+            </field>
+        </record>
+
+        <menuitem
+                name="### Sendo Cancel Reason"
+                id="list_cancel_reason_sendo_menu"
+                parent="sale.sale_order_menu"
+                action="sendo_cancel_reason_act_window"
+                sequence="5"
+                groups="base.group_no_one"/>
+
+    </data>
+</odoo>

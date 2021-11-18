@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_education_subject_tree" model="ir.ui.view">
+        <field name="name">education.subject.tree</field>
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <tree string="Môn học">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="type"/>
+                <field name="is_language"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_education_subject_form" model="ir.ui.view">
+        <field name="name">education.subject.form</field>
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <form string="Môn học">
+                <sheet>
+                    <group string="Subject">
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="is_language"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="is_lab"/>
+                        </group>
+                        <field name="description" placeholder="Người dùng nhập mô tả ở đây"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="subject_search" model="ir.ui.view">
+        <field name="name">education.subject.search</field>
+        <field name="model">education.subject</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm môn học">
+                <field name="is_language"/>
+                <field name="is_lab"/>
+                <field name="type"/>
+                <filter string="Môn học ngôn ngữ" name="is_language" domain="[('is_language','=', True)]"/>
+                <filter string="Môn học sử dụng phòng thí nghiệm" name="is_lab" domain="[('is_lab','=', True)]"/>
+                <separator/>
+                <filter string="Môn học ngôn ngữ" name="is_language" domain="[('is_language','=', True)]"/>
+                <filter string="Môn học ngôn ngữ" name="is_language" domain="[('is_language','=', True)]"/>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_education_subject_tree" model="ir.actions.act_window">
+        <field name="name">Môn học</field>
+        <field name="res_model">education.subject</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="subject_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Chọn tạo để tạo một bản ghi mới.
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hubspot_import_integration,access_hubspot.import.integration,model_hubspot_import_integration,,1,1,1,0
+access_message_wizard,access_message.wizard,model_message_wizard,,1,1,1,0
+access_log_handling,access.log.handling,model_log_handling,base.group_user,1,1,1,1

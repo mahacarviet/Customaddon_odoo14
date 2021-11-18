@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_list_payrolls" name="My Payrolls">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Payrolls</t>
+            </t>
+            <t t-if="not list_payrolls">
+                <p>There are currently no payrolls for your account.</p>
+            </t>
+            <t t-if="list_payrolls" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th class="text-center">ID #</th>
+                        <th class="text-center">Reference</th>
+                        <th class="text-center">From</th>
+                        <th class="text-center">To</th>
+                        <th class="text-center">Basic Wage</th>￼
+                        <th class="text-center">Net Wage</th>
+                        <th class="text-center">Status</th>
+                    </tr>
+                </thead>
+                <t t-foreach="list_payrolls" t-as="payroll">
+                    <tr>
+                        <td class="text-center"><a t-attf-href="/portal_user/payroll_detail/#{payroll.id}?{{ keep_query() }}"><span t-field="payroll.id"/></a></td>
+                        <td class="text-center"><span t-field="payroll.number"/></td>
+                        <td class="text-center"><span t-field="payroll.date_from"/></td>
+                        <td class="text-center"><span t-field="payroll.date_to"/></td>
+                        <td class="text-center"><span t-field="payroll.basic_wage"/></td>
+                        <td class="text-center"><span t-field="payroll.net_wage"/></td>
+                        <td class="text-center">
+                            <t t-if="payroll.state == 'draft'">
+                                <span class="badge badge-pill badge-info">Draft</span>
+                            </t>
+                            <t t-if="payroll.state == 'verify'">
+                                <span class="badge badge-pill badge-warning">Waiting</span>
+                            </t>
+                            <t t-if="payroll.state == 'done'">
+                                <span class="badge badge-pill badge-success">Done</span>
+                            </t>
+                            <t t-if="payroll.state == 'cancel'">
+                                <span class="badge badge-pill badge-warning">Reject</span>
+                            </t>
+                        </td>
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="portal_user_detail_payroll" name="Payroll Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Detail Payroll</t>
+            </t>
+            <div class="container">
+                <table class="table">
+                    <thead>
+                        <tr class="thead-dark">
+                            <th scope="col">Name</th>
+                            <th scope="col">Code</th>
+                            <th scope="col">Rate</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <t t-foreach="payslip_line" t-as="payslip_line_element">
+                        <tr>
+                            <td>
+                                <t t-esc="payslip_line_element.name"/>
+                            </td>
+                            <td>
+                                <t t-esc="payslip_line_element.code"/>
+                            </td>
+                            <td>
+                                <t t-esc="payslip_line_element.rate"/>
+                            </td>
+                            <td>
+                                <t t-esc="payslip_line_element.amount"/>
+                            </td>
+                            <td>
+                                <t t-esc="payslip_line_element.quantity"/>
+                            </td>
+                            <td>
+                                <t t-esc="payslip_line_element.total"/>
+                            </td>
+                        </tr>
+                    </t>
+                    </tbody>
+                </table>
+                <hr/>
+                <div class="row" style="margin:20px;">
+                    <div class="col-md-10 text-center text-uppercase font-weight-bold">
+                        Total
+                    </div>
+                    <div class="col-md-2 font-weight-bold" style="text-align: end;">
+                        <t t-esc="payslip_line_total"/> $
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

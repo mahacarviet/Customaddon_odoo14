@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="logs_form_view">
+            <field name="name">Log Form</field>
+            <field name="model">log.handling</field>
+            <field name="arch" type="xml">
+                <tree>
+                     <field name="record_id"/>
+                     <field name="odoo_record_name" />
+                     <field name="description"/>
+                     <field name="skip"/>
+                     <field name="model"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="log_action">
+            <field name="name">Log</field>
+            <field name="res_model">log.handling</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+
+
+        <menuitem id="logs_menu" name="Logs" parent="hubspot_root" sequence="4" action="log_action"/>
+    </data>
+</odoo>

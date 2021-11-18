@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <data noupdate="1">
+
+        <record id="ghn_district_data" model="res.district">
+            <field name="name">Test</field>
+        </record>
+
+        <record id="ghn_ward_data" model="res.ward">
+            <field name="name">Test</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+        <record id="score_student_form" model="ir.ui.view">
+            <field name="name">education.score.student.form</field>
+            <field name="model">education.score.student</field>
+            <field name="arch" type="xml">
+                <form>
+                    <!--                    <header>-->
+                    <!--                        <button name="confirm_exam" type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"-->
+                    <!--                                class="oe_highlight" string="Xác nhận bài kiểm tra"/>-->
+                    <!--                    </header>-->
+                    <sheet>
+                        <h1>
+                            <field name="name" options="{'no_create': True}" nolabel="1"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="score_class_id" options="{'no_create': True}"/>
+                                <field name="score_division_id" options="{'no_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="score_academic_year_id" options="{'no_create': True}"/>
+                                <field name="score_student_id" options="{'no_create': True}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Học kỳ 1">
+                                <field name="score_student_one_ids" nolabel="1" options="{'no_create': True}">
+                                    <tree editable="bottom" create="true">
+                                        <field name="score_subject_id" options="{'no_create': True}"/>
+                                        <field name="fast_exam_1"/>
+                                        <field name="fast_exam_2"/>
+                                        <field name="part_exam_1"/>
+                                        <field name="part_exam_2"/>
+                                        <field name="quarter_exam_1"/>
+                                        <field name="quarter_exam_2"/>
+                                        <field name="final_exam"/>
+                                        <field name="average_score"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Học kỳ 2">
+                                <field name="score_student_two_ids" nolabel="1" options="{'no_create': True}">
+                                    <tree editable="bottom" create="true">
+                                        <field name="score_subject_id" options="{'no_create': True}"/>
+                                        <field name="fast_exam_2"/>
+                                        <field name="fast_exam_2"/>
+                                        <field name="part_exam_1"/>
+                                        <field name="part_exam_2"/>
+                                        <field name="quarter_exam_1"/>
+                                        <field name="quarter_exam_2"/>
+                                        <field name="final_exam"/>
+                                        <field name="average_score"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group name="note_group" col="6" class="mt-2 mt-md-0">
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                                <field name="score_average_one"/>
+                                <field name="score_average_two"/>
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="score_average_overall"/>
+                                </div>
+                                <field name="score_average_overall" nolabel="1" class="oe_subtotal_footer_separator"/>
+                            </group>
+                            <div class="oe_clear"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="score_student_tree" model="ir.ui.view">
+            <field name="name">education.score.student.tree</field>
+            <field name="model">education.score.student</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="score_student_id"/>
+                    <field name="score_class_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="act_score_student_view" model="ir.actions.act_window">
+            <field name="name">Thẻ điểm số</field>
+            <field name="res_model">education.score.student</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+
+    </data>
+</odoo>

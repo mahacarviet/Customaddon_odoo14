@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_xero_odoo_root"
+              name="Xero - Odoo Connector"
+              sequence="10"
+              action="xero_app_act_window"
+              web_icon="xero_integration,static/description/icon.png"/>
+
+    <menuitem name="Xero App"
+              id="app_xero_menu_1"
+              parent="xero_integration.menu_xero_odoo_root"
+              action="xero_app_act_window"
+              sequence="10"/>
+
+    <menuitem name="Xero App"
+              id="app_xero_menu_2"
+              parent="shopify_odoo.menu_shopify_odoo_root"
+              action="xero_app_act_window"
+              sequence="50"/>
+
+    <menuitem name="Xero Shop"
+              id="shop_xero_menu_1"
+              parent="xero_integration.menu_xero_odoo_root"
+              action="xero_shop_act_window"
+              sequence="20"/>
+
+    <menuitem name="Xero Shop"
+              id="shop_xero_menu_2"
+              parent="shopify_odoo.menu_shopify_odoo_root"
+              action="xero_shop_act_window"
+              sequence="60"/>
+
+</odoo>

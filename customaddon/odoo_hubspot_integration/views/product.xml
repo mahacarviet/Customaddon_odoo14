@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="hubspot_view_product_template_field" model="ir.ui.view">
+            <field name="name">product.template.fields</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook/page[last()]" position="after">
+                    <page string="HubSpot">
+                        <group>
+                            <group>
+                                <field name="hubspot_lineitem_id" readonly="1" />
+                                <field name="hubspot_product_id" readonly="1" />
+                                <field name="hubspot_product_synchronized" readonly="1" />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

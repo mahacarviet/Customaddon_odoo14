@@ -1,0 +1,30 @@
+<?xml version="1.1" encoding="utf-8"?>
+<odoo>
+     <record model="ir.ui.view" id="display_ghn_fee_button">
+            <field name="name">display.ghn.fee.button</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='customer_signature']" position="after">
+                    <page  string="Shipping Information" name="shipping_information">
+                        <group>
+                            <group name="volume_info" string="Volume">
+                                <field name="weight" />
+                            </group>
+                            <group name="payment_info" string="Payment">
+                                <field name="payment_type" />
+                                <field name="required_note" />
+                                <field name="ghn_order_code"  invisible="1"/>
+                            </group>
+                            <group name="convert_volume_info" string="Volume Converted">
+                                <field name="length" />
+                                <field name="width" />
+                                <field name="height" />
+                                <field name="convert_volume" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+    </record>
+</odoo>

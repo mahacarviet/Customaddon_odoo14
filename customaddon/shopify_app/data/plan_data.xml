@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="plan_essential" model="app.plan">
+            <field name="name">Essential</field>
+            <field name="order_number">100</field>
+            <field name="interval_number">24</field>
+            <field name="cost">0</field>
+            <field name="sync_giftcard" eval="False" />
+            <field name="sync_refund" eval="False" />
+            <field name="is_unlimited" eval="False" />
+        </record>
+        <record id="plan_standard" model="app.plan">
+            <field name="name">Standard</field>
+            <field name="order_number">800</field>
+            <field name="interval_number">12</field>
+            <field name="cost">19.99</field>
+            <field name="sync_giftcard" eval="True" />
+            <field name="sync_refund" eval="True" />
+            <field name="is_unlimited" eval="False" />
+        </record>
+        <record id="plan_professional" model="app.plan">
+            <field name="name">Professional</field>
+            <field name="order_number">0</field>
+            <field name="interval_number">3</field>
+            <field name="cost">29.99</field>
+            <field name="sync_giftcard" eval="True" />
+            <field name="sync_refund" eval="True" />
+            <field name="is_unlimited" eval="True" />
+        </record>
+    </data>
+</odoo>

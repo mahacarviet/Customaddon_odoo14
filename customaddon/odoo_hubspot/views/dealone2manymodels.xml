@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="dealers_quoting_this_deal_form_view">
+            <field name="name">dealers_quoting_this_deal.form</field>
+            <field name="model">crm.lead_dealers_quoting_this_deal</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="dealers_quoting_this_deal_action">
+            <field name="name">dealers_quoting_this_deal</field>
+            <field name="res_model">crm.lead_dealers_quoting_this_deal</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.ui.view" id="product_s_considered_form_view">
+            <field name="name">product_s_considered.form</field>
+            <field name="model">crm.lead_product_s_considered</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="name"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_s_considered_action">
+            <field name="name">product_s_considered</field>
+            <field name="res_model">crm.lead_product_s_considered</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="deal_values" name="Deals" parent="hubspot_root" sequence="6"/>
+
+        <menuitem id="dealers_quoting_this_deal" name="Dealer Quoting This Deal" parent="deal_values"
+                  action="dealers_quoting_this_deal_action"/>
+        <menuitem id="product_s_considered" name="Product Considered" parent="deal_values"
+                  action="product_s_considered_action"/>
+    </data>
+</odoo>

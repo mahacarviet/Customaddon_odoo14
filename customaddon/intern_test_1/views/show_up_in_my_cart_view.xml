@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="show_discount_in_product_view" inherit_id="website_sale.product_price"
+                  name="show_discount_in_product_view">
+            <xpath expr="//div[hasclass('product_price')]" position="before">
+
+                <!-- Nothing to do, this view is only meant to allow the server -->
+                <!-- to know if the list view layout should be used -->
+                <t>Discount code:</t>
+                <!--                Get discount code-->
+                <span t-field="website.sale_get_order().partner_id.customer_discount_code"></span>
+                <!--                <span t-field="product.list_price"/>-->
+<!--                <span t-field="website_sale_order.sale_order_discount_estimated"></span>-->
+
+            </xpath>
+        </template>
+
+        <template id="show_discount_in_my_cart_view" inherit_id="website_sale.total"
+                  name="show_discount_in_my_cart_view">
+            <xpath expr="//div[@id='cart_total']//table/tr[4]" position="after">
+
+                <tr id="order_total">
+                    <td class="text-right">
+                        <strong>Discount Price:</strong>
+                    </td>
+                    <td class="text-xl-right">
+                        <strong t-field="website_sale_order.discount_total" class="monetary_field"
+                                t-options='{"widget": "monetary", "display_currency": website_sale_order.pricelist_id.currency_id}'/>
+                    </td>
+                </tr>
+
+                <t>Discount code:</t>
+                <!--                Get discount code-->
+                <span t-field="website_sale_order.partner_id.customer_discount_code"></span>
+
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

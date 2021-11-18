@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="xero_app_form_view" model="ir.ui.view">
+            <field name="name">xero.app.form.view</field>
+            <field name="model">xero.app</field>
+            <field name="arch" type="xml">
+                <form string="App Xero Accounting">
+                    <header>
+                        <button name="action_connect_xero" type="object"
+                                string="Connect Xero Accounting" class="oe_highlight"
+                                attrs="{'invisible': [('status', '=', 'connected')]}"/>
+                        <button name="refresh_token_xero" type="object"
+                                string="Refresh Token Xero" class="oe_highlight"
+                                attrs="{'invisible': [('status', '!=', 'connected')]}"/>
+                        <button name="revoking_token_xero" type="object"
+                                string="Revoking Token Xero" class="oe_highlight"
+                                attrs="{'invisible': [('status', '!=', 'connected')]}"/>
+                        <field name="status" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="xero_app_name"/>
+                            <field name="xero_client_id"/>
+                            <field name="xero_client_secret"/>
+                            <field name="xero_redirect_url"/>
+                            <field name="xero_scopes"/>
+                            <field name="xero_state"/>
+                            <field name="xero_id_token"/>
+                            <field name="xero_token_type"/>
+                            <field name="xero_access_token"/>
+                            <field name="xero_refresh_token"/>
+                        </group>
+                        <notebook>
+                            <page name="xero_app_tenant" string="Shop Tenant">
+                                <group>
+                                    <field name="xero_app_tenant_ids" nolabel="1">
+                                        <tree>
+                                            <field name="xero_id"/>
+                                            <field name="xero_auth_event_id"/>
+                                            <field name="xero_tenant_type"/>
+                                            <field name="xero_tenant_name"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="xero_id"/>
+                                                <field name="xero_auth_event_id"/>
+                                                <field name="xero_tenant_type"/>
+                                                <field name="xero_tenant_name"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="xero_app_tree_view" model="ir.ui.view">
+            <field name="name">xero.app.tree.view</field>
+            <field name="model">xero.app</field>
+            <field name="arch" type="xml">
+                <tree string="App Xero Accounting" sample="1">
+                    <field name="xero_app_name"/>
+                    <field name="xero_client_id"/>
+                    <field name="xero_redirect_url"/>
+                    <field name="xero_redirect_url"/>
+                    <field name="xero_scopes"/>
+                    <field name="xero_state"/>
+<!--                    <field name="xero_id_token"/>-->
+<!--                    <field name="xero_token_type"/>-->
+<!--                    <field name="xero_access_token"/>-->
+<!--                    <field name="xero_refresh_token"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="xero_app_act_window" model="ir.actions.act_window">
+            <field name="name">App Xero Accounting</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">xero.app</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new App.
+                </p>
+            </field>
+        </record>
+
+    </data>
+</odoo>

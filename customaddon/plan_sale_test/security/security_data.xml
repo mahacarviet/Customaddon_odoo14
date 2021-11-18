@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.module.category" id="employee_group_category_approval">
+            <field name="name">Plan Sale</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="group_employee_approval_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="employee_group_category_approval"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_employee_approval_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="employee_group_category_approval"/>
+            <field name="implied_ids" eval="[(4, ref('plan_sale_test.group_employee_approval_user'))]"/>
+        </record>
+
+    </data>
+</odoo>
+
+
+<!--access_create_plan_sale_wizard_employee_approval_user,create_plan_sale_wizard_employee_approval_user,model_create_plan_sale_wizard,group_employee_approval_user,1,1,1,0-->
+<!--access_create_plan_sale_wizard_employee_approval_manager,create_plan_sale_wizard_employee_approval_manager,model_create_plan_sale_wizard,group_employee_approval_manager,1,1,1,1-->
+<!--access_plan_sale_order_employee_approval_user,plan_sale_order_employee_approval_user,model_plan_sale_order,group_employee_approval_user,1,1,1,0-->
+<!--access_plan_sale_order_employee_approval_manager,plan_sale_order_employee_approval_manager,model_plan_sale_order,group_employee_approval_manager,1,1,1,1-->
+
+

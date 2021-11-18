@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="ahamove_config_carrier_inherit" model="ir.ui.view">
+            <field name="name">ahamove.config.carrier.inhert</field>
+            <field name="model">delivery.carrier</field>
+            <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="ahamove" string="AhaMove Configuration"
+                          attrs="{'invisible': [('delivery_type', 'not in', ['aha_move'])]}">
+                        <group colspan="2">
+                            <field name="aha_token"/>
+                            <field name="aha_refresh_token"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="check_ahamove_shipping">
+            <field name="name">check.ahamove.shipping</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+<!--                <xpath expr="//button[@name='action_cancel']" position="after">-->
+<!--                    <button name="action_confirm_1" string="Test Code" type="object" class="oe_highlight"/>-->
+<!--                </xpath>-->
+
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="aha_check_shipping"/>
+                    <field name="aha_code_shipping"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

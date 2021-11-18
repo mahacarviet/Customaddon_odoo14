@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+<!--        <record id="menu_portal_user_create_attendances" model="website.menu">-->
+<!--            <field name="name">Check In / Check Out</field>-->
+<!--            <field name="url">/portal_user/create_attendances</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="sequence" type="int">10</field>-->
+<!--        </record>-->
+<!--        <record id="menu_portal_user_create_leaves" model="website.menu">-->
+<!--            <field name="name">Leave</field>-->
+<!--            <field name="url">/portal_user/create_leaves</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="sequence" type="int">15</field>-->
+<!--        </record>-->
+<!--        <record id="menu_portal_user_create_over_time" model="website.menu">-->
+<!--            <field name="name">Over Time</field>-->
+<!--            <field name="url">/portal_user/create_over_time</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="sequence" type="int">20</field>-->
+<!--        </record>-->
+<!--        <record id="menu_portal_user_view_payroll" model="website.menu">-->
+<!--            <field name="name">Payrolls</field>-->
+<!--            <field name="url">/portal_user/set_payroll_time</field>-->
+<!--            <field name="parent_id" ref="website.main_menu"/>-->
+<!--            <field name="sequence" type="int">25</field>-->
+<!--        </record>-->
+        <record id="menu_portal_user_create_attendances" model="website.menu">
+            <field name="name">More Feature</field>
+            <field name="url">/my/home</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">10</field>
+        </record>
+    </data>
+</odoo>

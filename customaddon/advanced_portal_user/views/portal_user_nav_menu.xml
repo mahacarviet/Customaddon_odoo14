@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <template id="portal_features_dashboard" name="More Features" customize_show="True" inherit_id="portal.portal_my_home" priority="20">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Check In / Check Out</t>
+                <t t-set="url" t-value="'/portal_user/create_attendances'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Attendances</t>
+                <t t-set="url" t-value="'/portal_user/my_list_attendance'"/>
+                <t t-set="count" t-value="attendance_count"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Request Leave</t>
+                <t t-set="url" t-value="'/portal_user/create_leaves'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Leaves</t>
+                <t t-set="url" t-value="'/portal_user/my_list_leave'"/>
+                <t t-set="count" t-value="leave_count"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Request Over Time</t>
+                <t t-set="url" t-value="'/portal_user/create_over_time'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Over Time</t>
+                <t t-set="url" t-value="'/portal_user/my_list_over_time'"/>
+                <t t-set="count" t-value="over_time_count"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Payrolls</t>
+                <t t-set="url" t-value="'/portal_user/my_list_payrolls'"/>
+                <t t-set="count" t-value="payslip_count"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Order</t>
+                <t t-set="url" t-value="'/portal_user/create_order'"/>
+            </t>
+        </xpath>
+    </template>
+</odoo>
