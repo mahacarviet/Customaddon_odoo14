@@ -16,7 +16,7 @@ class EducationStudentClass(models.Model):
     student_list = fields.One2many('education.student.list', 'connect_id', string="Học sinh")
     admitted_class = fields.Many2one('education.class.division', string="Lớp nhận")
     assigned_by = fields.Many2one('res.users', string='Được đăng ký bởi', default=lambda self: self.env.uid)
-    state = fields.Selection([('draft', 'Bản nháp'), ('done', 'Hoàn thành')],
+    state = fields.Selection([('draft', 'Mới'), ('done', 'Hoàn thành')],
                              string='Trạng thái', required=True, default='draft',
                              track_visibility='onchange')
 

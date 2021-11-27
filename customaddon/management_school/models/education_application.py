@@ -223,6 +223,6 @@ class StudentApplication(models.Model):
         [('a+', 'A+'), ('a-', 'A-'), ('b+', 'B+'), ('o+', 'O+'), ('o-', 'O-'),
          ('ab-', 'AB-'), ('ab+', 'AB+')],
         string='Nhóm máu', required=True, default='a+', track_visibility='onchange')
-    state = fields.Selection([('draft', 'Nháp'), ('approve', 'Chờ xét duyệt'), ('reject', 'Từ chối'),
+    state = fields.Selection([('draft', 'Mới'), ('approve', 'Chờ xét duyệt'), ('reject', 'Từ chối'),
                               ('done', 'Hoàn thành')], string='Trạng thái', required=True, default='draft',
                              track_visibility='onchange')

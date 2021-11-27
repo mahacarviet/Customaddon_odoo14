@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="project_project_inherit_kanban" model="ir.ui.view">
+            <field name="name">project.project.inherit.kanban</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="default_group_by">stage_id</attribute>
+                    <attribute name="class">o_kanban_small_column o_kanban_project_tasks</attribute>
+                    <attribute name="group_edit">false</attribute>
+                    <attribute name="group_delete">false</attribute>
+                    <attribute name="sample">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="stage_id"/>
+                    <field name="stage_note"/>
+                    <!--                    <span name="rating_status_period" t-if="record.stage_note.raw_value">Description :-->
+                    <!--                        <field name="stage_note"/>-->
+                    <!--                        <br/>-->
+                    <!--                    </span>-->
+                    <field name="stage_note"/>
+                    <progressbar field="stage_id" colors='{"True": "success"}'/>
+                </xpath>
+
+                <!--                <xpath expr="//templates//div[@t-attf-class='#{kanban_color(record.color.raw_value)} oe_kanban_global_click o_has_icon']"-->
+                <!--                       position='before'>-->
+                <!--                    <div>-->
+                <!--                        <span name="rating_status_period" t-if="record.stage_note.raw_value">Description :-->
+                <!--                            <field name="stage_note"/>-->
+                <!--                            <br/>-->
+                <!--                        </span>-->
+                <!--                    </div>-->
+                <!--                </xpath>-->
+
+                <xpath expr="//templates//div[@class='o_project_kanban_boxes']" position='after'>
+                    <div>
+                        <span name="rating_message_follower_ids">
+                            <t t-if="record.message_follower_ids.raw_value">
+                                Followers:
+                                <field name="message_follower_ids" widget="many2many_tags"/>
+                            </t>
+                            <t t-else=""/>
+                        </span>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="project_project_inherit_kanban_stage" model="ir.ui.view">
+            <field name="name">project.project.inherit.kanban.stage</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="stage_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="project_project_inherit_form_stage" model="ir.ui.view">
+            <field name="name">project.project.inherit.form.stage</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='label_tasks']" position="after">
+                    <br/>
+                    <label for="stage_id" class="oe_inline" string="Stage:"/>
+                    <field name="stage_id" class="oe_inline oe_input_align"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

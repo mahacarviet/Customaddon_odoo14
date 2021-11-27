@@ -5,7 +5,7 @@
         <field name="name">education.student.kanban</field>
         <field name="model">education.student</field>
         <field name="arch" type="xml">
-            <kanban class="education_student_kanban" group_create="0">
+            <kanban class="education_student_kanban" group_create="0" records_draggable="false">
                 <field name="id"/>
                 <field name="name" string="Họ tên"/>
                 <field name="guardian_name"/>

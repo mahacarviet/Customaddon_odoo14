@@ -21,7 +21,7 @@
 
                     <footer>
                         <button string="Lên lớp" type="object" name="action_education_promotion_wizard"
-                                class="btn-primary"/>
+                                class="btn-primary" confirm="Người dùng có thực sự chắc chắn với lựa chọn của mình?"/>
                         <button string="Hủy" special="cancel" class="btn-secondary"/>
                     </footer>
                 </form>

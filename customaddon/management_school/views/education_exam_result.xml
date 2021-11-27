@@ -13,7 +13,7 @@
                         <button name="valuation_canceled" type="object"
                                 attrs="{'invisible': [('state', '!=', 'draft')]}" string="Hủy kết quả đánh giá"/>
                         <button name="set_to_draft" type="object" attrs="{'invisible': [('state', '!=', 'cancel')]}"
-                                string="Xét kết quả đánh giá về bản nháp"/>
+                                string="Xét kết quả đánh giá về bản ghi mới"/>
                         <field name="state" readonly="1" widget="statusbar" statusbar_visible="draft,completed,cancel"/>
                     </header>
                     <sheet>
@@ -31,6 +31,7 @@
                                 <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                             </group>
                             <group>
+                                <field name="term_code" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="class_id" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                                 <field name="division_id" readonly="1"
                                        attrs="{'readonly': [('state', '!=', 'draft')]}"/>
@@ -67,6 +68,8 @@
                                                 <field name="education_exam_ids" invisible="1"/>
                                                 <field name="student_division_ids" invisible="1"/>
                                                 <field name="student_class_ids" invisible="1"/>
+                                                <field name="term_code" invisible="1"/>
+                                                <field name="academic_year_id" invisible="1"/>
                                             </group>
                                         </sheet>
                                     </form>
@@ -91,6 +94,7 @@
                     <field name="exam_result_ids"/>
                     <field name="teachers_id"/>
                     <field name="date"/>
+                    <field name="term_code"/>
                 </tree>
             </field>
         </record>

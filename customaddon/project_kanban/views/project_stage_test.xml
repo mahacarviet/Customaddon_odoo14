@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_project_stage_tree" model="ir.ui.view">
+            <field name="name">project.stage.test.tree</field>
+            <field name="model">project.stage.test</field>
+            <field name="arch" type="xml">
+                <tree string="Project Stage">
+                    <field name="name"/>
+                    <field name="stage_note"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_project_stage_form" model="ir.ui.view">
+            <field name="name">project.stage.test.form</field>
+            <field name="model">project.stage.test</field>
+            <field name="arch" type="xml">
+                <form string="Project Stage">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="stage_note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_project_stage" model="ir.actions.act_window">
+            <field name="name">Project Stage</field>
+            <field name="res_model">project.stage.test</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    There is no examples click Create to add new Project Stage.
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_project_stage_config" name="### Project Stage" parent="project.menu_project_config"
+            sequence="100" action="project_kanban.action_project_stage"/>
+
+    </data>
+</odoo>

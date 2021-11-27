@@ -10,10 +10,12 @@ class EducationExamResult(models.Model):
 
     name = fields.Char(string='Kết quả bài kiểm tra', default='Mới')
     mark = fields.Float(string='Điểm tối đa', required=True, default=10)
-    state = fields.Selection([('draft', 'Nháp'), ('completed', 'Hoàn tất'),
+    state = fields.Selection([('draft', 'Mới'), ('completed', 'Hoàn tất'),
                               ('cancel', 'Hủy')], default='draft')
     mark_sheet_created = fields.Boolean(default=False)
     date = fields.Date(string='Ngày đánh giá', default=date.today())
+    term_code = fields.Selection(related='exam_result_ids.term_code', string='Học kỳ', store=True)
+    exam_type = fields.Selection(related='exam_result_ids.exam_type', string='Bài kiểm tra', store=True)
 
     student_id = fields.Many2one('education.student', string='Học sinh')
     class_id = fields.Many2one(string='Khối', related='exam_result_ids.class_id', required=True)
@@ -31,11 +33,11 @@ class EducationExamResult(models.Model):
     @api.model
     def create(self, vals):
         res = super(EducationExamResult, self).create(vals)
-        search_valuation = self.env['education.exam'].search(
+        search_valuation = self.env['education.exam.result'].search(
             [('id', '=', res.exam_result_ids.id),
              ('class_id', '=', res.class_id.id),
              ('division_id', '=', res.division_id.id),
-             ('subject_id', '=', res.result_subject_id.id),
+             ('result_subject_id', '=', res.result_subject_id.id),
              ('state', '=', 'close')])
         if len(search_valuation) > 1:
             raise UserError(
@@ -86,6 +88,9 @@ class EducationExamResultLine(models.Model):
     student_id = fields.Many2one('education.student', string='Học sinh')
     student_name = fields.Char(string='Họ và tên')
     mark_scored = fields.Float(string='Điểm số')
+    term_code = fields.Selection(related='education_exam_ids.term_code', string='Học kỳ', store=True)
+    exam_type = fields.Selection(related='education_exam_ids.exam_type', string='Bài kiểm tra', store=True)
+    academic_year_id = fields.Many2one(related='education_exam_ids.academic_year_id', string='Năm học', store=True)
 
     company_id = fields.Many2one(
         'res.company', string='Company',

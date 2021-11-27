@@ -24,14 +24,14 @@
         <field name="arch" type="xml">
             <form string="Đơn đăng ký">
                 <header>
-                    <!--                    <button name="send_to_verify" type="object" class="oe_highlight"-->
-                    <!--                            string="Xác minh đơn đăng ký" groups="base.group_user"-->
-                    <!--                            help="Người dùng chọn để gửi yêu cầu xác minh đơn đăng ký."-->
-                    <!--                            states="draft"/>-->
                     <button name="application_verify" type="object" class="oe_highlight"
-                            string="Xác thực tài liệu" groups="base.group_user"
-                            help="Người dùng chọn để xác thực tài liệu."
-                            states="verification"/>
+                            string="Xác minh đơn đăng ký" groups="base.group_user"
+                            help="Người dùng chọn để gửi yêu cầu xác minh đơn đăng ký."
+                            states="draft"/>
+<!--                    <button name="application_verify" type="object" class="oe_highlight"-->
+<!--                            string="Xác thực tài liệu" groups="base.group_user"-->
+<!--                            help="Người dùng chọn để xác thực tài liệu."-->
+<!--                            states="verification"/>-->
                     <button name="create_student" string="Tạo dữ liệu học sinh"
                             type="object" class="oe_highlight"
                             help="Người dùng chọn để tạo học sinh."
@@ -251,7 +251,7 @@
                 <field name="religion"/>
                 <filter string="Đơn đăng ký mới" name="new_application" domain="[('state','!=','done')]"/>
                 <separator/>
-                <filter string="Bản nháp" name="draft_filter" domain="[('state','=','draft')]"/>
+                <filter string="Bản mới" name="draft_filter" domain="[('state','=','draft')]"/>
                 <separator/>
                 <filter string="Đang chờ xét duyệt" name="approve_filter" domain="[('state','=','approve')]"/>
                 <separator/>

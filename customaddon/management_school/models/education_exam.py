@@ -19,12 +19,12 @@ class EducationExam(models.Model):
     end_date = fields.Date(string='Ngày kết thúc')
     subject_id = fields.Many2one('education.subject', string='Môn học', required=True)
     state = fields.Selection(
-        [('draft', 'Nháp'),
+        [('draft', 'Mới'),
          ('ongoing', 'Đang diễn ra'),
          ('close', 'Đóng'),
          ('cancel', 'Hủy')],
         default='draft')
-    term_code = fields.Selection([('one', 'Học kỳ 1'), ('two', 'Học kỳ 2')], default='one', string='Mã năm học')
+    term_code = fields.Selection([('one', 'Học kỳ 1'), ('two', 'Học kỳ 2')], default='one', string='Học kỳ')
     check_exam_result = fields.Boolean(default=False)
 
     academic_year = fields.Many2one('education.academic.year', string='Năm học', store=True)
@@ -51,7 +51,7 @@ class EducationExam(models.Model):
                 ('class_id', '=', res.class_id.id),
                 ('division_id', '=', res.division_id.id),
                 ('subject_id', '=', res.subject_id.id),
-                ('state', '!=', 'close'),
+                ('state', '!=', 'cancel'),
                 ('academic_year', '!=', res.academic_year.id),
             ])
 
@@ -61,7 +61,7 @@ class EducationExam(models.Model):
                     _('Bài kiểm tra học kỳ đã được tạo.'))
             return res
         else:
-            if len(search_exam) > 1:
+            if len(search_exam) > 2:
                 raise UserError(
                     _('Bài kiểm tra miệng, 15p, 45p chỉ được tạo tối đa 2 bài kiểm tra.'))
             return res
