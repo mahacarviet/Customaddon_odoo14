@@ -11,7 +11,9 @@
                 <xpath expr="//field[@name='barcode']" position="after">
                     <field name="shopify_product_id" invisible="1"/>
                     <field name="shopify_user_id" invisible="1"/>
+                    <field name="shopify_inventory_item_id" invisible="1"/>
                     <field name="shopify_product_type"/>
+                    <field name="shopify_inventory_quantity"/>
                 </xpath>
 
                 <xpath expr="//field[@name='company_id']" position="after">
@@ -60,7 +62,8 @@
             <field name="arch" type="xml">
                 <xpath expr="//filter[@name='type_company']" position="after">
                     <separator/>
-                   <filter string="Customer Shopify" name="check_customer_shopify" domain="[('shopify_customer_id','!=', False)]"/>
+                    <filter string="Customer Shopify" name="check_customer_shopify"
+                            domain="[('shopify_customer_id','!=', False)]"/>
                 </xpath>
             </field>
         </record>

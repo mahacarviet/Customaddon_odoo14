@@ -33,6 +33,7 @@
         'views/product_template_inherit_view.xml',
         'views/account_move_inherit_view.xml',
         'views/s_fetch_view.xml',
+        'views/s_fetch_product_view.xml',
         'views/menu_view.xml',
 
     ],

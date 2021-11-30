@@ -67,7 +67,7 @@
             <field name="name">s.discount.kanban.view</field>
             <field name="model">s.discount</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile">
+                <kanban class="o_kanban_mobile" sample="1">
                     <field name="discount_name"/>
                     <field name="currency_id" invisible="1"/>
                     <field name="decrease_price"/>
@@ -137,18 +137,18 @@
 <!--            </xpath>-->
 <!--        </template>-->
 
-        <template id="assets_backend_xero_js" name="xero">
-            <script type="text/javascript" src="/xero_integration/static/src/js/webpack_xero.js"/>
-        </template>
-        <template id="xero_main" name="References">
-            <div id="xero_form_login"/>
-<!--            <script>-->
-<!--                window.afConfig = { "sale_account":-->
-<!--                    <t t-raw="sale_account"/>-->
-<!--                }-->
-<!--            </script>-->
-            <t t-call-assets="xero_integration.assets_backend_xero_js"/>
-        </template>
+<!--        <template id="assets_backend_xero_js" name="xero">-->
+<!--            <script type="text/javascript" src="/xero_integration/static/src/js/webpack_xero.js"/>-->
+<!--        </template>-->
+<!--        <template id="xero_main" name="References">-->
+<!--            <div id="xero_form_login"/>-->
+<!--&lt;!&ndash;            <script>&ndash;&gt;-->
+<!--&lt;!&ndash;                window.afConfig = { "sale_account":&ndash;&gt;-->
+<!--&lt;!&ndash;                    <t t-raw="sale_account"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                }&ndash;&gt;-->
+<!--&lt;!&ndash;            </script>&ndash;&gt;-->
+<!--            <t t-call-assets="xero_integration.assets_backend_xero_js"/>-->
+<!--        </template>-->
 
     </data>
 </odoo>

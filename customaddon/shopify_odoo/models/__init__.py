@@ -8,3 +8,5 @@ from . import product_template_inherit
 from . import account_move_inherit
 from . import create_webhook_shopify
 from . import s_fetch
+from . import s_fetch_product
+from . import s_location_inventory

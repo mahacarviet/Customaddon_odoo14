@@ -10,7 +10,7 @@ import re
 from urllib.request import urlopen
 
 
-class SShop(models.Model):
+class SFetch(models.Model):
     _name = 's.fetch'
     _description = 's_fetch'
     _rec_name = 's_shop_s_fetch'
@@ -23,7 +23,7 @@ class SShop(models.Model):
     s_fetch_log_product_shopify = fields.Many2many('s.fetch.log.product', string='Fetch Log Product')
     s_fetch_log_order_shopify = fields.Many2many('s.fetch.log.order', string='Fetch Log Order')
 
-    @api.onchange('shop_user_id', 'res_partner_s_fetch')
+    @api.onchange('shop_user_id')
     def _add_shop_user_id(self):
         # self.shop_user_id = self.env.uid
         self.shop_user_id = 8

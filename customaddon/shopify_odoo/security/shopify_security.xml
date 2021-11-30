@@ -19,43 +19,43 @@
         </record>
     </data>
 
-    <data noupdate="0">
-<!--        <record model="ir.rule" id="set_shopify_account_rule_admin">-->
-<!--            <field name="name">Shopify Account Rule Admin</field>-->
-<!--            <field name="model_id" ref="model_s_discount"/>-->
-<!--            <field name="domain_force">[('shop_user_id', '=', user.id)]</field>-->
-<!--            <field name="groups" eval="[(4,ref('group_shopify_admin'))]"/>-->
-<!--        </record>-->
+<!--    <data noupdate="0">-->
+<!--&lt;!&ndash;        <record model="ir.rule" id="set_shopify_account_rule_admin">&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="name">Shopify Account Rule Admin</field>&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="model_id" ref="model_s_discount"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="domain_force">[('shop_user_id', '=', user.id)]</field>&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="groups" eval="[(4,ref('group_shopify_admin'))]"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </record>&ndash;&gt;-->
 
-<!--        <record model="ir.rule" id="set_shopify_account_rule_user">-->
+<!--&lt;!&ndash;        <record model="ir.rule" id="set_shopify_account_rule_user">&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="name">Shopify Account Rule User</field>&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="model_id" ref="model_s_discount"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="domain_force">[('shop_user_id', '=', user.id)]</field>&ndash;&gt;-->
+<!--&lt;!&ndash;            <field name="groups" eval="[(4,ref('group_shopify_user'))]"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        </record>&ndash;&gt;-->
+
+<!--        <record id="test_record_rule_shopify_user" model="ir.rule">-->
 <!--            <field name="name">Shopify Account Rule User</field>-->
-<!--            <field name="model_id" ref="model_s_discount"/>-->
+<!--            <field name="model_id" ref="shopify_odoo.model_s_discount"/>-->
 <!--            <field name="domain_force">[('shop_user_id', '=', user.id)]</field>-->
-<!--            <field name="groups" eval="[(4,ref('group_shopify_user'))]"/>-->
+<!--            <field name="groups" eval="[(4, ref('group_shopify_user'))]"/>-->
+<!--            <field name="perm_read" eval="True"/>-->
+<!--            <field name="perm_write" eval="False"/>-->
+<!--            <field name="perm_create" eval="False"/>-->
+<!--            <field name="perm_unlink" eval="False"/>-->
 <!--        </record>-->
 
-        <record id="test_record_rule_shopify_user" model="ir.rule">
-            <field name="name">Shopify Account Rule User</field>
-            <field name="model_id" ref="shopify_odoo.model_s_discount"/>
-            <field name="domain_force">[('shop_user_id', '=', user.id)]</field>
-            <field name="groups" eval="[(4, ref('group_shopify_user'))]"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="False"/>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-        </record>
-
-        <record id="test_record_rule_shopify_admin" model="ir.rule">
-            <field name="name">Shopify Account Rule Admin</field>
-            <field name="model_id" ref="shopify_odoo.model_s_discount"/>
-            <field name="domain_force">[(1, '=', 1)]</field>
-            <field name="groups" eval="[(4, ref('group_shopify_admin'))]"/>
-            <field name="perm_read" eval="True"/>
-            <field name="perm_write" eval="True"/>
-            <field name="perm_create" eval="True"/>
-            <field name="perm_unlink" eval="True"/>
-        </record>
-    </data>
+<!--        <record id="test_record_rule_shopify_admin" model="ir.rule">-->
+<!--            <field name="name">Shopify Account Rule Admin</field>-->
+<!--            <field name="model_id" ref="shopify_odoo.model_s_discount"/>-->
+<!--            <field name="domain_force">[(1, '=', 1)]</field>-->
+<!--            <field name="groups" eval="[(4, ref('group_shopify_admin'))]"/>-->
+<!--            <field name="perm_read" eval="True"/>-->
+<!--            <field name="perm_write" eval="True"/>-->
+<!--            <field name="perm_create" eval="True"/>-->
+<!--            <field name="perm_unlink" eval="True"/>-->
+<!--        </record>-->
+<!--    </data>-->
 
 </odoo>
 

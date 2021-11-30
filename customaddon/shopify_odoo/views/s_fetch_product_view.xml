@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="s_fetch_product_form_view" model="ir.ui.view">
+            <field name="name">s.fetch.product.form.view</field>
+            <field name="model">s.fetch.product</field>
+            <field name="arch" type="xml">
+                <form string="Update Inventory Product Shopify">
+                    <header>
+                        <button name="fetch_product_shopify" type="object"
+                                        string="Update Inventory Product" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="s_shop_s_fetch_product"/>
+                            <field name="date_time_update" required="1"/>
+                            <field name="shop_user_id" invisible="0" force_save="1" readonly="1"/>
+                        </group>
+                        <notebook>
+                            <page name="log_fetch_product" string="Fetch Log Product">
+                                <group>
+                                    <field name="s_fetch_product_log_shopify" nolabel="1">
+                                        <tree editable="bottom">
+                                            <field name="product_shopify_ids"/>
+                                            <field name="inventory_quantity"/>
+                                            <field name="s_location_shopify_id" options="{'no_create': True}"/>
+                                        </tree>
+                                        <form>
+                                            <group>
+                                                <field name="product_shopify_ids"/>
+                                                <field name="inventory_quantity"/>
+                                                <field name="s_location_shopify_id" options="{'no_create': True}"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="s_fetch_product_tree_view" model="ir.ui.view">
+            <field name="name">s.fetch.product.tree.view</field>
+            <field name="model">s.fetch.product</field>
+            <field name="arch" type="xml">
+                <tree string="Fetch Product Shopify" sample="1">
+                    <field name="s_shop_s_fetch_product"/>
+                    <field name="date_time_update"/>
+                    <field name="shop_user_id" invisible="0" force_save="1" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="s_fetch_product_act_window" model="ir.actions.act_window">
+            <field name="name">Fetch Product Shopify</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">s.fetch.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

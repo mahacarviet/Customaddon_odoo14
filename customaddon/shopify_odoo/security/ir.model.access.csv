@@ -1,9 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_s_app,s_app,model_s_app,shopify_odoo.group_shopify_admin,1,1,1,1
-access_s_shop,s_shop,model_s_shop,shopify_odoo.group_shopify_admin,1,1,1,1
-access_s_sp_app,s_sp_app,model_s_sp_app,shopify_odoo.group_shopify_admin,1,1,1,1
+access_s_app,s_app,model_s_app,,1,1,1,1
+access_s_shop,s_shop,model_s_shop,,1,1,1,1
+access_s_sp_app,s_sp_app,model_s_sp_app,,1,1,1,1
 access_s_discount,s_discount,model_s_discount,,1,1,1,1
 access_create_webhook_shopify,create_webhook_shopify,model_create_webhook_shopify,,1,1,1,1
 access_s_fetch,s_fetch,model_s_fetch,,1,1,1,1
 access_s_fetch_log_product,s_fetch_log_product,model_s_fetch_log_product,,1,1,1,1
 access_s_fetch_log_order,s_fetch_log_order,model_s_fetch_log_order,,1,1,1,1
+access_s_fetch_product_log,s_fetch_product_log,model_s_fetch_product_log,,1,1,1,1
+access_s_fetch_product,s_fetch_product,model_s_fetch_product,,1,1,1,1
+access_s_location_inventory,s_location_inventory,model_s_location_inventory,,1,1,1,1

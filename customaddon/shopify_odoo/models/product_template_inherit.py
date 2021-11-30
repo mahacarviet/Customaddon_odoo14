@@ -13,6 +13,8 @@ class ProductTemplateInheritShopify(models.Model):
 
     shopify_product_id = fields.Char(string='Shopify Product ID')
     shopify_product_type = fields.Char()
+    shopify_inventory_item_id = fields.Char()
+    shopify_inventory_quantity = fields.Integer()
     check_product_shopify = fields.Boolean()
     shopify_user_id = fields.Integer()
 

@@ -42,4 +42,10 @@
               action="s_fetch_act_window"
               sequence="10"/>
 
+    <menuitem name="Detail Fetch Product Shopify"
+              id="log_fetch_product_shopify"
+              parent="shopify_odoo.shopify_configuration_menu"
+              action="s_fetch_product_act_window"
+              sequence="11"/>
+
 </odoo>
