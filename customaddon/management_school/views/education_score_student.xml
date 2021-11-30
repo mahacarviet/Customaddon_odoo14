@@ -8,7 +8,8 @@
                     <header>
                         <button name="calculate_score_average_overall" type="object"
                                 attrs="{'invisible': [('state', '=', True)]}"
-                                class="oe_highlight" string="Tính toán điểm học sinh"/>
+                                class="oe_highlight" string="Tính toán điểm học sinh"
+                        confirm="Người dùng chỉ nên thực hiện tính toán điểm học sinh sau khi học sinh này đã có đủ các bài kiểm tra và điểm số trong năm học đó. Người dùng có muốn tiếp tục?"/>
                     </header>
                     <sheet>
                         <h1>
@@ -45,7 +46,7 @@
                                 <field name="score_student_two_ids" nolabel="1" options="{'no_create': True}">
                                     <tree editable="bottom" create="true">
                                         <field name="score_subject_id" options="{'no_create': True}"/>
-                                        <field name="fast_exam_2"/>
+                                        <field name="fast_exam_1"/>
                                         <field name="fast_exam_2"/>
                                         <field name="part_exam_1"/>
                                         <field name="part_exam_2"/>

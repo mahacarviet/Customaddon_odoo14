@@ -145,9 +145,13 @@
         <field name="model">education.faculty</field>
         <field name="arch" type="xml">
             <search string="Tìm kiếm giáo viên">
+                <field name="name" string="Tên giáo viên" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="mobile" string="Số điện thoại" filter_domain="[('mobile', 'ilike', self)]"/>
                 <field name="gender"/>
+                <field name="degree"/>
                 <group expand='0' string='Sắp xếp theo'>
                     <filter string='Giới tính' name="gender" domain="[]" context="{'group_by' : 'gender'}"/>
+                    <filter string='Học vị' name="degree_filter" domain="[]" context="{'group_by' : 'degree'}"/>
                 </group>
             </search>
         </field>

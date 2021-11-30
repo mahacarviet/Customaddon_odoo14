@@ -245,10 +245,12 @@
         <field name="arch" type="xml">
             <search string="Tìm kiếm đơn đăng ký">
                 <field name="admission_class"/>
-                <field name="language_speaking"/>
-                <field name="sec_lang"/>
+<!--                <field name="language_speaking"/>-->
+<!--                <field name="sec_lang"/>-->
                 <field name="gender"/>
                 <field name="religion"/>
+                <field name="application_no" string="Mã đơn đăng ký" filter_domain="[('application_no', 'ilike', self)]"/>
+                <field name="name" string="Họ tên học sinh" filter_domain="[('name', 'ilike', self)]"/>
                 <filter string="Đơn đăng ký mới" name="new_application" domain="[('state','!=','done')]"/>
                 <separator/>
                 <filter string="Bản mới" name="draft_filter" domain="[('state','=','draft')]"/>
@@ -265,8 +267,8 @@
                             domain="[]" context="{'group_by': 'academic_year_id'}"/>
                     <filter string='Giới tính' name="gender"
                             domain="[]" context="{'group_by': 'gender'}"/>
-                    <filter string='Ngôn ngữ gốc' name="language_speaking"
-                            domain="[]" context="{'group_by': 'language_speaking'}"/>
+<!--                    <filter string='Ngôn ngữ gốc' name="language_speaking"-->
+<!--                            domain="[]" context="{'group_by': 'language_speaking'}"/>-->
                 </group>
             </search>
         </field>

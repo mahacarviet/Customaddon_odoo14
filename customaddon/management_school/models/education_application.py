@@ -212,8 +212,8 @@ class StudentApplication(models.Model):
     class_id = fields.Many2one('education.class.division', string="Class")
     document_count = fields.Integer(compute='_document_count',
                                     string='Tài liệu')
-    verified_by = fields.Many2one('res.users', string='Verified by',
-                                  help="The Document is verified by")
+    verified_by = fields.Many2one('res.users', string='Kiểm duyệt bởi',
+                                  help="Tài liệu được kiểm duyệt bởi")
     reject_reason = fields.Many2one('application.reject.reason',
                                     string='Lý do từ chối')
     gender = fields.Selection(

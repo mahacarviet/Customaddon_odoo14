@@ -44,7 +44,7 @@
                         <div style="padding-bottom: 10px;">
                             <button style="padding: 1px 5px;"
                                     attrs="{'invisible': ['|', ('mark_sheet_created', '=', True), ('state', '=', 'cancel')]}"
-                                    string="Create Mark Sheet" name="create_mark_sheet"
+                                    string="Tạo bảng đánh giá kết quả" name="create_mark_sheet"
                                     type="object"
                                     class="oe_highlight"/>
                         </div>
@@ -55,6 +55,7 @@
                                         <field name="student_id" invisible="1"/>
                                         <field name="student_name" readonly="1"/>
                                         <field name="mark_scored"/>
+                                        <field name="subject_id" invisible="1"/>
                                         <field name="education_exam_ids" invisible="1"/>
                                         <field name="student_division_ids" invisible="1"/>
                                         <field name="student_class_ids" invisible="1"/>
@@ -65,6 +66,7 @@
                                                 <field name="student_id"/>
                                                 <field name="student_name"/>
                                                 <field name="mark_scored"/>
+                                                <field name="subject_id" invisible="1"/>
                                                 <field name="education_exam_ids" invisible="1"/>
                                                 <field name="student_division_ids" invisible="1"/>
                                                 <field name="student_class_ids" invisible="1"/>

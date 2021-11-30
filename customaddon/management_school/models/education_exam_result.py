@@ -90,6 +90,7 @@ class EducationExamResultLine(models.Model):
     mark_scored = fields.Float(string='Điểm số')
     term_code = fields.Selection(related='education_exam_ids.term_code', string='Học kỳ', store=True)
     exam_type = fields.Selection(related='education_exam_ids.exam_type', string='Bài kiểm tra', store=True)
+    subject_id = fields.Many2one(related='education_exam_ids.result_subject_id', string='Môn học', store=True)
     academic_year_id = fields.Many2one(related='education_exam_ids.academic_year_id', string='Năm học', store=True)
 
     company_id = fields.Many2one(

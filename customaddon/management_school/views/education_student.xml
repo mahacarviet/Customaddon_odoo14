@@ -242,13 +242,17 @@
         <field name="model">education.student</field>
         <field name="arch" type="xml">
             <search string="Tìm kiếm học sinh">
+                <field name="name" string="Họ tên học sinh" filter_domain="[('name', 'ilike', self)]"/>
+                <field name="ad_no" string="Mã học sinh" filter_domain="[('ad_no', 'ilike', self)]"/>
                 <field name="class_id"/>
-                <field name="language_speaking"/>
-                <field name="sec_lang"/>
+                <field name="admission_class"/>
+                <!--                <field name="language_speaking"/>-->
+                <!--                <field name="sec_lang"/>-->
                 <field name="gender"/>
                 <field name="religion"/>
                 <group expand='0' string='Sắp xếp theo'>
                     <filter string='Lớp' name="class" domain="[]" context="{'group_by' : 'class_id'}"/>
+                    <filter string='Khối' name="class_filter" domain="[]" context="{'group_by' : 'admission_class'}"/>
                     <filter string='Giới tính' name="gender" domain="[]" context="{'group_by' : 'gender'}"/>
                     <filter string='Ngôn ngữ gốc' name="language_speaking" domain="[]"
                             context="{'group_by' : 'language_speaking'}"/>
