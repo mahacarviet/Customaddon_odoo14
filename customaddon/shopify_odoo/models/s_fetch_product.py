@@ -73,3 +73,6 @@ class SFetchProductLog(models.Model):
     inventory_quantity = fields.Integer(string='Quantity')
 
     s_location_shopify_id = fields.Many2one('s.location.inventory', string='Location ID')
+
+
+

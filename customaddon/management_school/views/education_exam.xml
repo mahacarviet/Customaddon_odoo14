@@ -53,13 +53,37 @@
             <field name="name">examination.tree</field>
             <field name="model">education.exam</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree limit="30">
                     <field name="name"/>
                     <field name="start_date"/>
                     <field name="end_date"/>
                     <field name="state"/>
                     <field name="academic_year" invisible="1"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="education_exam_search" model="ir.ui.view">
+            <field name="name">education.exam.search</field>
+            <field name="model">education.exam</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm bài kiểm tra">
+                    <field name="division_id" string="Lớp học" filter_domain="[('division_id', 'ilike', self)]"/>
+                    <field name="class_id" string="Khối" filter_domain="[('class_id', 'ilike', self)]"/>
+                    <field name="subject_id" string="Môn học" filter_domain="[('subject_id', 'ilike', self)]"/>
+                    <field name="academic_year" string="Năm học" filter_domain="[('academic_year', 'ilike', self)]"/>
+                    <group expand='0' string='Sắp xếp theo'>
+                        <filter string='Lớp' name="class" domain="[]" context="{'group_by' : 'division_id'}"/>
+                        <filter string='Khối' name="class_filter" domain="[]" context="{'group_by' : 'class_id'}"/>
+                        <filter string='Môn học' name="subject_filter" domain="[]"
+                                context="{'group_by' : 'subject_id'}"/>
+                        <filter string='Năm học' name="year_filter" domain="[]"
+                                context="{'group_by' : 'academic_year'}"/>
+                        <filter string='Trạng thái' name="state_filter" domain="[]" context="{'group_by' : 'state'}"/>
+                        <filter string='Loại bài kiểm tra' name="type_filter" domain="[]"
+                                context="{'group_by' : 'exam_type'}"/>
+                    </group>
+                </search>
             </field>
         </record>
 

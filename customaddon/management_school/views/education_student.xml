@@ -5,7 +5,7 @@
         <field name="name">education.student.kanban</field>
         <field name="model">education.student</field>
         <field name="arch" type="xml">
-            <kanban class="education_student_kanban" group_create="0" records_draggable="false">
+            <kanban class="education_student_kanban" group_create="0" records_draggable="false" limit="30">
                 <field name="id"/>
                 <field name="name" string="Họ tên"/>
                 <field name="guardian_name"/>
@@ -68,7 +68,7 @@
         <field name="name">education.student.tree</field>
         <field name="model">education.student</field>
         <field name="arch" type="xml">
-            <tree string="Học sinh">
+            <tree string="Học sinh" limit="30">
                 <field name="ad_no" string="Mã học sinh"/>
                 <field name="name" string="Họ và tên"/>
                 <field name="gender"/>
@@ -267,7 +267,8 @@
         <field name="type">ir.actions.act_window</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="search_view_id" ref="student_search"/>
-        <field name="context">{'search_default_class': 1, 'create': False}</field>
+<!--        <field name="context">{'search_default_class': 1, 'create': False}</field>-->
+        <field name="context">{'search_default_class': 1}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Chọn tạo để tạo một bản ghi mới.

@@ -9,7 +9,7 @@
                         <button name="calculate_score_average_overall" type="object"
                                 attrs="{'invisible': [('state', '=', True)]}"
                                 class="oe_highlight" string="Tính toán điểm học sinh"
-                        confirm="Người dùng chỉ nên thực hiện tính toán điểm học sinh sau khi học sinh này đã có đủ các bài kiểm tra và điểm số trong năm học đó. Người dùng có muốn tiếp tục?"/>
+                                confirm="Người dùng chỉ nên thực hiện tính toán điểm học sinh sau khi học sinh này đã có đủ các bài kiểm tra và điểm số trong năm học đó. Người dùng có muốn tiếp tục?"/>
                     </header>
                     <sheet>
                         <h1>
@@ -83,6 +83,28 @@
                     <field name="score_student_id" widget="many2one_tags"/>
                     <field name="score_academic_year_id"/>
                 </tree>
+            </field>
+        </record>
+
+        <record id="education_score_search" model="ir.ui.view">
+            <field name="name">education.score.student.search</field>
+            <field name="model">education.score.student</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm thẻ điểm học sinh">
+                    <field name="score_division_id" string="Lớp học"
+                           filter_domain="[('score_division_id', 'ilike', self)]"/>
+                    <field name="score_class_id" string="Khối" filter_domain="[('score_class_id', 'ilike', self)]"/>
+                    <field name="score_academic_year_id" string="Năm học"
+                           filter_domain="[('score_academic_year_id', 'ilike', self)]"/>
+                    <group expand='0' string='Sắp xếp theo'>
+                        <filter string='Lớp' name="class" domain="[]" context="{'group_by' : 'score_division_id'}"/>
+                        <filter string='Khối' name="class_filter" domain="[]"
+                                context="{'group_by' : 'score_class_id'}"/>
+                        <filter string='Năm học' name="year_filter" domain="[]"
+                                context="{'group_by' : 'score_academic_year_id'}"/>
+                        <!--                        <filter string='Trạng thái' name="state_filter" domain="[]" context="{'group_by' : 'state'}"/>-->
+                    </group>
+                </search>
             </field>
         </record>
 

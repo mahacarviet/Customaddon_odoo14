@@ -106,11 +106,16 @@
             <field name="model">education.exam.result</field>
             <field name="arch" type="xml">
                 <search string="Kết quả bài kiểm tra">
+                    <field name="division_id" string="Lớp học" filter_domain="[('division_id', 'ilike', self)]"/>
+                    <field name="class_id" string="Khối" filter_domain="[('class_id', 'ilike', self)]"/>
+                    <field name="result_subject_id" string="Môn học" filter_domain="[('result_subject_id', 'ilike', self)]"/>
+                    <field name="academic_year_id" string="Năm học" filter_domain="[('academic_year', 'ilike', self)]"/>
                     <group expand="1" string="Sắp xếp theo">
                         <filter string="Khối" name="group_class_id" context="{'group_by':'class_id'}"/>
                         <filter string="Lớp học" name="group_division_id" context="{'group_by':'division_id'}"/>
                         <filter string="Bài kiểm tra" name="group_exam_id" context="{'group_by':'exam_result_ids'}"/>
                         <filter string="Năm học" name="group_academic_year" context="{'group_by':'academic_year_id'}"/>
+                        <filter string="Loại bài kiểm tra" name="group_exam_type" context="{'group_by':'exam_type'}"/>
                     </group>
                 </search>
             </field>
