@@ -5,7 +5,7 @@
         <field name="name">education.faculty.kanban</field>
         <field name="model">education.faculty</field>
         <field name="arch" type="xml">
-            <kanban class="education_faculty_kanban">
+            <kanban class="education_faculty_kanban" limit="30">
                 <field name="id"/>
                 <field name="name"/>
                 <field name="email"/>
@@ -58,7 +58,7 @@
         <field name="name">education.faculty.tree</field>
         <field name="model">education.faculty</field>
         <field name="arch" type="xml">
-            <tree string="Giáo viên">
+            <tree string="Giáo viên" limit="30">
                 <field name="name"/>
                 <field name="gender"/>
                 <field name="date_of_birth"/>

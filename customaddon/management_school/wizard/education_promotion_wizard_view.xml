@@ -10,7 +10,7 @@
                     <group>
                         <field name="from_promotion_education_division" widget="many2one_tags" readonly="1"/>
                         <!--                        <field name="to_promotion_education_division"/>-->
-                        <field name="student_education_division"/>
+                        <field name="student_education_division" widget="many2many_tags" options='{"no_create": True}'/>
                     </group>
 
                     <h3>

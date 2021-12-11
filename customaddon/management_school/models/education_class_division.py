@@ -101,7 +101,7 @@ class EducationClassDivision(models.Model):
             }
         }
 
-    name = fields.Char(string='Name', readonly=True)
+    name = fields.Char(string='Tên lớp', readonly=True)
     actual_strength = fields.Integer(string='Sĩ số tối đa', default=40)
     faculty_id = fields.Many2one('education.faculty', string='Giáo viên chủ nhiệm')
     academic_year_id = fields.Many2one('education.academic.year',

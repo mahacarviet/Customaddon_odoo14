@@ -6,9 +6,13 @@
             <field name="arch" type="xml">
                 <form>
                     <header>
-                        <button name="calculate_score_average_overall" type="object"
+                        <button name="calculate_score_average_one" type="object"
                                 attrs="{'invisible': [('state', '=', True)]}"
-                                class="oe_highlight" string="Tính toán điểm học sinh"
+                                class="oe_highlight" string="Tính toán điểm học sinh HK1"
+                                confirm="Người dùng chỉ nên thực hiện tính toán điểm học sinh sau khi học sinh này đã có đủ các bài kiểm tra và điểm số trong năm học đó. Người dùng có muốn tiếp tục?"/>
+                        <button name="calculate_score_average_two" type="object"
+                                attrs="{'invisible': [('state', '=', True)]}"
+                                class="oe_highlight" string="Tính toán điểm học sinh HK2"
                                 confirm="Người dùng chỉ nên thực hiện tính toán điểm học sinh sau khi học sinh này đã có đủ các bài kiểm tra và điểm số trong năm học đó. Người dùng có muốn tiếp tục?"/>
                     </header>
                     <sheet>

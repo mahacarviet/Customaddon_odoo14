@@ -23,7 +23,7 @@ class EducationScoreStudent(models.Model):
     score_average_two = fields.Float(string='Điểm TB HK2', default=10)
     score_average_overall = fields.Float(string='Điểm TB cả năm')
 
-    def calculate_score_average_overall(self):
+    def calculate_score_average_one(self):
         #todo: Code tinh diem hoc ky 1
         search_score_exam_one = self.env['exam.result.line'].sudo().search([
             ('student_id', '=', self.score_student_id.id),
@@ -77,6 +77,7 @@ class EducationScoreStudent(models.Model):
         else:
             raise ValidationError('Không tìm thấy kết quả bài thi học kỳ 1 của học sinh này.')
 
+    def calculate_score_average_two(self):
         #todo: Code tinh diem hoc ky 2
         search_score_exam_two = self.env['exam.result.line'].sudo().search([
             ('student_id', '=', self.score_student_id.id),

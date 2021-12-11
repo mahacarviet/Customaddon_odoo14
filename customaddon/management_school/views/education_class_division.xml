@@ -91,7 +91,7 @@
                             <field name="name" attrs="{'readonly': [('check_status', '=', True)]}" readonly="1"
                                    force_save="1"/>
                             <field name="actual_strength" attrs="{'readonly': [('check_status', '=', True)]}"/>
-                            <field name="code_class" invisible="0" force_save="1"/>
+                            <field name="code_class" invisible="1" force_save="1"/>
                             <field name="check_status" invisible="1"/>
                         </group>
                         <group>
@@ -148,7 +148,7 @@
                 <field name="status_class"/>
                 <filter string="Đang học" name="on_going_status" domain="[('status_class','=','on_going')]"/>
                 <separator/>
-                <filter string="Ra trường" name="on_going_status" domain="[('status_class','=','out_school')]"/>
+                <filter string="Ra trường" name="out_school_status" domain="[('status_class','=','out_school')]"/>
                 <separator/>
                 <group expand='0' string='Sắp xếp theo'>
                     <filter string='Khối' name="class_division_search"
@@ -163,6 +163,7 @@
         <field name="res_model">education.class.division</field>
         <field name="type">ir.actions.act_window</field>
         <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_on_going_status': 1}</field>
         <field name="help" type="html">
             <p class="oe_view_nocontent_create">
                 Chọn tạo để tạo một bản ghi mới.
