@@ -18,10 +18,10 @@ class EducationExamResult(models.Model):
     exam_type = fields.Selection(related='exam_result_ids.exam_type', string='Bài kiểm tra', store=True)
 
     student_id = fields.Many2one('education.student', string='Học sinh')
-    class_id = fields.Many2one(string='Khối', related='exam_result_ids.class_id', required=True)
-    division_id = fields.Many2one(string='Lớp', related='exam_result_ids.division_id', required=True)
-    result_subject_id = fields.Many2one(related='exam_result_ids.subject_id', string='Môn học')
-    academic_year_id = fields.Many2one(related='exam_result_ids.academic_year', string='Năm học')
+    class_id = fields.Many2one(string='Khối', related='exam_result_ids.class_id', required=True, store=True)
+    division_id = fields.Many2one(string='Lớp', related='exam_result_ids.division_id', required=True, store=True)
+    result_subject_id = fields.Many2one(related='exam_result_ids.subject_id', string='Môn học', store=True)
+    academic_year_id = fields.Many2one(related='exam_result_ids.academic_year', string='Năm học', store=True)
     exam_result_ids = fields.Many2one('education.exam', string='Bài kiểm tra',
                                       domain=[('state', '=', 'close'), ('check_exam_result', '=', False)])
     valuation_line = fields.One2many('exam.result.line', 'education_exam_ids', string='Students')
@@ -56,7 +56,7 @@ class EducationExamResult(models.Model):
         self.state = 'draft'
 
     def valuation_completed(self):
-        self.name = 'Kết quả ' + str(self.exam_result_ids.name)
+        self.name = 'Kết quả bài' + str(self.exam_result_ids.name)
         # Xu ly diem
         self.exam_result_ids.check_exam_result = True
         self.state = 'completed'

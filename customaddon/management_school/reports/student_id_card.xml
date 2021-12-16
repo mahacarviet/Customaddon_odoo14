@@ -32,10 +32,10 @@
                                                     <table>
                                                         <tr>
                                                             <td>
-                                                                <p style="text-align:right;padding-top:30px;"><strong>Ad No : </strong></p>
-                                                                <p style="text-align:right;"><strong>Lớp : </strong></p>
-                                                                <p style="text-align:right;"><strong>Liên hệ : </strong></p>
-                                                                <p style="text-align:right;"><strong>Giới tính : </strong></p>
+                                                                <p style="text-align:right;padding-top:30px;"><strong>Mã học sinh: </strong></p>
+                                                                <p style="text-align:right;"><strong>Lớp: </strong></p>
+                                                                <p style="text-align:right;"><strong>Liên hệ: </strong></p>
+                                                                <p style="text-align:right;"><strong>Giới tính: </strong></p>
                                                             </td>
                                                             <td>
                                                                 <p style="text-align:left;padding-top:30px;padding-left:10px;"  t-field="o.ad_no"/>

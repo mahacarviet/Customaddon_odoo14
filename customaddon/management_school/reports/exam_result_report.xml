@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_exam_results">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="oe_structure"/>
+
+                            <div style="text-align: center; margin-top:-20px;">
+                                <h2>
+                                    <tr>
+                                        <td>
+                                            <span>Kết quả điểm kiểm tra</span>
+                                        </td>
+                                    </tr>
+                                </h2>
+                            </div>
+
+                            <div class="row" style="margin-top:50px;">
+                                <div class="col-8" style="">
+                                    <table class="table table-condensed">
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Môn học:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-if="o.result_subject_id" t-field="o.result_subject_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Lớp:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-if="o.division_id" t-field="o.division_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Giáo viên đánh giá:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-if="o.teachers_id" t-field="o.teachers_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Ngày đánh giá:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.date"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Học kỳ:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.term_code"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Năm học:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-if="o.academic_year_id" t-field="o.academic_year_id.name"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <t t-if="o.valuation_line">
+                                <br/>
+                                <br/>
+                                <span><strong>Bảng điểm</strong></span>
+                                <table class="table table-sm o_main_table" name="table_score">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_reference" class="text-left">
+                                                <span>Họ và tên</span>
+                                            </th>
+                                            <th name="th_age" class="text-left">
+                                                <span>Điểm số</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <t t-foreach="o.valuation_line" t-as="line">
+                                        <tr>
+                                            <td>
+                                                <span t-field="line.student_name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.mark_scored"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </t>
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

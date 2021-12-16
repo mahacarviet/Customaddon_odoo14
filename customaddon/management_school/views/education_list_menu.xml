@@ -28,6 +28,15 @@
             <field name="context">{'search_default_rejected_filter':1}</field>
         </record>
 
+        <record id="view_list_exam_result_academic_class" model="ir.actions.act_window">
+            <field name="name">Kết quả điểm bài kiểm tra</field>
+            <field name="res_model">education.exam.result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_group_academic_year':1, 'search_default_group_class_id':1}</field>
+        </record>
+
 
     </data>
 </odoo>

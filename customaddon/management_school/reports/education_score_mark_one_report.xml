@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_student_score_marks_one">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="oe_structure"/>
+
+                            <div style="text-align: center; margin-top:-20px;">
+                                <h2>
+                                    <tr>
+                                        <td>
+                                            <span>Thẻ điểm học sinh</span>
+                                        </td>
+                                    </tr>
+                                </h2>
+                            </div>
+
+                            <div class="row" style="margin-top:50px;">
+                                <div class="col-8" style="">
+                                    <table class="table table-condensed">
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Học sinh:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-if="o.score_student_id" t-field="o.score_student_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Lớp:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-if="o.score_division_id" t-field="o.score_division_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Năm học:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-if="o.score_academic_year_id" t-field="o.score_academic_year_id.name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>
+                                                    <span>Điểm tổng kết HK1:</span>
+                                                </strong>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.score_average_one"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <t t-if="o.score_student_one_ids">
+                                <br/>
+                                <br/>
+                                <span><strong>Bảng điểm học kỳ 1</strong></span>
+                                <table class="table table-sm o_main_table" name="table_score">
+                                    <thead>
+                                        <tr>
+                                            <th name="th_subject" class="text-left">
+                                                <span>Môn học</span>
+                                            </th>
+                                            <th name="th_score_1" class="text-left">
+                                                <span>Điểm miệng (1)</span>
+                                            </th>
+                                            <th name="th_score_2" class="text-left">
+                                                <span>Điểm miệng (2)</span>
+                                            </th>
+                                            <th name="th_score_3" class="text-left">
+                                                <span>Điểm 15p (1)</span>
+                                            </th>
+                                            <th name="th_score_4" class="text-left">
+                                                <span>Điểm 15p (2)</span>
+                                            </th>
+                                            <th name="th_score_5" class="text-left">
+                                                <span>Điểm 45p (1)</span>
+                                            </th>
+                                            <th name="th_score_6" class="text-left">
+                                                <span>Điểm 45p (2)</span>
+                                            </th>
+                                            <th name="th_score_7" class="text-left">
+                                                <span>Điểm học kỳ</span>
+                                            </th>
+                                            <th name="th_score_8" class="text-left">
+                                                <span>Điểm trung bình</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <t t-foreach="o.score_student_one_ids" t-as="line">
+                                        <tr>
+                                            <td>
+                                                <span t-field="line.score_subject_id.name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.fast_exam_1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.fast_exam_2"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.part_exam_1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.part_exam_2"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.quarter_exam_1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.quarter_exam_2"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.final_exam"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="line.average_score"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </t>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

@@ -33,8 +33,8 @@
                                                         <tr>
                                                             <td>
                                                                 <p style="text-align:right;padding-top:30px;"><strong>ID : </strong></p>
-                                                                <p style="text-align:right;"><strong>Gender : </strong></p>
-                                                                <p style="text-align:right;"><strong>Blood Group : </strong></p>
+                                                                <p style="text-align:right;"><strong>Giới tính : </strong></p>
+                                                                <p style="text-align:right;"><strong>Nhóm máu : </strong></p>
                                                             </td>
                                                             <td>
                                                                 <p style="text-align:left;padding-top:30px;padding-left:10px;"  t-field="o.faculty_id"/>

@@ -119,5 +119,28 @@
             <field name="target">current</field>
         </record>
 
+
+        <!--        Them view den form hoc sinh -->
+        <record id="view_score_mark_form_students" model="ir.actions.act_window">
+            <field name="name">Thẻ điểm học sinh</field>
+            <field name="res_model">education.score.student</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+            <field name="domain">[('score_student_id', '=', active_id)]</field>
+            <field name="context"></field>
+        </record>
+
+        <record id="student_smart_button_score_mark_form" model="ir.ui.view">
+            <field name="name">student_smart_button_score_mark_form.form</field>
+            <field name="model">education.student</field>
+            <field name="inherit_id" ref="management_school.view_education_student_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="management_school.view_score_mark_form_students" type="action" class="oe_stat_button"
+                            icon="fa-list-ul" string="Thẻ điểm học sinh"/>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>

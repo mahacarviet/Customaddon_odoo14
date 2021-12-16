@@ -8,9 +8,9 @@ class EducationExam(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
 
     name = fields.Char(string='Tên bài kiểm tra', default='Mới')
-    class_id = fields.Many2one('education.class', string='Khối', required=True)
+    class_id = fields.Many2one('education.class', string='Khối', required=True, store=True)
     division_id = fields.Many2one('education.class.division', string='Lớp', required=True,
-                                  domain="[('class_id', '=', class_id)]")
+                                  domain="[('class_id', '=', class_id)]", store=True)
     exam_type = fields.Selection(
         [('part_exam', 'Kiểm tra 15p'), ('quarter_exam', 'Kiểm tra 45p'),
          ('fast_exam', 'Kiểm tra miệng'), ('final_exam', 'Kiểm tra học kỳ')],

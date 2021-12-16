@@ -23,7 +23,7 @@
         </record>
 
         <record id="paperformat_student_application" model="report.paperformat">
-            <field name="name">Student Application A4</field>
+            <field name="name">Đơn đăng ký học A4</field>
             <field name="default" eval="True"/>
             <field name="format">A4</field>
             <field name="page_height">0</field>
@@ -39,14 +39,45 @@
         </record>
 
         <record id="action_student_application_report" model="ir.actions.report">
-            <field name="name">Student Application</field>
+            <field name="name">Đơn đăng ký học</field>
             <field name="model">education.application</field>
             <field name="report_type">qweb-pdf</field>
             <field name="paperformat_id" ref="management_school.paperformat_student_application"/>
             <field name="report_name">management_school.report_student_application</field>
             <field name="report_file">management_school.report_student_application</field>
-            <field name="print_report_name">'Student Application - %s' % (object.name)</field>
+            <field name="print_report_name">'Đơn đăng ký học - %s' % (object.name)</field>
             <field name="binding_model_id" ref="model_education_application"/>
         </record>
+
+        <record id="report_exam_result" model="ir.actions.report">
+            <field name="name">Kết quả đánh giá bài kiểm tra</field>
+            <field name="model">education.exam.result</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">management_school.report_exam_results</field>
+            <field name="report_file">management_school.report_exam_results</field>
+            <field name="binding_model_id" ref="model_education_exam_result"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_student_score_mark_one" model="ir.actions.report">
+            <field name="name">Bảng điểm HK1</field>
+            <field name="model">education.score.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">management_school.report_student_score_marks_one</field>
+            <field name="report_file">management_school.report_student_score_marks_one</field>
+            <field name="binding_model_id" ref="model_education_score_student"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="report_student_score_mark_two" model="ir.actions.report">
+            <field name="name">Bảng điểm HK2</field>
+            <field name="model">education.score.student</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">management_school.report_student_score_marks_two</field>
+            <field name="report_file">management_school.report_student_score_marks_two</field>
+            <field name="binding_model_id" ref="model_education_score_student"/>
+            <field name="binding_type">report</field>
+        </record>
+
     </data>
 </odoo>

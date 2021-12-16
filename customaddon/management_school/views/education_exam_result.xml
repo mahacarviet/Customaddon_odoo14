@@ -97,6 +97,7 @@
                     <field name="teachers_id"/>
                     <field name="date"/>
                     <field name="term_code"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>

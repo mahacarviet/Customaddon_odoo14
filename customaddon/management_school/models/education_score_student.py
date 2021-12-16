@@ -19,8 +19,8 @@ class EducationScoreStudent(models.Model):
     status = fields.Selection([('up', 'Đủ điều kiện lên lớp'), ('down', 'Không đủ điều kiện lên lớp')], default='up')
 
     name = fields.Char()
-    score_average_one = fields.Float(string='Điểm TB HK1', default=8)
-    score_average_two = fields.Float(string='Điểm TB HK2', default=10)
+    score_average_one = fields.Float(string='Điểm TB HK1')
+    score_average_two = fields.Float(string='Điểm TB HK2')
     score_average_overall = fields.Float(string='Điểm TB cả năm')
 
     def calculate_score_average_one(self):

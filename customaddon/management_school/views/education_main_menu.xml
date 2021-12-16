@@ -111,7 +111,7 @@
               id="menu_exam_report" parent="management_school.examination_root_menu" sequence="99"/>
 
     <menuitem id="exam_report_menu" parent="management_school.menu_exam_report"
-              action="management_school.action_education_syllabus" name="Thống kê kết quả kiểm tra" sequence="99"/>
+              action="management_school.view_list_exam_result_academic_class" name="Thống kê kết quả kiểm tra" sequence="99"/>
 
     <!--    List Menu Record-->
     <menuitem id="menu_list_main_menu" name="Danh sách" parent="management_school.menu_education_root"
